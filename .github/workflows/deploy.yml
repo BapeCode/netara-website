@@ -142,3 +142,35 @@ jobs:
         run: |
           echo "📦 Taille du build :"
           du -sh dist/
+
+  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  # Création d'un PR - Ouvre une PR vers main automatiquement
+  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  create-pr:
+    name: Create Pull Request
+    runs-on: ubuntu-22.04
+    needs: post-build
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          base: main
+          branch: dev
+          title: "🚀 Dev → Main"
+          body: |
+            ## Ce qui a été validé ✅
+            - Semgrep (SAST)
+            - Audit des dépendances
+            - Lint
+            - Typecheck
+            - Build
+            - Vérification structure
+            
+            Mergeable après relecture.
+          labels: "ready-to-merge"
+          draft: false
