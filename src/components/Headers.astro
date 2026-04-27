@@ -1,0 +1,64 @@
+---
+import { Moon, Sun } from "@lucide/astro"
+const items = [
+    {
+        label: "Nos solutions",
+        href: "#solutions"
+    },
+    {
+        label: "Engagements",
+        href: "#engagements"
+    },
+    {
+        label: "Zones d'intervention",
+        href: "#zones"
+    }
+]
+---
+
+
+<header class="fixed flex items-center justify-between p-4 w-full bg-surface border-b border-border z-50">
+    <nav class="flex items-center justify-between w-full max-w-7xl mx-auto">
+        <div class="flex items-center justify-center gap-2">
+            <div class="flex items-center justify-center w-10 h-10 rounded-md bg-primary text-text font-bold">
+                <p>N</p>
+            </div>
+            <div class="flex flex-col items-start justify-start gap-0">
+                <h1 class="uppercase text-xl text-text">
+                    Netara
+                </h1>
+                <p class="text-sm font-normal text-text-muted">Nettoyage</p>
+            </div>
+        </div>
+
+        <ul class="items-center gap-2 hidden md:flex">
+            {items.map((item) => (
+                <a href={item.href}>
+                    <li class="text-text-muted text-sm font-normal hover:text-text duration-300 transition-colors cursor-pointer">{item.label}</li>
+                </a>
+            ))}
+        </ul>
+
+        <div class="flex items-center justify-end gap-2">
+            <div id="toggle-mode" class="text-text-muted hover:text-text transition-all duration-300 cursor-pointer p-2 hover:bg-text/20 rounded-md">
+                <Moon class="block dark:hidden" stroke-width={1.0} size={18}/>
+                <Sun class="hidden dark:block" stroke-width={1.0} size={18}/>
+            </div>
+
+            <div>
+                <a href="#contact" class="flex items-center justify-end gap-2 px-6 py-2 border-border border rounded-md text-sm bg-card hover:bg-background transition-all duration-300">
+                    Nous contacter
+                </a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<script>
+    const toggleMode = document.getElementById("toggle-mode")
+
+    toggleMode?.addEventListener("click", () => {
+        const isToggle = document.getElementById("container")?.classList
+        isToggle?.toggle("dark")
+    })
+</script>

@@ -1,0 +1,124 @@
+---
+import {Bug, DropletsIcon, ShieldOff, TriangleAlertIcon} from "@lucide/astro";
+import { Image } from "astro:assets";
+import Before from "../assets/before.png"
+import After from "../assets/after.png"
+
+const constat = [
+    {
+        description: "Traces noires et salissures persistantes",
+        icon: TriangleAlertIcon
+    },
+    {
+        description: "Prolifération de mousses et lichens",
+        icon: Bug
+    },
+    {
+        description: "Tuiles devenues poreuses et fragiles",
+        icon: DropletsIcon
+    },
+    {
+        description: "Risques d'infiltrations et de dégâts",
+        icon: ShieldOff
+    },
+]
+
+const steps = [
+    {
+        title: "Diagnotic & nettoyage technique",
+        description : "Élimination radicale des micro-organismes (mousses, lichens, algues) sans abîmer le support de votre toiture."
+    },
+    {
+        title: "Traitement Curatif & Préventif",
+        description: "Application de produits fongicides et algicides professionnels pour stopper la prolifération et prévenir la réapparition."
+    },
+    {
+        title: "Hydrofuge de Surface",
+        description: "Imperméabilisation des tuiles pour un effet perlant durable. Prolonge la vie de votre toiture de 10 à 15 ans."
+    }
+]
+---
+
+<section class="flex flex-col items-center justify-center" id="solutions">
+    <div class="mx-auto max-w-7xl mb-16 px-6 py-20">
+        <div class="flex flex-col items-center gap-2 mb-16">
+            <p class="text-md md:text-lg text-primary">Le constat</p>
+
+            <h2 class="text-2xl md:text-4xl text-text font-serif font-bold text-center">Votre toiture est-elle en danger ?</h2>
+
+            <p class="text-md font-normal text-text-muted max-w-2xl mx-auto text-center">
+                L'humidité, la pollution et le temps dégradent progressivement votre couverture. Un entretien régulier coûte
+                <strong>10 fois moins cher</strong>
+                qu'une réfection complète.
+            </p>
+        </div>
+
+        <div class="flex flex-col md:flex-row items-center justify-center gap-4 mb-16">
+            {constat.map(item => (
+                    <article class="flex items-center gap-2 bg-card rounded-md border border-border p-6 w-full">
+                        <div class="flex items-center justify-center bg-danger/20 rounded-md p-2">
+                            <item.icon class="text-danger" size={16}/>
+                        </div>
+                        <p class="text-text text-sm md:text-md font-normal">{item.description}</p>
+                    </article>
+            ))}
+        </div>
+
+        <div class="flex items-center gap-2 flex-col md:flex-row">
+            <div class="relative rounded-2xl overflow-hidden w-full">
+                <Image
+                    src={Before}
+                    alt="Avant le nettoyage de la toiture"
+                    class="w-full h-72 sm:h-80 object-cover"
+                />
+                <div class="absolute bottom-0 left-0 p-6">
+                    <span class="inline-block bg-danger text-card dark:text-text text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-2">Avant</span>
+                    <p class="text-sm text-card dark:text-text font-bold">Mousses, lichens et traces noires</p>
+                </div>
+            </div>
+
+            <div class="relative rounded-2xl overflow-hidden w-full">
+                <Image
+                        src={After}
+                        alt="Après le nettoyage de la toiture"
+                        class="w-full h-72 sm:h-80 object-cover"
+                />
+                <div class="absolute bottom-0 left-0 p-6">
+                    <span class="inline-block bg-success text-card dark:text-text text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-2">Après</span>
+                    <p class="text-sm text-card dark:text-text font-bold">Toiture protégée, effet perlant</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="w-full bg-surface flex flex-col">
+        <div class="mx-auto max-w-7xl py-10 px-6">
+            <div class="flex flex-col items-center gap-2 mb-16">
+                <p class="text-md md:text-lg text-primary">Notre protocole</p>
+
+                <h2 class="text-2xl md:text-4xl text-text font-serif font-bold text-center">3 étapes pour une toiture protégé</h2>
+
+                <p class="text-md font-normal text-text-muted dark:text-text-muted max-w-2xl mx-auto text-center">
+                    Un processus rigoureux, pensé pour durer et préserver vos équipements
+                </p>
+            </div>
+
+            <div class="flex flex-col items-center gap-2">
+                {steps.map((step, index) => (
+                    <article class="flex flex-col md:flex-row items-center gap-2 mb-8 pb-2 border-b border-border w-full ">
+                        <div class="rounded-md border border-primary-border flex items-center justify-center h-10 w-10 bg-primary-light">
+                            <p class="text-primary text-lg font-bold">0{index + 1}</p>
+                        </div>
+
+                        <div class="flex flex-col items-start">
+                            <p class="uppercase text-xs font-semibold text-primary">étape 0{index + 1}</p>
+                            <p class="text-md font-normal text-text">{step.title}</p>
+                            <p class="text-sm font-normal text-text-muted">{step.description}</p>
+                        </div>
+                    </article>
+                ))}
+            </div>
+        </div>
+    </div>
+
+</section>

@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+:root {
+    --background: #f8f7f4;
+    --card: #ffffff;
+    --surface: #f0ede8;
+    --text: #0c0c0c;
+    --text-muted: rgba(12,12,12,0.6);
+    --text-hint: rgba(12,12,12,0.35);
+    --border: rgba(0,0,0,0.08);
+    --border-muted: rgba(0,0,0,0.14);
+}
+
+.dark {
+    --background: #0c0c0c;
+    --card: #141414;
+    --surface: #1a1a1a;
+    --text: #ffffff;
+    --text-muted: rgba(255,255,255,0.6);
+    --text-hint: rgba(255,255,255,0.35);
+    --border: rgba(255, 255, 255, 0.08);
+    --border-muted: rgba(255,255,255,0.14);
+}
+
+@theme {
+    /* Rôle */
+    --color-primary: #C9A84C;
+    --color-primary-light: rgba(201,168,76,0.15);
+    --color-primary-border: rgba(201,168,76,0.3);
+
+    /* Dark mode */
+    --color-background: var(--background);
+    --color-card: var(--card);
+    --color-surface: var(--surface);
+    --color-text: var(--text);
+    --color-text-muted: var(--text-muted);
+    --color-text-hint: var(--text-hint);
+    --color-border: var(--border);
+    --color-border-muted: var(--border-muted);
+
+    --color-danger: #c0392b;
+    --color-success: #27ae60;
+}
+
+* {
+    user-select: none;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100%;
+    color: var(--text);
+    background-color: var(--background);
+}
