@@ -1,4 +1,4 @@
-name: CI
+name: Netara
 
 on:
   push:
@@ -6,10 +6,57 @@ on:
   pull_request:
     branches: [main]
 
-jobs:
-  ci:
-    runs-on: ubuntu-22.04
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
+jobs:
+
+  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  # SAST — Analyse statique du code
+  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  sast:
+    name: SAST
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Équivalent Semgrep → fonctionne aussi pour JS/TS
+      - name: Semgrep
+        uses: semgrep/semgrep-action@v1
+        with:
+          config: p/typescript
+
+      # Équivalent Bandit pour Node → analyse les vulnérabilités connues
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: "pnpm"
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      # Équivalent pip-audit → audit des dépendances
+      - name: Audit dépendances
+        run: pnpm audit --audit-level=high
+
+      # Équivalent Ruff → ESLint pour JS/TS
+      - name: Lint
+        run: pnpm run lint
+
+  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  # PRE-BUILD — Vérifications avant build
+  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  pre-build:
+    name: Pre-build
+    runs-on: ubuntu-22.04
+    needs: sast  # attend que le SAST soit passé
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -28,8 +75,70 @@ jobs:
       - name: Install
         run: pnpm install --frozen-lockfile
 
-      - name: Lint
-        run: pnpm run lint
+      # Vérifie les types TypeScript sans compiler
+      - name: Typecheck
+        run: pnpm run astro check
+
+  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  # BUILD
+  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  build:
+    name: Build
+    runs-on: ubuntu-22.04
+    needs: pre-build
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: "pnpm"
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
 
       - name: Build
         run: pnpm run build
+
+      # Conserve le build pour le job suivant
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  # POST-BUILD — Vérifications après build
+  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  post-build:
+    name: Post-build
+    runs-on: ubuntu-22.04
+    needs: build
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      # Vérifie que les fichiers critiques sont bien présents dans le build
+      - name: Vérification structure build
+        run: |
+          test -f dist/index.html && echo "✅ index.html présent"
+          test -d dist/_astro && echo "✅ assets présents"
+
+      # Analyse la taille du bundle
+      - name: Taille du bundle
+        run: |
+          echo "📦 Taille du build :"
+          du -sh dist/
