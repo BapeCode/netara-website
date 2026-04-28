@@ -10,6 +10,10 @@ const items = [
         href: "#engagements"
     },
     {
+        label: "Nos services",
+        href: "#services"
+    },
+    {
         label: "Zones d'intervention",
         href: "#zones"
     }
@@ -19,7 +23,7 @@ const items = [
 
 <header class="fixed flex items-center justify-between p-4 w-full bg-surface border-b border-border z-50">
     <nav class="flex items-center justify-between w-full max-w-7xl mx-auto">
-        <div class="flex items-center justify-center gap-2">
+        <a href="/" class="flex items-center justify-center gap-2">
             <div class="flex items-center justify-center w-10 h-10 rounded-md bg-primary text-text font-bold">
                 <p>N</p>
             </div>
@@ -29,9 +33,9 @@ const items = [
                 </h1>
                 <p class="text-sm font-normal text-text-muted">Nettoyage</p>
             </div>
-        </div>
+        </a>
 
-        <ul class="items-center gap-2 hidden md:flex">
+        <ul class="items-center gap-4 hidden md:flex justify-center">
             {items.map((item) => (
                 <a href={item.href}>
                     <li class="text-text-muted text-sm font-normal hover:text-text duration-300 transition-colors cursor-pointer">{item.label}</li>

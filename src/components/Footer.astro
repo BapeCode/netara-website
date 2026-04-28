@@ -1,0 +1,71 @@
+---
+import { Mail, MapPin, Phone } from "@lucide/astro"
+
+const items = [
+    {
+        label: "Nos solutions",
+        href: "#solutions"
+    },
+    {
+        label: "Engagements",
+        href: "#engagements"
+    },
+    {
+        label: "Nos services",
+        href: "#services"
+    },
+    {
+        label: "Zones d'intervention",
+        href: "#zones"
+    },
+    {
+        label: "Politique de confidentialité",
+        href: "/confidentiality"
+    }
+]
+---
+
+
+<footer class="gap-6 bg-surface p-10 border-t border-border">
+    <div class="mx-auto max-w-7xl flex items-start justify-between mb-6">
+        <div class="flex flex-col items-start justify-start gap-2 flex-1">
+            <h4 class="uppercase text-xl font-semibold text-text">Netara</h4>
+            <p class="text-text-muted text-sm md:text-sm font-normal">
+                Spécialiste du nettoyage, démoussage et traitement hydrofuge de toiture dans le Rhône et l'Isère. Protégez votre patrimoine avec des experts certifiés.
+            </p>
+        </div>
+
+        <div class="flex items-start justify-end gap-6 flex-1">
+            <div class="flex flex-col items-start justify-start gap-2">
+                <h4 class="text-xl font-semibold text-text">Navigation</h4>
+                <ul class="flex flex-col items-start gap-1">
+                    {items.map((item, i) => (
+                            <a class="text-text-muted text-sm md:text-sm font-normal hover:text-text duration-300 transition-colors" href={item.href}>
+                                {item.label}
+                            </a>
+                    ))}
+                </ul>
+            </div>
+
+            <div class="flex flex-col items-start justify-start gap-2">
+                <h4 class="text-xl font-semibold text-text">Contact</h4>
+                <div class="flex items-center gap-2">
+                    <MapPin class="text-primary" size={18} stroke-width={1.0}/>
+                    <p class="text-text-muted text-sm md:text-sm font-normal">5 rue Antonin Dumas 69200 Vénissieux</p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <Mail class="text-primary" size={18} stroke-width={1.0}/>
+                    <p class="text-text-muted text-sm md:text-sm font-normal">contact@netara.fr</p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <Phone class="text-primary" size={18} stroke-width={1.0}/>
+                    <p class="text-text-muted text-sm md:text-sm font-normal">04 78 90 67 40</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mx-auto max-w-7xl border-t border-border pt-6 flex justify-center items-center">
+        <p class="text-text-muted font-light text-sm">&copy; 2026 Netara Nettoyage — Tous droits réservés</p>
+    </div>
+</footer>

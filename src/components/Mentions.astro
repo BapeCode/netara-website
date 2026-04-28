@@ -1,0 +1,50 @@
+---
+
+const mentions = [
+    {
+        title: "Responsable du traitement",
+        description: "NETARA — Nettoyage & Électricité, basé à Venissieu (69220). Contact : contact@netara.fr"
+    },
+    {
+        title: "Données collectées",
+        description: "Lors de votre demande de devis, nous collectons : civilité, nom, commune, téléphone (optionnel), e-mail (optionnel), adresse (optionnelle) et le contenu de votre message. Ces données sont strictement nécessaires au traitement de votre demande.\n"
+    },
+    {
+        title: "Finalité du traitement",
+        description: "Vos données sont utilisées exclusivement pour vous recontacter suite à votre demande de devis. Elles ne sont ni revendues, ni transmises à des tiers, ni utilisées à des fins commerciales tierces.\n"
+    },
+    {
+        title: "Durée de conservation",
+        description: "Vos données sont conservées pour une durée maximale de 3 ans après votre dernière interaction avec NETARA, conformément aux recommandations de la CNIL.\n"
+    },
+    {
+        title: "Vos droits (RGPD)",
+        description: "Conformément au Règlement Général sur la Protection des Données (RGPD — UE 2016/679), vous disposez d'un droit d'accès, de rectification, d'effacement, de portabilité et d'opposition à vos données personnelles. Pour exercer ces droits, contactez-nous à : contact@netara.fr\n"
+    },
+    {
+        title: "Cookies",
+        description: "Ce site n'utilise pas de cookies de traçage ou publicitaires. Seuls des cookies techniques strictement nécessaires au fonctionnement du site peuvent être utilisés.\n"
+    },
+    {
+        title: "Hébergement",
+        description: "Ce site est hébergé sur un VPS Hostinger, dont les serveurs sont localisés en Europe, dans le respect des exigences RGPD."
+    },
+    {
+        title: "Réclamation",
+        description: "Si vous estimez que le traitement de vos données n'est pas conforme à la réglementation, vous pouvez adresser une réclamation à la CNIL (www.cnil.fr)."
+    },
+]
+
+---
+
+
+<section class="flex flex-col items-start justify-start max-w-7xl mx-auto p-32 gap-6">
+    <h1 class="text-xl md:text-2xl font-bold">Politique de confidentialité & Mentions légales</h1>
+
+    {mentions.map(item => (
+            <div class="flex flex-col items-start gap-2">
+                <span class="text-lg md:text-xl font-bold text-primary">{item.title}</span>
+                <p class="text-text font-normal text-sm md:text-md">{item.description}</p>
+            </div>
+    ))}
+</section>
