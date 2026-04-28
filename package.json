@@ -13,7 +13,6 @@
     "lint": "eslint src --ext .ts,.astro"
   },
   "dependencies": {
-    "@astrojs/vercel": "^10.0.6",
     "@lucide/astro": "^1.11.0",
     "@tailwindcss/vite": "^4.2.4",
     "astro": "^6.1.9",
@@ -24,8 +23,7 @@
     "@eslint/js": "^10.0.1",
     "eslint": "^10.2.1",
     "eslint-plugin-astro": "^1.7.0",
-    "typescript-eslint": "^8.59.0",
-    "vercel": "^52.0.0"
+    "typescript-eslint": "^8.59.0"
   },
   "pnpm": {
     "optionalDependencies": {

@@ -1,7 +1,6 @@
 // @ts-check
 import { defineConfig, passthroughImageService } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
-import vercel from "@astrojs/vercel"
 
 // https://astro.build/config
 export default defineConfig({
@@ -11,6 +10,6 @@ export default defineConfig({
   image: {
     service: passthroughImageService()
   },
-  output: 'static',
-  adapter: vercel()
+  site: "https://bapecode.github.io",
+  base: '/netara-website'
 });
