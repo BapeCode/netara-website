@@ -11,6 +11,6 @@ export default defineConfig({
   image: {
     service: passthroughImageService()
   },
-  output: 'server',
+  output: 'static',
   adapter: vercel()
 });
