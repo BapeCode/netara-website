@@ -10,6 +10,6 @@ export default defineConfig({
   image: {
     service: passthroughImageService()
   },
-  site: "https://bapecode.github.io",
-  base: '/netara-website'
+  site: 'https://bapecode.github.io',
+  base: '/netara-website',
 });

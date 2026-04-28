@@ -143,6 +143,7 @@ jobs:
           echo "📦 Taille du build :"
           du -sh dist/
 
+
   # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   # Deploy — Déploiement sur Github Pages
   # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -150,7 +151,7 @@ jobs:
     name: Deploy Preview
     runs-on: ubuntu-22.04
     needs: build
-    if: github.ref == 'ref/heads/dev'
+    if: github.ref == 'refs/heads/dev'
     steps:
       - name: Checkout
         uses: actions/checkout@v4
