@@ -2,16 +2,28 @@
 import Layout from '../layouts/Layout.astro';
 import Headers from "../components/Headers.astro";
 import Heros from "../components/Heros.astro";
-import Solutions from "../components/Solutions.astro";
-import Engagements from "../components/Engagements.astro";
-import Zones from "../components/Zones.astro";
-import Services from "../components/Services.astro";
+import Solutions from "../components/HomePage/Solutions.astro";
+import Engagements from "../components/HomePage/Engagements.astro";
+import Zones from "../components/HomePage/Zones.astro";
+import Services from "../components/HomePage/Services.astro";
 import Footer from "../components/Footer.astro";
+import { Clock, File } from "@lucide/astro";
 ---
 
 <Layout>
 	<Headers/>
-	<Heros/>
+	<Heros
+		title="Votre Toiture comme Neuve : <span class='text-primary'>Nettoyage, Démoussage</span> et Protection",
+		description="Ne laissez pas la mousse et l'humidité fragiliser votre maison. Expertise professionnelle et traitement hydrofuge longue durée dans le Rhône.",
+		ctas={[
+			{label: "Demander un devis", href: "#contact"},
+			{label: "Nos services", href: "#services"},
+		]},
+		informations={[
+			{label: "Intervention rapide", icon: Clock},
+			{label: "Devis sans engagements", icon: File}
+		]}
+	/>
 	<Solutions/>
 	<Engagements/>
 	<Services/>
