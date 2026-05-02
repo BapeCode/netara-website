@@ -134,8 +134,9 @@ jobs:
       # Vérifie que les fichiers critiques sont bien présents dans le build
       - name: Vérification structure build
         run: |
-          test -f dist/index.html && echo "✅ index.html présent"
-          test -d dist/_astro && echo "✅ assets présents"
+          test -d dist/server && echo "✅ serveur présent"
+          test -d dist/client && echo "✅ assets présents"
+          test -f dist/server/entry.mjs && echo "✅ entrypoint présent"
 
       # Analyse la taille du bundle
       - name: Taille du bundle
