@@ -1,0 +1,177 @@
+---
+import { Clock, Mail } from "@lucide/astro";
+
+
+---
+
+<section class="py-32 px-6 max-w-7xl mx-auto">
+    <div class="flex flex-col md:flex-row gap-2">
+        <article class="flex flex-col items-start justify-start gap-2 bg-card border border-border rounded-md p-6 flex-1">
+            <h2 class="text-text font-semibold text-lg">Votre demande</h2>
+            <span class="text-text-muted font-normal text-sm">Touts les champs marqués * sont obligatoires</span>
+
+            <form class="flex flex-col gap-4 w-full" method="POST" action="/api/contact">
+                <div class="flex flex-col items-start gap-2">
+                    <div class="flex items-center gap-2">
+                        <p class="text-text-muted text-sm uppercase">Civilité</p>
+                        <p class="text-danger text-sm">*</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <div data-civ="M." class="flex items-center justify-center bg-surface border-border border rounded-md p-2">
+                            <p class="text-text-muted text-sm uppercase">M.</p>
+                        </div>
+                        <div data-civ="Mme" class="flex items-center justify-center bg-surface border-border border rounded-md p-2">
+                            <p class="text-text-muted text-sm uppercase">Mme</p>
+                        </div>
+                        <div data-civ="Autre" class="flex items-center justify-center bg-surface border-border border rounded-md p-2">
+                            <p class="text-text-muted text-sm uppercase">Autre</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row items-center gap-2 w-full">
+                    <div class="flex flex-col items-start gap-2 w-full">
+                        <div class="flex items-center gap-2">
+                            <p class="text-text-muted text-sm uppercase">Nom</p>
+                            <p class="text-danger text-sm">*</p>
+                        </div>
+                        <input
+                                name="firstname"
+                                placeholder="John Doe"
+                                id="firstname"
+                                type="text"
+                                class="w-full appearance-none rounded-md px-2 py-1 bg-surface border border-border focus:border-primary-border outline-none ring-0"
+                        >
+                    </div>
+                    <div class="flex flex-col items-start gap-2 w-full">
+                        <div class="flex items-center gap-2">
+                            <p class="text-text-muted text-sm uppercase">Commune</p>
+                            <p class="text-danger text-sm">*</p>
+                        </div>
+                        <input
+                                name="commune"
+                                placeholder="Meyzieu"
+                                id="commune"
+                                type="text"
+                                class="w-full appearance-none rounded-md px-2 py-1 bg-surface border border-border focus:border-primary-border outline-none ring-0"
+                        >
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row items-center gap-2 w-full">
+                    <div class="flex flex-col items-start gap-2 w-full">
+                        <div class="flex items-center gap-2">
+                            <p class="text-text-muted text-sm uppercase">Téléphone</p>
+                            <p class="text-danger text-sm">*</p>
+                        </div>
+                        <input
+                                name="phone"
+                                placeholder="06 00 00 00 00"
+                                id="phone"
+                                type="text"
+                                class="w-full appearance-none rounded-md px-2 py-1 bg-surface border border-border focus:border-primary-border outline-none ring-0"
+                        >
+                    </div>
+                    <div class="flex flex-col items-start gap-2 w-full">
+                        <div class="flex items-center gap-2">
+                            <p class="text-text-muted text-sm uppercase">E-Mail</p>
+                            <p class="text-danger text-sm">*</p>
+                        </div>
+                        <input
+                                name="email"
+                                placeholder="john.doe@gmail.com"
+                                id="email"
+                                type="email"
+                                class="w-full appearance-none rounded-md px-2 py-1 bg-surface border border-border focus:border-primary-border outline-none ring-0"
+                        >
+                    </div>
+                </div>
+
+                <div class="flex flex-col items-start gap-2 w-full">
+                    <div class="flex items-center gap-2">
+                        <p class="text-text-muted text-sm uppercase">Services concerné</p>
+                        <p class="text-danger text-sm">*</p>
+                    </div>
+                    <select name="contact_services" id="contact_services" class="w-full appearance-none rounded-md px-2 py-1 bg-surface border border-border focus:border-primary-border outline-none ring-0">
+                        <option>Sélectionner...</option>
+                        <option value="panneaux">Panneaux photovoltaïques</option>
+                        <option value="electricity">Électricité</option>
+                        <option value="nettoyage">Nettoyage BTP & Pro</option>
+                        <option value="intervention">Intervention extrême</option>
+                        <option class="other">Autre</option>
+                    </select>
+                </div>
+
+                <input type="hidden" name="civilite" id="civilite-input" value="M."/>
+                <div class="flex flex-col items-start gap-2 w-full">
+                    <div class="flex items-center gap-2">
+                        <p class="text-text-muted text-sm uppercase">Votre projet</p>
+                        <p class="text-danger text-sm">*</p>
+                    </div>
+                    <input
+                            name="description"
+                            id="description"
+                            placeholder="Décrivez votre besoin en détail..."
+                            class="w-full max-h-32 min-h-10 appearance-none rounded-md px-2 py-1 bg-surface border border-border focus:border-primary-border outline-none ring-0"
+                    />
+                </div>
+
+                <button type="submit" class="flex items-center justify-center bg-surface border-border border rounded-md w-full py-2">
+                    Envoyer ma demande
+                </button>
+            </form>
+            <p class="text-xs font-light text-text-muted ">En soumettant, vous acceptez notre <a href="/confidentiality" class="text-primary">politique de confidentialité</a></p>
+        </article>
+
+        <div class="flex flex-col gap-2 flex-1">
+            <article class="flex flex-col items-start justify-start gap-1 bg-card border border-border rounded-md p-4 flex-1">
+                <div class="flex justify-center items-center border border-primary-border rounded-md p-4 bg-primary-light">
+                    <Clock stroke-width={1.0} class="text-primary" size={24}/>
+                </div>
+                <p class="text-lg font-semibold text-text">Réponse rapide garantie</p>
+                <p class="text-sm text-text-muted">Nous nous engageons à vous répondre dans les meilleurs délais. C'est notre promesse principale.</p>
+            </article>
+            <article class="flex flex-col items-start justify-start gap-1 bg-card border border-border rounded-md p-4 flex-1">
+                <div class="flex justify-center items-center border border-primary-border rounded-md p-4 bg-primary-light">
+                    <Mail stroke-width={1.0} class="text-primary" size={24}/>
+                </div>
+                <p class="text-lg font-semibold text-text">Contact direct</p>
+                <p class="text-sm text-text-muted">Préférez-vous un contact direct ?</p>
+                <p class="text-md text-primary">contact@netara.fr</p>
+            </article>
+            <article class="flex flex-col items-start justify-start gap-1 bg-card border border-border rounded-md p-4 flex-1">
+                <div class="flex justify-center items-center border border-primary-border rounded-md p-4 bg-primary-light">
+                    <Clock stroke-width={1.0} class="text-primary" size={24}/>
+                </div>
+                <p class="text-lg font-semibold text-text">Horaire</p>
+                <div class="flex justify-between items-center w-full">
+                    <p class="text-sm text-text-muted">Lundi - Jeudi</p>
+                    <p class="text-sm text-text">09h00 - 19h00</p>
+                </div>
+                <div class="flex justify-between items-center w-full">
+                    <p class="text-sm text-text-muted">Vendredi</p>
+                    <p class="text-sm text-text">08h30 - 19h00</p>
+                </div>
+                <div class="flex justify-between items-center w-full">
+                    <p class="text-sm text-text-muted">Week-End</p>
+                    <p class="text-sm text-text">Sur devis</p>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+
+<script>
+    document.querySelectorAll('[data-civ]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const alldiv = document.querySelectorAll('[data-civ]')
+            alldiv.forEach((b) => {
+                b.classList.remove('active', 'border-primary')
+                btn.classList.add('active', 'border-primary')
+            })
+            const civilite_input = document.getElementById('civilite-input')
+            civilite_input.value = btn.dataset.civ
+        })
+    })
+</script>

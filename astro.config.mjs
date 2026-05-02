@@ -2,6 +2,8 @@
 import { defineConfig, passthroughImageService } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 
+const isProd = process.env.NODE_ENV === 'production'
+
 // https://astro.build/config
 export default defineConfig({
   vite: {
@@ -11,5 +13,5 @@ export default defineConfig({
     service: passthroughImageService()
   },
   site: 'https://bapecode.github.io',
-  base: '/netara-website',
+  base: isProd ? '/netara-website' : "/",
 });

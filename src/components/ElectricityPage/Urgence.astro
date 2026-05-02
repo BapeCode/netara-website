@@ -1,5 +1,31 @@
 ---
-const urgence = [
-    {label: "Panne de courant"}
-]
+const urgence = ["Panne de courant", "Disjoncteur qui saute", "Court-circuit", "Prise défectueuse", "Tableau électrique en panne", "Éclairage défaillant"]
 ---
+
+<section class="flex flex-col items-center justify-center">
+    <div class="max-w-7xl mx-auto px-6 py-20 w-full">
+        <div class="flex flex-col items-center gap-2 mb-16">
+            <p class="text-md md:text-lg text-primary">Urgences</p>
+
+            <h2 class="text-2xl md:text-4xl text-text font-serif font-bold text-center">Dépannage d'urgence</h2>
+
+            <p class="text-md font-normal text-text-muted max-w-2xl mx-auto text-center">
+                Panne soudaine ? On intervient vite. Voici les situations que nous traitons en priorité.
+            </p>
+        </div>
+
+        <div class="flex flex-col items-start gap-2 w-full">
+            <h2 class="text-lg md:text-2xl font-semibold text-text">Réponse rapide, <br/> intervention efficace</h2>
+            <p class="text-sm text-text-muted">Contactez-nous, on se déplace. Chaque minute compte quand il s'agit d'électricité.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-2 w-full">
+                {urgence.map((item) => (
+                    <article class="flex items-center justify-start gap-2 p-6 rounded-md border border-border bg-card">
+                        <div class="h-4 w-4 rounded-full bg-danger"/>
+                        <p class="text-md md:text-lg text-text-muted">{item}</p>
+                    </article>
+                ))}
+            </div>
+        </div>
+    </div>
+</section>
