@@ -1,4 +1,4 @@
-import { A as AstroError, I as InvalidComponentArgs, N as NoImageMetadata, F as FailedToFetchRemoteImageDimensions, i as isRemoteAllowed, R as RemoteImageNotAllowed, j as joinPaths, E as ExpectedImage, a as isRemotePath, L as LocalImageUsedWrongly, M as MissingImageDimension, U as UnsupportedImageFormat, b as IncompatibleDescriptorOptions, c as UnsupportedImageConversion, d as InvalidImageService, e as ExpectedImageOptions, f as ExpectedNotESMImage, g as ImageMissingAlt, m as maybeRenderHead, h as addAttribute, s as spreadAttributes, r as renderTemplate, k as FontFamilyNotFound, u as unescapeHTML, l as removeQueryString, n as isParentDirectory } from './server_CpjXpixw.mjs';
+import { A as AstroError, I as InvalidComponentArgs, N as NoImageMetadata, F as FailedToFetchRemoteImageDimensions, i as isRemoteAllowed, R as RemoteImageNotAllowed, j as joinPaths, E as ExpectedImage, a as isRemotePath, L as LocalImageUsedWrongly, M as MissingImageDimension, U as UnsupportedImageFormat, b as IncompatibleDescriptorOptions, c as UnsupportedImageConversion, d as InvalidImageService, e as ExpectedImageOptions, f as ExpectedNotESMImage, g as ImageMissingAlt, m as maybeRenderHead, h as addAttribute, s as spreadAttributes, r as renderTemplate, k as FontFamilyNotFound, u as unescapeHTML, l as removeQueryString, n as isParentDirectory } from './server_D4QAkc43.mjs';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -1484,7 +1484,7 @@ async function getConfiguredImageService() {
   if (!globalThis?.astroAsset?.imageService) {
     const { default: service } = await import(
       // @ts-expect-error
-      './noop_B0pgunT3.mjs'
+      './noop_BmbrxmN0.mjs'
     ).catch((e) => {
       const error = new AstroError(InvalidImageService);
       error.cause = e;
@@ -1683,7 +1683,7 @@ const $$Image = createComponent(async ($$result, $$props, $$slots) => {
   }
   const { class: className, ...attributes } = { ...additionalAttributes, ...image.attributes };
   return renderTemplate`${maybeRenderHead()}<img${addAttribute(image.src, "src")}${spreadAttributes(attributes)}${addAttribute(className, "class")}>`;
-}, "/home/runner/work/netara-website/netara-website/node_modules/.pnpm/astro@6.1.9_@vercel+blob@2.3.0_@vercel+functions@3.4.4_jiti@2.6.1_lightningcss@1.32.0_r_e26c3420465c9ad35d9b83877582cf93/node_modules/astro/components/Image.astro", void 0);
+}, "/home/runner/work/netara-website/netara-website/node_modules/.pnpm/astro@6.1.9_@types+node@25.6.2_@vercel+blob@2.3.0_@vercel+functions@3.4.4_jiti@2.6.1_li_9949a57f5b3486158447604d7428dcfb/node_modules/astro/components/Image.astro", void 0);
 
 const mimes = {
   "3g2": "video/3gpp2",
@@ -2207,7 +2207,7 @@ const $$Picture = createComponent(async ($$result, $$props, $$slots) => {
     const srcsetAttribute = props.densities || !props.densities && !props.widths && !useResponsive ? `${image.src}${image.srcSet.values.length > 0 ? ", " + image.srcSet.attribute : ""}` : image.srcSet.attribute;
     return renderTemplate`<source${addAttribute(srcsetAttribute, "srcset")}${addAttribute(lookup(image.options.format ?? image.src) ?? `image/${image.options.format}`, "type")}${spreadAttributes(sourceAdditionalAttributes)}>`;
   })}  <img${addAttribute(fallbackImage.src, "src")}${spreadAttributes(attributes)}${addAttribute(className, "class")}> </picture>`;
-}, "/home/runner/work/netara-website/netara-website/node_modules/.pnpm/astro@6.1.9_@vercel+blob@2.3.0_@vercel+functions@3.4.4_jiti@2.6.1_lightningcss@1.32.0_r_e26c3420465c9ad35d9b83877582cf93/node_modules/astro/components/Picture.astro", void 0);
+}, "/home/runner/work/netara-website/netara-website/node_modules/.pnpm/astro@6.1.9_@types+node@25.6.2_@vercel+blob@2.3.0_@vercel+functions@3.4.4_jiti@2.6.1_li_9949a57f5b3486158447604d7428dcfb/node_modules/astro/components/Picture.astro", void 0);
 
 const componentDataByCssVariable = new Map([]);
 
@@ -2259,7 +2259,7 @@ const $$Font = createComponent(($$result, $$props, $$slots) => {
   }
   const filteredPreloadData = filterPreloads(data.preloads, preload);
   return renderTemplate`<style>${unescapeHTML(data.css)}</style>${filteredPreloadData?.map(({ url, type }) => renderTemplate`<link rel="preload"${addAttribute(url, "href")} as="font"${addAttribute(`font/${type}`, "type")} crossorigin>`)}`;
-}, "/home/runner/work/netara-website/netara-website/node_modules/.pnpm/astro@6.1.9_@vercel+blob@2.3.0_@vercel+functions@3.4.4_jiti@2.6.1_lightningcss@1.32.0_r_e26c3420465c9ad35d9b83877582cf93/node_modules/astro/components/Font.astro", void 0);
+}, "/home/runner/work/netara-website/netara-website/node_modules/.pnpm/astro@6.1.9_@types+node@25.6.2_@vercel+blob@2.3.0_@vercel+functions@3.4.4_jiti@2.6.1_li_9949a57f5b3486158447604d7428dcfb/node_modules/astro/components/Font.astro", void 0);
 
 const assetQueryParams = undefined;
 					const imageConfig = {"endpoint":{"entrypoint":"astro/assets/endpoint/node","route":"/_image"},"service":{"entrypoint":"astro/assets/services/noop","config":{}},"domains":[],"remotePatterns":[],"responsiveStyles":false};
