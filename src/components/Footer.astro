@@ -1,6 +1,9 @@
 ---
 import { Mail, MapPin, Phone } from "@lucide/astro"
 
+const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`
+const logoUrl = `${base}logo.jpg`
+
 const items = [
     {
         label: "Nos solutions",
@@ -28,10 +31,24 @@ const items = [
 
 <footer class="gap-6 bg-surface p-10 border-t border-border">
     <div class="mx-auto max-w-7xl flex flex-col md:flex-row items-start justify-between mb-6 gap-4">
-        <div class="flex flex-col items-center md:items-start justify-start gap-2 flex-1">
-            <h4 class="uppercase text-xl font-semibold text-text">Netara</h4>
+        <div class="flex flex-col items-center md:items-start justify-start gap-3 flex-1">
+            <div class="flex items-center gap-3">
+                <img
+                    src={logoUrl}
+                    alt="Logo Netara Nettoyage"
+                    class="w-14 h-14 rounded-full object-cover"
+                    width="56"
+                    height="56"
+                    loading="lazy"
+                    decoding="async"
+                />
+                <div class="flex flex-col">
+                    <h4 class="uppercase text-xl font-semibold text-text">Netara</h4>
+                    <p class="text-xs text-text-muted">Façade · Toiture · Remise en état</p>
+                </div>
+            </div>
             <p class="text-text-muted text-sm md:text-sm font-normal text-center md:text-left">
-                Spécialiste du nettoyage, démoussage et traitement hydrofuge de toiture dans le Rhône et l'Isère. Protégez votre patrimoine avec des experts certifiés.
+                Nettoyage <strong class="text-text">vapeur basse pression</strong>, écologique et sans produits chimiques. Hydrofuge coloré en option pour une protection longue durée dans le Rhône.
             </p>
         </div>
 
@@ -53,14 +70,14 @@ const items = [
                     <MapPin class="text-primary" size={18} stroke-width={1.0}/>
                     <p class="text-text-muted text-sm md:text-sm font-normal">5 rue Antonin Dumas 69200 Vénissieux</p>
                 </div>
-                <div class="flex items-center gap-2">
+                <a href="mailto:contact@netara.fr" class="flex items-center gap-2 hover:text-primary transition-colors duration-300">
                     <Mail class="text-primary" size={18} stroke-width={1.0}/>
                     <p class="text-text-muted text-sm md:text-sm font-normal">contact@netara.fr</p>
-                </div>
-                <div class="flex items-center gap-2">
+                </a>
+                <a href="tel:+33659334143" class="flex items-center gap-2 hover:text-primary transition-colors duration-300">
                     <Phone class="text-primary" size={18} stroke-width={1.0}/>
-                    <p class="text-text-muted text-sm md:text-sm font-normal">04 78 90 67 40</p>
-                </div>
+                    <p class="text-text-muted text-sm md:text-sm font-normal">06.59.33.41.43</p>
+                </a>
             </div>
         </div>
     </div>

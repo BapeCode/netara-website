@@ -22,19 +22,23 @@ const services = [
 
 <section id="services" class="flex flex-col items-center justify-center bg-surface">
     <div class="mx-auto max-w-7xl py-20 px-6 w-full">
-        <div class="flex flex-col items-center gap-2 mb-16">
+        <div class="flex flex-col items-center gap-2 mb-16" data-reveal="up">
             <p class="text-md md:text-lg text-primary">Nos services</p>
 
             <h2 class="text-2xl md:text-4xl text-text font-serif font-bold text-center">Les services que nous proposons</h2>
 
             <p class="text-md font-normal text-text-muted max-w-2xl mx-auto text-center">
-                Quatre domaiens d'expertise, une seule équipe de confiance.
+                Quatre domaines d'expertise, une seule équipe de confiance.
             </p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 items-stretch gap-4 w-full">
             {services.map((item, index) => (
-                <article class="flex flex-col items-start justify-start gap-2 bg-card border border-border p-6 rounded-md">
+                <article
+                    class="card-lift flex flex-col items-start justify-start gap-2 bg-card border border-border p-6 rounded-md"
+                    data-reveal={index % 2 === 0 ? "left" : "right"}
+                    style={`--reveal-delay: ${Math.floor(index / 2) * 120}ms;`}
+                >
                     <h3 class="text-primary text-xl md:text-2xl font-bold">0{index + 1}</h3>
                     <h4 class="text-text text-lg md:text-xl font-semibold">{item.title}</h4>
                     <p class="text-text-muted text-sm">{item.description}</p>

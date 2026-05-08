@@ -26,7 +26,7 @@ const engagements = [
 
 <section id="engagements" class="flex flex-col items-center justify-center">
     <div class="mx-auto max-w-7xl py-20 px-6 w-full">
-        <div class="flex flex-col items-center gap-2 mb-16">
+        <div class="flex flex-col items-center gap-2 mb-16" data-reveal="up">
             <p class="text-md md:text-lg text-primary">Nos engagements</p>
 
             <h2 class="text-2xl md:text-4xl text-text font-serif font-bold text-center">Pourquoi choisir Netara ?</h2>
@@ -37,9 +37,13 @@ const engagements = [
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
-            {engagements.map(item => (
-                    <article class="flex flex-col items-start justify-start gap-2 w-full p-6 bg-card border border-border rounded-md hover:scale-[1.02] transition-all duration-500">
-                        <div class="flex items-center justify-center bg-primary-light border border-primary-border rounded-md p-2">
+            {engagements.map((item, index) => (
+                    <article
+                        class="card-lift flex flex-col items-start justify-start gap-2 w-full p-6 bg-card border border-border rounded-md"
+                        data-reveal="up"
+                        style={`--reveal-delay: ${index * 100}ms;`}
+                    >
+                        <div class="flex items-center justify-center bg-primary-light border border-primary-border rounded-md p-2 transition-transform duration-500 hover:rotate-6 hover:scale-110">
                             <item.icon size={18} stroke-width={1.0} class="text-primary"/>
                         </div>
                         <h3 class="text-text text-lg md:text-xl font-semibold">{item.title}</h3>
