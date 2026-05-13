@@ -73,11 +73,17 @@ const logoUrl = `${base}logo.jpg`
                     </div>
                 </a>
                 <ul class="items-center gap-6 hidden md:flex justify-center">
-                    {items.map((item) => (
-                            <a href={item.href} class="nav-link">
-                                <li class="text-text-muted text-sm font-normal hover:text-text duration-300 transition-colors cursor-pointer">{item.label}</li>
-                            </a>
-                    ))}
+                    {items.map((item) => {
+                        const isElec = item.href == "/electricity"
+                        return (
+                            <div class="flex flex-row items-center gap-1">
+                                <a href={item.href} class={`nav-link ${isElec ? "bg-yellow-500/60 px-2 py-1 rounded-full" : ""}`}>
+                                    <li class="text-text-muted text-sm font-normal hover:text-text duration-300 transition-colors cursor-pointer">{item.label}</li>
+                                </a>
+                                <p class={`${isElec ? "block" : "hidden"}`}>⚡</p>
+                            </div>
+                        )
+                    })}
                 </ul>
         )}
 
