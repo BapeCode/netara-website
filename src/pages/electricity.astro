@@ -1,0 +1,30 @@
+---
+
+import Layout from "../layouts/Layout.astro";
+import Headers from "../components/Headers.astro";
+import {Clock, File, ShieldCheck} from "@lucide/astro";
+import Heros from "../components/Heros.astro";
+import Urgence from "../components/ElectricityPage/Urgence.astro";
+import ServicesElec from "../components/ElectricityPage/ServicesElec.astro";
+import WhyUs from "../components/ElectricityPage/WhyUs.astro";
+import Footer from "../components/Footer.astro";---
+<Layout>
+    <Headers/>
+    <Heros
+            title="Votre électricien de <span class='text-primary'>confiance,</span> disponible vite."
+            description="NETARA Électricité intervient rapidement pour tous vos travaux électriques — dépannage urgent, installations neuves, rénovation complète — chez les particuliers comme les professionnels."
+            ctas={[
+                {label: "Demander une intervention", href: "/contact"},
+                {label: "Nos services", href: "#services-elec"},
+            ]}
+            informations={[
+                {label: "Intervention rapide", icon: Clock},
+                {label: "Normes respectés", icon: ShieldCheck},
+                {label: "Devis transparant", icon: File},
+            ]}
+    />
+    <Urgence/>
+    <ServicesElec/>
+    <WhyUs/>
+    <Footer/>
+</Layout>

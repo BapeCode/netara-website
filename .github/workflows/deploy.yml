@@ -134,11 +134,37 @@ jobs:
       # Vérifie que les fichiers critiques sont bien présents dans le build
       - name: Vérification structure build
         run: |
-          test -f dist/index.html && echo "✅ index.html présent"
-          test -d dist/_astro && echo "✅ assets présents"
+          test -d dist/server && echo "✅ serveur présent"
+          test -d dist/client && echo "✅ assets présents"
+          test -f dist/server/entry.mjs && echo "✅ entrypoint présent"
 
       # Analyse la taille du bundle
       - name: Taille du bundle
         run: |
           echo "📦 Taille du build :"
           du -sh dist/
+
+
+  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  # Deploy — Déploiement sur Github Pages
+  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  deploy-preview:
+    name: Deploy Preview
+    runs-on: ubuntu-22.04
+    needs: build
+    if: github.ref == 'refs/heads/dev'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist

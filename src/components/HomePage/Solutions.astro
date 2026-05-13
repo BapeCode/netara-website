@@ -1,8 +1,8 @@
 ---
 import {Bug, DropletsIcon, ShieldOff, TriangleAlertIcon} from "@lucide/astro";
 import { Image } from "astro:assets";
-import Before from "../assets/before.png"
-import After from "../assets/after.png"
+import Before from "../../assets/before.png"
+import After from "../../assets/after.png"
 
 const constat = [
     {
@@ -25,23 +25,23 @@ const constat = [
 
 const steps = [
     {
-        title: "Diagnotic & nettoyage technique",
-        description : "Élimination radicale des micro-organismes (mousses, lichens, algues) sans abîmer le support de votre toiture."
+        title: "Diagnostic & nettoyage vapeur basse pression",
+        description : "Élimination des mousses, lichens et algues à la vapeur basse pression. Procédé doux qui préserve vos tuiles, sans abîmer le support."
     },
     {
-        title: "Traitement Curatif & Préventif",
-        description: "Application de produits fongicides et algicides professionnels pour stopper la prolifération et prévenir la réapparition."
+        title: "Méthode 100% écologique",
+        description: "Aucun produit chimique, faible consommation d'eau. Respectueux de votre toiture, de vos plantes et de l'environnement."
     },
     {
-        title: "Hydrofuge de Surface",
-        description: "Imperméabilisation des tuiles pour un effet perlant durable. Prolonge la vie de votre toiture de 10 à 15 ans."
+        title: "Hydrofuge coloré (en option, fortement recommandé)",
+        description: "Application d'un hydrofuge coloré pour imperméabiliser et raviver vos tuiles. Effet perlant durable, prolonge la vie de votre toiture de 10 à 15 ans."
     }
 ]
 ---
 
 <section class="flex flex-col items-center justify-center" id="solutions">
     <div class="mx-auto max-w-7xl mb-16 px-6 py-20">
-        <div class="flex flex-col items-center gap-2 mb-16">
+        <div class="flex flex-col items-center gap-2 mb-16" data-reveal="up">
             <p class="text-md md:text-lg text-primary">Le constat</p>
 
             <h2 class="text-2xl md:text-4xl text-text font-serif font-bold text-center">Votre toiture est-elle en danger ?</h2>
@@ -54,8 +54,12 @@ const steps = [
         </div>
 
         <div class="flex flex-col md:flex-row items-center justify-center gap-4 mb-16">
-            {constat.map(item => (
-                    <article class="flex items-center gap-2 bg-card rounded-md border border-border p-6 w-full">
+            {constat.map((item, index) => (
+                    <article
+                        class="card-lift flex items-center gap-2 bg-card rounded-md border border-border p-6 w-full"
+                        data-reveal="up"
+                        style={`--reveal-delay: ${index * 90}ms;`}
+                    >
                         <div class="flex items-center justify-center bg-danger/20 rounded-md p-2">
                             <item.icon class="text-danger" size={16}/>
                         </div>
@@ -65,11 +69,11 @@ const steps = [
         </div>
 
         <div class="flex items-center gap-2 flex-col md:flex-row">
-            <div class="relative rounded-2xl overflow-hidden w-full">
+            <div class="relative rounded-2xl overflow-hidden w-full group" data-reveal="left">
                 <Image
                     src={Before}
                     alt="Avant le nettoyage de la toiture"
-                    class="w-full h-72 sm:h-80 object-cover"
+                    class="w-full h-72 sm:h-80 object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div class="absolute bottom-0 left-0 p-6">
                     <span class="inline-block bg-danger text-card dark:text-text text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-2">Avant</span>
@@ -77,11 +81,11 @@ const steps = [
                 </div>
             </div>
 
-            <div class="relative rounded-2xl overflow-hidden w-full">
+            <div class="relative rounded-2xl overflow-hidden w-full group" data-reveal="right" style="--reveal-delay: 120ms;">
                 <Image
                         src={After}
                         alt="Après le nettoyage de la toiture"
-                        class="w-full h-72 sm:h-80 object-cover"
+                        class="w-full h-72 sm:h-80 object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div class="absolute bottom-0 left-0 p-6">
                     <span class="inline-block bg-success text-card dark:text-text text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-2">Après</span>
@@ -93,10 +97,10 @@ const steps = [
 
     <div class="w-full bg-surface flex flex-col">
         <div class="mx-auto max-w-7xl py-10 px-6">
-            <div class="flex flex-col items-center gap-2 mb-16">
+            <div class="flex flex-col items-center gap-2 mb-16" data-reveal="up">
                 <p class="text-md md:text-lg text-primary">Notre protocole</p>
 
-                <h2 class="text-2xl md:text-4xl text-text font-serif font-bold text-center">3 étapes pour une toiture protégé</h2>
+                <h2 class="text-2xl md:text-4xl text-text font-serif font-bold text-center">3 étapes pour une toiture protégée</h2>
 
                 <p class="text-md font-normal text-text-muted dark:text-text-muted max-w-2xl mx-auto text-center">
                     Un processus rigoureux, pensé pour durer et préserver vos équipements
@@ -105,8 +109,12 @@ const steps = [
 
             <div class="flex flex-col items-center gap-2">
                 {steps.map((step, index) => (
-                    <article class="flex flex-col md:flex-row items-center gap-2 mb-8 pb-2 border-b border-border w-full ">
-                        <div class="rounded-md border border-primary-border flex items-center justify-center h-10 w-10 bg-primary-light">
+                    <article
+                        class="flex flex-col md:flex-row items-center gap-2 mb-8 pb-4 border-b border-border w-full hover:border-primary-border transition-colors duration-300"
+                        data-reveal="left"
+                        style={`--reveal-delay: ${index * 120}ms;`}
+                    >
+                        <div class="rounded-md border border-primary-border flex items-center justify-center h-10 w-10 bg-primary-light transition-transform duration-300 hover:scale-110 hover:rotate-3">
                             <p class="text-primary text-lg font-bold">0{index + 1}</p>
                         </div>
 

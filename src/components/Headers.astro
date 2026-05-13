@@ -1,5 +1,5 @@
 ---
-import { Moon, Sun } from "@lucide/astro"
+import { ArrowLeft, Moon, Sun } from "@lucide/astro"
 const items = [
     {
         label: "Nos solutions",
@@ -10,34 +10,76 @@ const items = [
         href: "#engagements"
     },
     {
+        label: "Nos services",
+        href: "#services"
+    },
+    {
         label: "Zones d'intervention",
         href: "#zones"
+    },
+    {
+        label: "Netara Éléctricité",
+        href: "/electricity"
     }
 ]
+const pathname = Astro.url.pathname
+const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`
+const logoUrl = `${base}logo.jpg`
 ---
 
 
 <header class="fixed flex items-center justify-between p-4 w-full bg-surface border-b border-border z-50">
     <nav class="flex items-center justify-between w-full max-w-7xl mx-auto">
-        <div class="flex items-center justify-center gap-2">
-            <div class="flex items-center justify-center w-10 h-10 rounded-md bg-primary text-text font-bold">
-                <p>N</p>
-            </div>
-            <div class="flex flex-col items-start justify-start gap-0">
-                <h1 class="uppercase text-xl text-text">
-                    Netara
-                </h1>
-                <p class="text-sm font-normal text-text-muted">Nettoyage</p>
-            </div>
-        </div>
-
-        <ul class="items-center gap-2 hidden md:flex">
-            {items.map((item) => (
-                <a href={item.href}>
-                    <li class="text-text-muted text-sm font-normal hover:text-text duration-300 transition-colors cursor-pointer">{item.label}</li>
+        {pathname !== "/" ? (
+            <>
+                <a href="/" class="items-center gap-2 hidden md:flex">
+                    <ArrowLeft class="text-text-muted" size={18} stroke-width={1.0}/>
+                    <p class="text-text-muted font-normal text-sm md:text-md">Retour</p>
                 </a>
-            ))}
-        </ul>
+                <a href="/" class="flex items-center justify-center gap-2">
+                    <img
+                        src={logoUrl}
+                        alt="Logo Netara Nettoyage"
+                        class="w-12 h-12 rounded-full object-cover"
+                        width="48"
+                        height="48"
+                        loading="eager"
+                        decoding="async"
+                    />
+                    <div class="flex flex-col items-start justify-start gap-0">
+                        <h1 class="uppercase text-xl text-text">
+                            Netara
+                        </h1>
+                        <p class="text-sm font-normal text-text-muted">Nettoyage</p>
+                    </div>
+                </a>
+            </>
+        ) : (
+                <a href="/" class="flex items-center justify-center gap-2">
+                    <img
+                        src={logoUrl}
+                        alt="Logo Netara Nettoyage"
+                        class="w-12 h-12 rounded-full object-cover"
+                        width="48"
+                        height="48"
+                        loading="eager"
+                        decoding="async"
+                    />
+                    <div class="flex flex-col items-start justify-start gap-0">
+                        <h1 class="uppercase text-xl text-text">
+                            Netara
+                        </h1>
+                        <p class="text-sm font-normal text-text-muted">Nettoyage</p>
+                    </div>
+                </a>
+                <ul class="items-center gap-6 hidden md:flex justify-center">
+                    {items.map((item) => (
+                            <a href={item.href} class="nav-link">
+                                <li class="text-text-muted text-sm font-normal hover:text-text duration-300 transition-colors cursor-pointer">{item.label}</li>
+                            </a>
+                    ))}
+                </ul>
+        )}
 
         <div class="flex items-center justify-end gap-2">
             <div id="toggle-mode" class="text-text-muted hover:text-text transition-all duration-300 cursor-pointer p-2 hover:bg-text/20 rounded-md">
@@ -46,8 +88,8 @@ const items = [
             </div>
 
             <div>
-                <a href="#contact" class="flex items-center justify-end gap-2 px-6 py-2 border-border border rounded-md text-sm bg-card hover:bg-background transition-all duration-300">
-                    Nous contacter
+                <a href="/contact" class="flex items-center justify-end gap-2 px-6 py-2 border-border border rounded-md text-sm bg-card hover:bg-primary hover:text-white hover:border-primary hover:scale-[1.03] transition-all duration-300">
+                    Devis gratuit
                 </a>
             </div>
         </div>

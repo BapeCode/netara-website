@@ -1,0 +1,59 @@
+---
+import { MapPin } from "@lucide/astro"
+
+const zones = [
+    {
+        region: "Grand Lyon",
+        items: ["Lyon", "Oullins", "Villerbanne", "Bron", "Caluire"]
+    },
+    {
+        region: "Est Lyonnais",
+        items: ["Meyzieu", "Genas", "Saint Priest", "Décine", "Chassieu"]
+    },
+    {
+        region: "Sud Lyonnais",
+        items: ["Venissieu", "Corbas", "Feyzin", "Saint-Fons", "Mions"]
+    },
+    {
+        region: "Nord Isère",
+        items: ["Bourgoin-Jallieu", "Vienne", "L'Isle-d'Abeau", "Villefontaine"]
+    },
+]
+---
+
+<section id="zones" class="flex flex-col items-center justify-center">
+    <div class="mx-auto max-w-7xl py-20 px-6 w-full">
+        <div class="flex flex-col items-center gap-2 mb-16" data-reveal="up">
+            <p class="text-md md:text-lg text-primary">Nos zones d'intervention</p>
+
+            <h2 class="text-2xl md:text-4xl text-text font-serif font-bold text-center">Nous intervenons dans le Rhône (69) et l'Isère (38)</h2>
+
+            <p class="text-md font-normal text-text-muted max-w-2xl mx-auto text-center">
+                Basés à Vénissieux, nous couvrons l'ensemble du bassin lyonnais et du Nord Isère.
+            </p>
+        </div>
+
+        <div class="flex flex-col md:flex-row items-stretch justify-center gap-4 w-full">
+            {zones.map((item, index) => (
+                <article
+                    class="card-lift flex flex-col items-start justify-start gap-2 bg-card border-border border rounded-md p-6 w-full"
+                    data-reveal="up"
+                    style={`--reveal-delay: ${index * 100}ms;`}
+                >
+                    <div class="flex items-center gap-2 mb-4">
+                        <MapPin size={24} class="text-primary" stroke-width={1.0}/>
+                        <h3 class="text-text font-semibold text-lg md:text-xl">{item.region}</h3>
+                    </div>
+                    <ul class="flex flex-col gap-2">
+                        {item.items.map((v) => (
+                            <div class="flex items-center gap-2 transition-transform duration-300 hover:translate-x-1">
+                                <div class="h-3 w-3 bg-primary-light border border-primary-border rounded-full"/>
+                                <p class="text-text-muted text-sm">{v}</p>
+                            </div>
+                        ))}
+                    </ul>
+                </article>
+            ))}
+        </div>
+    </div>
+</section>

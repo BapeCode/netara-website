@@ -2,11 +2,31 @@
 import Layout from '../layouts/Layout.astro';
 import Headers from "../components/Headers.astro";
 import Heros from "../components/Heros.astro";
-import Solutions from "../components/Solutions.astro";
+import Solutions from "../components/HomePage/Solutions.astro";
+import Engagements from "../components/HomePage/Engagements.astro";
+import Zones from "../components/HomePage/Zones.astro";
+import Services from "../components/HomePage/Services.astro";
+import Footer from "../components/Footer.astro";
+import { Clock, File } from "@lucide/astro";
 ---
 
 <Layout>
 	<Headers/>
-	<Heros/>
+	<Heros
+		title="Votre Toiture comme Neuve : <span class='text-primary'>Nettoyage, Démoussage</span> et Protection"
+		description="Nettoyage vapeur basse pression, écologique et sans produits chimiques. Hydrofuge coloré en option pour une protection longue durée dans le Rhône."
+		ctas={[
+			{label: "Demander un devis", href: "/contact"},
+			{label: "Nos services", href: "#services"},
+		]}
+		informations={[
+			{label: "Intervention rapide", icon: Clock},
+			{label: "Devis sans engagements", icon: File}
+		]}
+	/>
 	<Solutions/>
+	<Engagements/>
+	<Services/>
+	<Zones/>
+	<Footer/>
 </Layout>
