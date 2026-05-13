@@ -5,7 +5,8 @@
       "Bash(pnpm build *)",
       "Bash(pnpm lint *)",
       "Bash(git fetch *)",
-      "Bash(git checkout *)"
+      "Bash(git checkout *)",
+      "PowerShell(node scripts/remove-logo-bg.mjs)"
     ]
   }
 }
