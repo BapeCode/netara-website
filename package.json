@@ -18,7 +18,6 @@
     "@tailwindcss/vite": "^4.2.4",
     "astro": "^6.1.9",
     "nodemailer": "^8.0.7",
-    "sharp": "^0.34.5",
     "tailwindcss": "^4.2.4"
   },
   "devDependencies": {
@@ -29,9 +28,10 @@
     "typescript-eslint": "^8.59.0"
   },
   "pnpm": {
-    "optionalDependencies": {
-      "sharp": "^0.34.5"
-    },
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp"
+    ],
     "overrides": {
       "undici@>=4.5.0 <5.28.5": ">=5.28.5",
       "undici@<6.23.0": ">=6.23.0",
