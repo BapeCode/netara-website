@@ -13,19 +13,19 @@
     "lint": "eslint src --ext .ts,.astro"
   },
   "dependencies": {
-    "@astrojs/node": "^10.0.6",
-    "@lucide/astro": "^1.11.0",
-    "@tailwindcss/vite": "^4.2.4",
-    "astro": "^6.1.9",
+    "@astrojs/node": "^10.1.1",
+    "@lucide/astro": "^1.16.0",
+    "@tailwindcss/vite": "^4.3.0",
+    "astro": "^6.3.3",
     "nodemailer": "^8.0.7",
-    "tailwindcss": "^4.2.4"
+    "tailwindcss": "^4.3.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@types/nodemailer": "^8.0.0",
-    "eslint": "^10.2.1",
+    "eslint": "^10.4.0",
     "eslint-plugin-astro": "^1.7.0",
-    "typescript-eslint": "^8.59.0"
+    "typescript-eslint": "^8.59.3"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
