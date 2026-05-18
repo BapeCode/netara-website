@@ -15,10 +15,13 @@
   "dependencies": {
     "@astrojs/node": "^10.1.1",
     "@lucide/astro": "^1.16.0",
-    "@tailwindcss/vite": "4.1.8",
-    "astro": "4.16.18",
+    "@tailwindcss/vite": "4.3.0",
+    "astro": "6.3.3",
     "nodemailer": "^8.0.7",
-    "tailwindcss": "4.1.8"
+    "tailwindcss": "4.3.0"
+  },
+  "overrides": {
+    "vite": "6.3.5"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
