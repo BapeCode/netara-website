@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="fr" id="container">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width"/>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+    <title>Netara - Contact</title>
+    <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="fixed flex items-center justify-between p-4 w-full bg-surface border-b border-border z-50">
+    <nav class="flex items-center justify-between w-full max-w-7xl mx-auto">
+        <a href="/" class="items-center gap-2 hidden md:flex">
+            <i data-lucide="arrow-left" class="text-text-muted" style="width:18px;height:18px"></i>
+            <p class="text-text-muted font-normal text-sm md:text-md">Retour</p>
+        </a>
+        <a href="/" class="flex items-center justify-center gap-2">
+            <img src="./assets/logo.png" alt="Logo Netara Nettoyage" class="w-12 h-12 rounded-full object-cover" width="48" height="48" loading="eager" decoding="async"/>
+            <div class="flex flex-col items-start justify-start gap-0">
+                <h1 class="uppercase text-xl text-text">Netara</h1>
+                <p class="text-sm font-normal text-text-muted">Nettoyage</p>
+            </div>
+        </a>
+        <div class="flex items-center justify-end gap-2">
+            <div id="toggle-mode" class="text-text-muted hover:text-text transition-all duration-300 cursor-pointer p-2 hover:bg-text/20 rounded-md">
+                <i data-lucide="moon" class="block dark:hidden" style="width:18px;height:18px"></i>
+                <i data-lucide="sun" class="hidden dark:block" style="width:18px;height:18px"></i>
+            </div>
+            <a href="/contact" class="flex items-center justify-end gap-2 px-6 py-2 border-border border rounded-md text-sm bg-card hover:bg-primary hover:text-white hover:border-primary hover:scale-[1.03] transition-all duration-300">
+                Devis gratuit
+            </a>
+        </div>
+    </nav>
+</header>
+
+<!-- ══════════════════════════════════════════
+     FORMULAIRE DE CONTACT
+     ══════════════════════════════════════════ -->
+<section class="py-32 px-6 max-w-7xl mx-auto">
+    <div class="flex flex-col md:flex-row gap-2">
+
+        <!-- Formulaire -->
+        <article class="flex flex-col items-start justify-start gap-2 bg-card border border-border rounded-md p-6 flex-1" data-reveal="left">
+            <h2 class="text-text font-semibold text-lg">Votre demande</h2>
+            <span class="text-text-muted font-normal text-sm">Touts les champs marqués * sont obligatoires</span>
+
+            <form id="contact-form" class="flex flex-col gap-4 w-full" method="POST" action="/api/contact">
+
+                <!-- Civilité -->
+                <div class="flex flex-col items-start gap-2">
+                    <div class="flex items-center gap-2">
+                        <p class="text-text-muted text-sm uppercase">Civilité</p>
+                        <p class="text-danger text-sm">*</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <div data-civ="M." class="flex items-center justify-center bg-surface border-border border rounded-md p-2 cursor-pointer">
+                            <p class="text-text-muted text-sm uppercase">M.</p>
+                        </div>
+                        <div data-civ="Mme" class="flex items-center justify-center bg-surface border-border border rounded-md p-2 cursor-pointer">
+                            <p class="text-text-muted text-sm uppercase">Mme</p>
+                        </div>
+                        <div data-civ="Autre" class="flex items-center justify-center bg-surface border-border border rounded-md p-2 cursor-pointer">
+                            <p class="text-text-muted text-sm uppercase">Autre</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nom + Commune -->
+                <div class="flex flex-col md:flex-row items-center gap-2 w-full">
+                    <div class="flex flex-col items-start gap-2 w-full">
+                        <div class="flex items-center gap-2">
+                            <p class="text-text-muted text-sm uppercase">Nom</p>
+                            <p class="text-danger text-sm">*</p>
+                        </div>
+                        <input name="firstname" placeholder="John Doe" id="firstname" type="text" class="w-full appearance-none rounded-md px-2 py-1 bg-surface border border-border focus:border-primary-border outline-none ring-0"/>
+                    </div>
+                    <div class="flex flex-col items-start gap-2 w-full">
+                        <div class="flex items-center gap-2">
+                            <p class="text-text-muted text-sm uppercase">Commune</p>
+                            <p class="text-danger text-sm">*</p>
+                        </div>
+                        <input name="commune" placeholder="Meyzieu" id="commune" type="text" class="w-full appearance-none rounded-md px-2 py-1 bg-surface border border-border focus:border-primary-border outline-none ring-0"/>
+                    </div>
+                </div>
+
+                <!-- Téléphone + Email -->
+                <div class="flex flex-col md:flex-row items-center gap-2 w-full">
+                    <div class="flex flex-col items-start gap-2 w-full">
+                        <div class="flex items-center gap-2">
+                            <p class="text-text-muted text-sm uppercase">Téléphone</p>
+                            <p class="text-danger text-sm">*</p>
+                        </div>
+                        <input name="phone" placeholder="06 00 00 00 00" id="phone" type="text" class="w-full appearance-none rounded-md px-2 py-1 bg-surface border border-border focus:border-primary-border outline-none ring-0"/>
+                    </div>
+                    <div class="flex flex-col items-start gap-2 w-full">
+                        <div class="flex items-center gap-2">
+                            <p class="text-text-muted text-sm uppercase">E-Mail</p>
+                            <p class="text-danger text-sm">*</p>
+                        </div>
+                        <input name="email" placeholder="john.doe@gmail.com" id="email" type="email" class="w-full appearance-none rounded-md px-2 py-1 bg-surface border border-border focus:border-primary-border outline-none ring-0"/>
+                    </div>
+                </div>
+
+                <!-- Service -->
+                <div class="flex flex-col items-start gap-2 w-full">
+                    <div class="flex items-center gap-2">
+                        <p class="text-text-muted text-sm uppercase">Services concerné</p>
+                        <p class="text-danger text-sm">*</p>
+                    </div>
+                    <select name="contact_services" id="contact_services" class="w-full appearance-none rounded-md px-2 py-1 bg-surface border border-border focus:border-primary-border outline-none ring-0">
+                        <option>Sélectionner...</option>
+                        <option value="panneaux">Panneaux photovoltaïques</option>
+                        <option value="electricity">Électricité</option>
+                        <option value="nettoyage">Nettoyage BTP & Pro</option>
+                        <option value="intervention">Intervention extrême</option>
+                        <option value="autre">Autre</option>
+                    </select>
+                </div>
+
+                <!-- Champ caché civilité + Description -->
+                <input type="hidden" name="civilite" id="civilite-input" value="M."/>
+                <!-- Honeypot anti-spam -->
+                <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off"/>
+
+                <div class="flex flex-col items-start gap-2 w-full">
+                    <div class="flex items-center gap-2">
+                        <p class="text-text-muted text-sm uppercase">Votre projet</p>
+                        <p class="text-danger text-sm">*</p>
+                    </div>
+                    <input name="description" id="description" placeholder="Décrivez votre besoin en détail..." type="text" class="w-full max-h-32 min-h-10 appearance-none rounded-md px-2 py-1 bg-surface border border-border focus:border-primary-border outline-none ring-0"/>
+                </div>
+
+                <button id="contact-submit" type="submit" class="flex items-center justify-center bg-surface border-border border rounded-md w-full py-2 hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed">
+                    <span id="contact-submit-label">Envoyer ma demande</span>
+                </button>
+            </form>
+            <p class="text-xs font-light text-text-muted">En soumettant, vous acceptez notre <a href="/confidentiality" class="text-primary">politique de confidentialité</a></p>
+        </article>
+
+        <!-- Infos contact -->
+        <div class="flex flex-col gap-2 flex-1">
+            <article class="card-lift flex flex-col items-start justify-start gap-1 bg-card border border-border rounded-md p-4 flex-1" data-reveal="right" style="--reveal-delay: 0ms;">
+                <div class="flex justify-center items-center border border-primary-border rounded-md p-4 bg-primary-light transition-transform duration-500 hover:rotate-6 hover:scale-110">
+                    <i data-lucide="clock" class="text-primary" style="width:24px;height:24px"></i>
+                </div>
+                <p class="text-lg font-semibold text-text">Réponse rapide garantie</p>
+                <p class="text-sm text-text-muted">Nous nous engageons à vous répondre dans les meilleurs délais. C'est notre promesse principale.</p>
+            </article>
+            <article class="card-lift flex flex-col items-start justify-start gap-1 bg-card border border-border rounded-md p-4 flex-1" data-reveal="right" style="--reveal-delay: 120ms;">
+                <div class="flex justify-center items-center border border-primary-border rounded-md p-4 bg-primary-light transition-transform duration-500 hover:rotate-6 hover:scale-110">
+                    <i data-lucide="mail" class="text-primary" style="width:24px;height:24px"></i>
+                </div>
+                <p class="text-lg font-semibold text-text">Contact direct</p>
+                <p class="text-sm text-text-muted">Préférez-vous un contact direct ?</p>
+                <a href="mailto:contact@netara.fr" class="text-md text-primary hover:underline">contact@netara.fr</a>
+            </article>
+            <article class="card-lift flex flex-col items-start justify-start gap-1 bg-card border border-border rounded-md p-4 flex-1" data-reveal="right" style="--reveal-delay: 240ms;">
+                <div class="flex justify-center items-center border border-primary-border rounded-md p-4 bg-primary-light transition-transform duration-500 hover:rotate-6 hover:scale-110">
+                    <i data-lucide="clock" class="text-primary" style="width:24px;height:24px"></i>
+                </div>
+                <p class="text-lg font-semibold text-text">Horaire</p>
+                <div class="flex justify-between items-center w-full">
+                    <p class="text-sm text-text-muted">Lundi - Jeudi</p>
+                    <p class="text-sm text-text">09h00 - 19h00</p>
+                </div>
+                <div class="flex justify-between items-center w-full">
+                    <p class="text-sm text-text-muted">Vendredi</p>
+                    <p class="text-sm text-text">08h30 - 19h00</p>
+                </div>
+                <div class="flex justify-between items-center w-full">
+                    <p class="text-sm text-text-muted">Week-End</p>
+                    <p class="text-sm text-text">Sur devis</p>
+                </div>
+            </article>
+        </div>
+    </div>
+
+    <!-- Toast notification -->
+    <div id="contact-toast" role="status" aria-live="polite"
+        class="fixed top-6 right-6 z-50 max-w-sm w-[calc(100%-3rem)] sm:w-auto pointer-events-none translate-x-[120%] opacity-0 transition-all duration-500 ease-out">
+        <div class="bg-card border rounded-md shadow-xl p-4 flex items-start gap-3 pointer-events-auto" id="contact-toast-card">
+            <div class="flex items-center justify-center w-9 h-9 rounded-full shrink-0" id="contact-toast-icon-wrap">
+                <span id="contact-toast-icon-success" class="hidden text-success">
+                    <i data-lucide="check-circle-2" stroke-width="1.5" style="width:22px;height:22px"></i>
+                </span>
+                <span id="contact-toast-icon-error" class="hidden text-danger">
+                    <i data-lucide="alert-circle" stroke-width="1.5" style="width:22px;height:22px"></i>
+                </span>
+            </div>
+            <div class="flex flex-col gap-1 flex-1 min-w-0">
+                <p id="contact-toast-title" class="text-text font-semibold text-sm"></p>
+                <p id="contact-toast-msg" class="text-text-muted text-xs break-words"></p>
+            </div>
+            <button id="contact-toast-close" type="button" aria-label="Fermer" class="text-text-muted hover:text-text transition-colors shrink-0">
+                <i data-lucide="x" style="width:16px;height:16px"></i>
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="gap-6 bg-surface p-10 border-t border-border">
+    <div class="mx-auto max-w-7xl flex flex-col md:flex-row items-start justify-between mb-6 gap-4">
+        <div class="flex flex-col items-center md:items-start justify-start gap-3 flex-1">
+            <div class="flex items-center gap-3">
+                <img src="./assets/logo.png" alt="Logo Netara Nettoyage" class="w-14 h-14 rounded-full object-cover" width="56" height="56" loading="lazy" decoding="async"/>
+                <div class="flex flex-col">
+                    <h4 class="uppercase text-xl font-semibold text-text">Netara</h4>
+                    <p class="text-xs text-text-muted">Façade · Toiture · Remise en état</p>
+                </div>
+            </div>
+            <p class="text-text-muted text-sm font-normal text-center md:text-left">
+                Nettoyage <strong class="text-text">vapeur basse pression</strong>, écologique et sans produits chimiques. Hydrofuge coloré en option pour une protection longue durée dans le Rhône.
+            </p>
+        </div>
+        <div class="flex flex-col md:flex-row items-center md:items-start justify-end gap-6 md:flex-1 w-full">
+            <div class="flex flex-col items-center md:items-start justify-start gap-2">
+                <h4 class="text-xl font-semibold text-text">Navigation</h4>
+                <ul class="flex flex-col items-center md:items-start gap-1">
+                    <a class="text-text-muted text-sm font-normal hover:text-text duration-300 transition-colors" href="/#solutions">Nos solutions</a>
+                    <a class="text-text-muted text-sm font-normal hover:text-text duration-300 transition-colors" href="/#engagements">Engagements</a>
+                    <a class="text-text-muted text-sm font-normal hover:text-text duration-300 transition-colors" href="/#services">Nos services</a>
+                    <a class="text-text-muted text-sm font-normal hover:text-text duration-300 transition-colors" href="/#zones">Zones d'intervention</a>
+                    <a class="text-text-muted text-sm font-normal hover:text-text duration-300 transition-colors" href="/confidentiality">Politique de confidentialité</a>
+                </ul>
+            </div>
+            <div class="flex flex-col items-center md:items-start justify-start gap-2">
+                <h4 class="text-xl font-semibold text-text">Contact</h4>
+                <div class="flex items-center gap-2">
+                    <i data-lucide="map-pin" class="text-primary" style="width:18px;height:18px"></i>
+                    <p class="text-text-muted text-sm font-normal">6 rue de Bretagne, 69330 Meyzieu</p>
+                </div>
+                <a href="mailto:contact@netara.fr" class="flex items-center gap-2 hover:text-primary transition-colors duration-300">
+                    <i data-lucide="mail" class="text-primary" style="width:18px;height:18px"></i>
+                    <p class="text-text-muted text-sm font-normal">contact@netara.fr</p>
+                </a>
+                <a href="tel:+33659334143" class="flex items-center gap-2 hover:text-primary transition-colors duration-300">
+                    <i data-lucide="phone" class="text-primary" style="width:18px;height:18px"></i>
+                    <p class="text-text-muted text-sm font-normal">06.59.33.41.43</p>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="mx-auto max-w-7xl border-t border-border pt-6 flex justify-center items-center">
+        <p class="text-text-muted font-light text-sm">&copy; 2026 Netara Nettoyage — Tous droits réservés</p>
+    </div>
+</footer>
+
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/contact.js"></script>
+<script>lucide.createIcons({ attrs: { 'stroke-width': '1' } });</script>
+</body>
+</html>

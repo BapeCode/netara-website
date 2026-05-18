@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="fr" id="container">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width"/>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+    <title>Netara - Nettoyage</title>
+    <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     HEADER — variante page d'accueil (avec nav)
+     ══════════════════════════════════════════ -->
+<header class="fixed flex items-center justify-between p-4 w-full bg-surface border-b border-border z-50">
+    <nav class="flex items-center justify-between w-full max-w-7xl mx-auto">
+        <a href="/" class="flex items-center justify-center gap-2">
+            <img src="./assets/logo.png" alt="Logo Netara Nettoyage" class="w-12 h-12 rounded-full object-cover" width="48" height="48" loading="eager" decoding="async"/>
+            <div class="flex flex-col items-start justify-start gap-0">
+                <h1 class="uppercase text-xl text-text">Netara</h1>
+                <p class="text-sm font-normal text-text-muted">Nettoyage</p>
+            </div>
+        </a>
+
+        <ul class="items-center gap-6 hidden md:flex justify-center">
+            <div class="flex flex-row items-center gap-1">
+                <a href="#solutions" class="nav-link">
+                    <li class="text-text-muted text-sm font-normal hover:text-text duration-300 transition-colors cursor-pointer">Nos solutions</li>
+                </a>
+            </div>
+            <div class="flex flex-row items-center gap-1">
+                <a href="#engagements" class="nav-link">
+                    <li class="text-text-muted text-sm font-normal hover:text-text duration-300 transition-colors cursor-pointer">Engagements</li>
+                </a>
+            </div>
+            <div class="flex flex-row items-center gap-1">
+                <a href="#services" class="nav-link">
+                    <li class="text-text-muted text-sm font-normal hover:text-text duration-300 transition-colors cursor-pointer">Nos services</li>
+                </a>
+            </div>
+            <div class="flex flex-row items-center gap-1">
+                <a href="#zones" class="nav-link">
+                    <li class="text-text-muted text-sm font-normal hover:text-text duration-300 transition-colors cursor-pointer">Zones d'intervention</li>
+                </a>
+            </div>
+            <div class="flex flex-row items-center gap-1">
+                <a href="/electricity" class="nav-link bg-yellow-500/60 px-2 py-1 rounded-full">
+                    <li class="text-text-muted text-sm font-normal hover:text-text duration-300 transition-colors cursor-pointer">Netara Éléctricité</li>
+                </a>
+                <p>⚡</p>
+            </div>
+        </ul>
+
+        <div class="flex items-center justify-end gap-2">
+            <div id="toggle-mode" class="text-text-muted hover:text-text transition-all duration-300 cursor-pointer p-2 hover:bg-text/20 rounded-md">
+                <i data-lucide="moon" class="block dark:hidden" style="width:18px;height:18px"></i>
+                <i data-lucide="sun" class="hidden dark:block" style="width:18px;height:18px"></i>
+            </div>
+            <a href="/contact" class="flex items-center justify-end gap-2 px-6 py-2 border-border border rounded-md text-sm bg-card hover:bg-primary hover:text-white hover:border-primary hover:scale-[1.03] transition-all duration-300">
+                Devis gratuit
+            </a>
+        </div>
+    </nav>
+</header>
+
+<!-- ══════════════════════════════════════════
+     HERO
+     ══════════════════════════════════════════ -->
+<section class="flex justify-center items-center w-full h-full bg-surface relative overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none -z-0">
+        <div class="absolute top-1/4 -left-20 w-72 h-72 rounded-full bg-primary-light blur-3xl float-slow"></div>
+        <div class="absolute bottom-1/4 -right-20 w-96 h-96 rounded-full bg-primary-light blur-3xl float-slow" style="animation-delay: -3s;"></div>
+    </div>
+    <div class="max-w-7xl mx-auto min-h-screen w-full flex items-center pt-20 relative z-10">
+        <div class="flex flex-col items-center justify-center gap-4 w-full px-6">
+            <h1 class="hero-anim text-4xl md:text-7xl font-bold text-text text-center" style="--anim-delay: 100ms;">
+                Votre Toiture comme Neuve : <span class="text-primary">Nettoyage, Démoussage</span> et Protection
+            </h1>
+            <p class="hero-anim text-sm md:text-lg text-text-muted max-w-2xl text-center" style="--anim-delay: 250ms;">
+                Nettoyage vapeur basse pression, écologique et sans produits chimiques. Hydrofuge coloré en option pour une protection longue durée dans le Rhône.
+            </p>
+            <div class="hero-anim flex flex-col md:flex-row items-center gap-2" style="--anim-delay: 400ms;">
+                <a href="/contact" class="px-6 py-3 bg-primary text-white rounded-md hover:bg-primary-dark hover:scale-[1.03] transition-all duration-300 w-full md:w-auto text-center shadow-md hover:shadow-lg">
+                    Demander un devis
+                </a>
+                <a href="#services" class="border border-transparent px-6 py-3 bg-transparent text-text-muted rounded-md hover:border-primary-border hover:text-text transition-all duration-300 w-full md:w-auto text-center">
+                    Nos services
+                </a>
+            </div>
+            <div class="hero-anim flex items-center gap-4" style="--anim-delay: 550ms;">
+                <div class="flex items-center gap-0.5">
+                    <i data-lucide="clock" class="text-text-muted" style="width:12px;height:12px"></i>
+                    <p class="text-xs text-text-muted">Intervention rapide</p>
+                </div>
+                <div class="flex items-center gap-0.5">
+                    <i data-lucide="file" class="text-text-muted" style="width:12px;height:12px"></i>
+                    <p class="text-xs text-text-muted">Devis sans engagements</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SOLUTIONS
+     ══════════════════════════════════════════ -->
+<section class="flex flex-col items-center justify-center" id="solutions">
+    <div class="mx-auto max-w-7xl mb-16 px-6 py-20">
+
+        <div class="flex flex-col items-center gap-2 mb-16" data-reveal="up">
+            <p class="text-md md:text-lg text-primary">Le constat</p>
+            <h2 class="text-2xl md:text-4xl text-text font-serif font-bold text-center">Votre toiture est-elle en danger ?</h2>
+            <p class="text-md font-normal text-text-muted max-w-2xl mx-auto text-center">
+                L'humidité, la pollution et le temps dégradent progressivement votre couverture. Un entretien régulier coûte
+                <strong>10 fois moins cher</strong> qu'une réfection complète.
+            </p>
+        </div>
+
+        <div class="flex flex-col md:flex-row items-center justify-center gap-4 mb-16">
+            <article class="card-lift flex items-center gap-2 bg-card rounded-md border border-border p-6 w-full" data-reveal="up" style="--reveal-delay: 0ms;">
+                <div class="flex items-center justify-center bg-danger/20 rounded-md p-2">
+                    <i data-lucide="triangle-alert" class="text-danger" style="width:16px;height:16px"></i>
+                </div>
+                <p class="text-text text-sm md:text-md font-normal">Traces noires et salissures persistantes</p>
+            </article>
+            <article class="card-lift flex items-center gap-2 bg-card rounded-md border border-border p-6 w-full" data-reveal="up" style="--reveal-delay: 90ms;">
+                <div class="flex items-center justify-center bg-danger/20 rounded-md p-2">
+                    <i data-lucide="bug" class="text-danger" style="width:16px;height:16px"></i>
+                </div>
+                <p class="text-text text-sm md:text-md font-normal">Prolifération de mousses et lichens</p>
+            </article>
+            <article class="card-lift flex items-center gap-2 bg-card rounded-md border border-border p-6 w-full" data-reveal="up" style="--reveal-delay: 180ms;">
+                <div class="flex items-center justify-center bg-danger/20 rounded-md p-2">
+                    <i data-lucide="droplets" class="text-danger" style="width:16px;height:16px"></i>
+                </div>
+                <p class="text-text text-sm md:text-md font-normal">Tuiles devenues poreuses et fragiles</p>
+            </article>
+            <article class="card-lift flex items-center gap-2 bg-card rounded-md border border-border p-6 w-full" data-reveal="up" style="--reveal-delay: 270ms;">
+                <div class="flex items-center justify-center bg-danger/20 rounded-md p-2">
+                    <i data-lucide="shield-off" class="text-danger" style="width:16px;height:16px"></i>
+                </div>
+                <p class="text-text text-sm md:text-md font-normal">Risques d'infiltrations et de dégâts</p>
+            </article>
+        </div>
+
+        <div class="flex items-center gap-2 flex-col md:flex-row">
+            <div class="relative rounded-2xl overflow-hidden w-full group" data-reveal="left">
+                <img src="/assets/before.png" alt="Avant le nettoyage de la toiture" class="w-full h-72 sm:h-80 object-cover transition-transform duration-700 group-hover:scale-105"/>
+                <div class="absolute bottom-0 left-0 p-6">
+                    <span class="inline-block bg-danger text-card dark:text-text text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-2">Avant</span>
+                    <p class="text-sm text-card dark:text-text font-bold">Mousses, lichens et traces noires</p>
+                </div>
+            </div>
+            <div class="relative rounded-2xl overflow-hidden w-full group" data-reveal="right" style="--reveal-delay: 120ms;">
+                <img src="/assets/after.png" alt="Après le nettoyage de la toiture" class="w-full h-72 sm:h-80 object-cover transition-transform duration-700 group-hover:scale-105"/>
+                <div class="absolute bottom-0 left-0 p-6">
+                    <span class="inline-block bg-success text-card dark:text-text text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-2">Après</span>
+                    <p class="text-sm text-card dark:text-text font-bold">Toiture protégée, effet perlant</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="w-full bg-surface flex flex-col">
+        <div class="mx-auto max-w-7xl py-10 px-6">
+            <div class="flex flex-col items-center gap-2 mb-16" data-reveal="up">
+                <p class="text-md md:text-lg text-primary">Notre protocole</p>
+                <h2 class="text-2xl md:text-4xl text-text font-serif font-bold text-center">3 étapes pour une toiture protégée</h2>
+                <p class="text-md font-normal text-text-muted dark:text-text-muted max-w-2xl mx-auto text-center">
+                    Un processus rigoureux, pensé pour durer et préserver vos équipements
+                </p>
+            </div>
+
+            <div class="flex flex-col items-center gap-2">
+                <article class="flex flex-col md:flex-row items-center gap-2 mb-8 pb-4 border-b border-border w-full hover:border-primary-border transition-colors duration-300" data-reveal="left" style="--reveal-delay: 0ms;">
+                    <div class="rounded-md border border-primary-border flex items-center justify-center h-10 w-10 bg-primary-light transition-transform duration-300 hover:scale-110 hover:rotate-3">
+                        <p class="text-primary text-lg font-bold">01</p>
+                    </div>
+                    <div class="flex flex-col items-start">
+                        <p class="uppercase text-xs font-semibold text-primary">étape 01</p>
+                        <p class="text-md font-normal text-text">Diagnostic & nettoyage vapeur basse pression</p>
+                        <p class="text-sm font-normal text-text-muted">Élimination des mousses, lichens et algues à la vapeur basse pression. Procédé doux qui préserve vos tuiles, sans abîmer le support.</p>
+                    </div>
+                </article>
+                <article class="flex flex-col md:flex-row items-center gap-2 mb-8 pb-4 border-b border-border w-full hover:border-primary-border transition-colors duration-300" data-reveal="left" style="--reveal-delay: 120ms;">
+                    <div class="rounded-md border border-primary-border flex items-center justify-center h-10 w-10 bg-primary-light transition-transform duration-300 hover:scale-110 hover:rotate-3">
+                        <p class="text-primary text-lg font-bold">02</p>
+                    </div>
+                    <div class="flex flex-col items-start">
+                        <p class="uppercase text-xs font-semibold text-primary">étape 02</p>
+                        <p class="text-md font-normal text-text">Méthode 100% écologique</p>
+                        <p class="text-sm font-normal text-text-muted">Aucun produit chimique, faible consommation d'eau. Respectueux de votre toiture, de vos plantes et de l'environnement.</p>
+                    </div>
+                </article>
+                <article class="flex flex-col md:flex-row items-center gap-2 mb-8 pb-4 border-b border-border w-full hover:border-primary-border transition-colors duration-300" data-reveal="left" style="--reveal-delay: 240ms;">
+                    <div class="rounded-md border border-primary-border flex items-center justify-center h-10 w-10 bg-primary-light transition-transform duration-300 hover:scale-110 hover:rotate-3">
+                        <p class="text-primary text-lg font-bold">03</p>
+                    </div>
+                    <div class="flex flex-col items-start">
+                        <p class="uppercase text-xs font-semibold text-primary">étape 03</p>
+                        <p class="text-md font-normal text-text">Hydrofuge coloré (en option, fortement recommandé)</p>
+                        <p class="text-sm font-normal text-text-muted">Application d'un hydrofuge coloré pour imperméabiliser et raviver vos tuiles. Effet perlant durable, prolonge la vie de votre toiture de 10 à 15 ans.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     ENGAGEMENTS
+     ══════════════════════════════════════════ -->
+<section id="engagements" class="flex flex-col items-center justify-center">
+    <div class="mx-auto max-w-7xl py-20 px-6 w-full">
+        <div class="flex flex-col items-center gap-2 mb-16" data-reveal="up">
+            <p class="text-md md:text-lg text-primary">Nos engagements</p>
+            <h2 class="text-2xl md:text-4xl text-text font-serif font-bold text-center">Pourquoi choisir Netara ?</h2>
+            <p class="text-md font-normal text-text-muted max-w-2xl mx-auto text-center">
+                Une toiture propre, c'est aussi une plus-value immobilière et un patrimoine préservé.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+            <article class="card-lift flex flex-col items-start justify-start gap-2 w-full p-6 bg-card border border-border rounded-md" data-reveal="up" style="--reveal-delay: 0ms;">
+                <div class="flex items-center justify-center bg-primary-light border border-primary-border rounded-md p-2 transition-transform duration-500 hover:rotate-6 hover:scale-110">
+                    <i data-lucide="mountain" class="text-primary" style="width:18px;height:18px"></i>
+                </div>
+                <h3 class="text-text text-lg md:text-xl font-semibold">Adaptabilité</h3>
+                <p class="text-text-muted text-sm md:text-md">Équipements spécifiques pour toitures à forte pente et accès difficiles. Aucun chantier ne nous résiste.</p>
+            </article>
+            <article class="card-lift flex flex-col items-start justify-start gap-2 w-full p-6 bg-card border border-border rounded-md" data-reveal="up" style="--reveal-delay: 100ms;">
+                <div class="flex items-center justify-center bg-primary-light border border-primary-border rounded-md p-2 transition-transform duration-500 hover:rotate-6 hover:scale-110">
+                    <i data-lucide="layers" class="text-primary" style="width:18px;height:18px"></i>
+                </div>
+                <h3 class="text-text text-lg md:text-xl font-semibold">Tous Supports</h3>
+                <p class="text-text-muted text-sm md:text-md">Traitement sur tuile terre cuite, béton, ardoise. Des produits adaptés à chaque matériau pour un résultat optimal.</p>
+            </article>
+            <article class="card-lift flex flex-col items-start justify-start gap-2 w-full p-6 bg-card border border-border rounded-md" data-reveal="up" style="--reveal-delay: 200ms;">
+                <div class="flex items-center justify-center bg-primary-light border border-primary-border rounded-md p-2 transition-transform duration-500 hover:rotate-6 hover:scale-110">
+                    <i data-lucide="award" class="text-primary" style="width:18px;height:18px"></i>
+                </div>
+                <h3 class="text-text text-lg md:text-xl font-semibold">Expertise Certifiée</h3>
+                <p class="text-text-muted text-sm md:text-md">Techniciens certifiés et chargés d'affaires dédiés pour des conseils personnalisés et un suivi rigoureux.</p>
+            </article>
+            <article class="card-lift flex flex-col items-start justify-start gap-2 w-full p-6 bg-card border border-border rounded-md" data-reveal="up" style="--reveal-delay: 300ms;">
+                <div class="flex items-center justify-center bg-primary-light border border-primary-border rounded-md p-2 transition-transform duration-500 hover:rotate-6 hover:scale-110">
+                    <i data-lucide="shield-check" class="text-primary" style="width:18px;height:18px"></i>
+                </div>
+                <h3 class="text-text text-lg md:text-xl font-semibold">Sécurité Totale</h3>
+                <p class="text-text-muted text-sm md:text-md">Respect strict des normes de sécurité. Protection des abords du chantier : gouttières, façades et jardins préservés.</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SERVICES
+     ══════════════════════════════════════════ -->
+<section id="services" class="flex flex-col items-center justify-center bg-surface">
+    <div class="mx-auto max-w-7xl py-20 px-6 w-full">
+        <div class="flex flex-col items-center gap-2 mb-16" data-reveal="up">
+            <p class="text-md md:text-lg text-primary">Nos services</p>
+            <h2 class="text-2xl md:text-4xl text-text font-serif font-bold text-center">Les services que nous proposons</h2>
+            <p class="text-md font-normal text-text-muted max-w-2xl mx-auto text-center">
+                Quatre domaines d'expertise, une seule équipe de confiance.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 items-stretch gap-4 w-full">
+            <article class="card-lift flex flex-col items-start justify-start gap-2 bg-card border border-border p-6 rounded-md" data-reveal="left" style="--reveal-delay: 0ms;">
+                <h3 class="text-primary text-xl md:text-2xl font-bold">01</h3>
+                <h4 class="text-text text-lg md:text-xl font-semibold">Panneaux photovoltaïques</h4>
+                <p class="text-text-muted text-sm">Nettoyage à l'eau pure, sans produit chimique, 100% Bio. Maisons individuelles et exploitations agricoles.</p>
+            </article>
+            <article class="card-lift flex flex-col items-start justify-start gap-2 bg-card border border-border p-6 rounded-md" data-reveal="right" style="--reveal-delay: 0ms;">
+                <h3 class="text-primary text-xl md:text-2xl font-bold">02</h3>
+                <h4 class="text-text text-lg md:text-xl font-semibold">Électricité</h4>
+                <p class="text-text-muted text-sm">Dépannage urgent, installations neuves, éclairage intérieur/extérieur, remplacement de tableaux électriques. Acompte requis.</p>
+            </article>
+            <article class="card-lift flex flex-col items-start justify-start gap-2 bg-card border border-border p-6 rounded-md" data-reveal="left" style="--reveal-delay: 120ms;">
+                <h3 class="text-primary text-xl md:text-2xl font-bold">03</h3>
+                <h4 class="text-text text-lg md:text-xl font-semibold">Nettoyage BTP & Pro</h4>
+                <p class="text-text-muted text-sm">Remise en état avant/après déménagement, vitrines commerciales, gouttières, nettoyage de tombes. Samedi/dimanche sur devis.</p>
+            </article>
+            <article class="card-lift flex flex-col items-start justify-start gap-2 bg-card border border-border p-6 rounded-md" data-reveal="right" style="--reveal-delay: 120ms;">
+                <h3 class="text-primary text-xl md:text-2xl font-bold">04</h3>
+                <h4 class="text-text text-lg md:text-xl font-semibold">Interventions extrêmes</h4>
+                <p class="text-text-muted text-sm">Nettoyage après décès, syndrome de Diogène, logements insalubres. Nous sommes à votre secours.</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     ZONES
+     ══════════════════════════════════════════ -->
+<section id="zones" class="flex flex-col items-center justify-center">
+    <div class="mx-auto max-w-7xl py-20 px-6 w-full">
+        <div class="flex flex-col items-center gap-2 mb-16" data-reveal="up">
+            <p class="text-md md:text-lg text-primary">Nos zones d'intervention</p>
+            <h2 class="text-2xl md:text-4xl text-text font-serif font-bold text-center">Nous intervenons dans le Rhône (69) et l'Isère (38)</h2>
+            <p class="text-md font-normal text-text-muted max-w-2xl mx-auto text-center">
+                Basés à Vénissieux, nous couvrons l'ensemble du bassin lyonnais et du Nord Isère.
+            </p>
+        </div>
+
+        <div class="flex flex-col md:flex-row items-stretch justify-center gap-4 w-full">
+            <article class="card-lift flex flex-col items-start justify-start gap-2 bg-card border-border border rounded-md p-6 w-full" data-reveal="up" style="--reveal-delay: 0ms;">
+                <div class="flex items-center gap-2 mb-4">
+                    <i data-lucide="map-pin" class="text-primary" style="width:24px;height:24px"></i>
+                    <h3 class="text-text font-semibold text-lg md:text-xl">Grand Lyon</h3>
+                </div>
+                <ul class="flex flex-col gap-2">
+                    <div class="flex items-center gap-2 transition-transform duration-300 hover:translate-x-1"><div class="h-3 w-3 bg-primary-light border border-primary-border rounded-full"></div><p class="text-text-muted text-sm">Lyon</p></div>
+                    <div class="flex items-center gap-2 transition-transform duration-300 hover:translate-x-1"><div class="h-3 w-3 bg-primary-light border border-primary-border rounded-full"></div><p class="text-text-muted text-sm">Oullins</p></div>
+                    <div class="flex items-center gap-2 transition-transform duration-300 hover:translate-x-1"><div class="h-3 w-3 bg-primary-light border border-primary-border rounded-full"></div><p class="text-text-muted text-sm">Villerbanne</p></div>
+                    <div class="flex items-center gap-2 transition-transform duration-300 hover:translate-x-1"><div class="h-3 w-3 bg-primary-light border border-primary-border rounded-full"></div><p class="text-text-muted text-sm">Bron</p></div>
+                    <div class="flex items-center gap-2 transition-transform duration-300 hover:translate-x-1"><div class="h-3 w-3 bg-primary-light border border-primary-border rounded-full"></div><p class="text-text-muted text-sm">Caluire</p></div>
+                </ul>
+            </article>
+            <article class="card-lift flex flex-col items-start justify-start gap-2 bg-card border-border border rounded-md p-6 w-full" data-reveal="up" style="--reveal-delay: 100ms;">
+                <div class="flex items-center gap-2 mb-4">
+                    <i data-lucide="map-pin" class="text-primary" style="width:24px;height:24px"></i>
+                    <h3 class="text-text font-semibold text-lg md:text-xl">Est Lyonnais</h3>
+                </div>
+                <ul class="flex flex-col gap-2">
+                    <div class="flex items-center gap-2 transition-transform duration-300 hover:translate-x-1"><div class="h-3 w-3 bg-primary-light border border-primary-border rounded-full"></div><p class="text-text-muted text-sm">Meyzieu</p></div>
+                    <div class="flex items-center gap-2 transition-transform duration-300 hover:translate-x-1"><div class="h-3 w-3 bg-primary-light border border-primary-border rounded-full"></div><p class="text-text-muted text-sm">Genas</p></div>
+                    <div class="flex items-center gap-2 transition-transform duration-300 hover:translate-x-1"><div class="h-3 w-3 bg-primary-light border border-primary-border rounded-full"></div><p class="text-text-muted text-sm">Saint Priest</p></div>
+                    <div class="flex items-center gap-2 transition-transform duration-300 hover:translate-x-1"><div class="h-3 w-3 bg-primary-light border border-primary-border rounded-full"></div><p class="text-text-muted text-sm">Décine</p></div>
+                    <div class="flex items-center gap-2 transition-transform duration-300 hover:translate-x-1"><div class="h-3 w-3 bg-primary-light border border-primary-border rounded-full"></div><p class="text-text-muted text-sm">Chassieu</p></div>
+                </ul>
+            </article>
+            <article class="card-lift flex flex-col items-start justify-start gap-2 bg-card border-border border rounded-md p-6 w-full" data-reveal="up" style="--reveal-delay: 200ms;">
+                <div class="flex items-center gap-2 mb-4">
+                    <i data-lucide="map-pin" class="text-primary" style="width:24px;height:24px"></i>
+                    <h3 class="text-text font-semibold text-lg md:text-xl">Sud Lyonnais</h3>
+                </div>
+                <ul class="flex flex-col gap-2">
+                    <div class="flex items-center gap-2 transition-transform duration-300 hover:translate-x-1"><div class="h-3 w-3 bg-primary-light border border-primary-border rounded-full"></div><p class="text-text-muted text-sm">Venissieu</p></div>
+                    <div class="flex items-center gap-2 transition-transform duration-300 hover:translate-x-1"><div class="h-3 w-3 bg-primary-light border border-primary-border rounded-full"></div><p class="text-text-muted text-sm">Corbas</p></div>
+                    <div class="flex items-center gap-2 transition-transform duration-300 hover:translate-x-1"><div class="h-3 w-3 bg-primary-light border border-primary-border rounded-full"></div><p class="text-text-muted text-sm">Feyzin</p></div>
+                    <div class="flex items-center gap-2 transition-transform duration-300 hover:translate-x-1"><div class="h-3 w-3 bg-primary-light border border-primary-border rounded-full"></div><p class="text-text-muted text-sm">Saint-Fons</p></div>
+                    <div class="flex items-center gap-2 transition-transform duration-300 hover:translate-x-1"><div class="h-3 w-3 bg-primary-light border border-primary-border rounded-full"></div><p class="text-text-muted text-sm">Mions</p></div>
+                </ul>
+            </article>
+            <article class="card-lift flex flex-col items-start justify-start gap-2 bg-card border-border border rounded-md p-6 w-full" data-reveal="up" style="--reveal-delay: 300ms;">
+                <div class="flex items-center gap-2 mb-4">
+                    <i data-lucide="map-pin" class="text-primary" style="width:24px;height:24px"></i>
+                    <h3 class="text-text font-semibold text-lg md:text-xl">Nord Isère</h3>
+                </div>
+                <ul class="flex flex-col gap-2">
+                    <div class="flex items-center gap-2 transition-transform duration-300 hover:translate-x-1"><div class="h-3 w-3 bg-primary-light border border-primary-border rounded-full"></div><p class="text-text-muted text-sm">Bourgoin-Jallieu</p></div>
+                    <div class="flex items-center gap-2 transition-transform duration-300 hover:translate-x-1"><div class="h-3 w-3 bg-primary-light border border-primary-border rounded-full"></div><p class="text-text-muted text-sm">Vienne</p></div>
+                    <div class="flex items-center gap-2 transition-transform duration-300 hover:translate-x-1"><div class="h-3 w-3 bg-primary-light border border-primary-border rounded-full"></div><p class="text-text-muted text-sm">L'Isle-d'Abeau</p></div>
+                    <div class="flex items-center gap-2 transition-transform duration-300 hover:translate-x-1"><div class="h-3 w-3 bg-primary-light border border-primary-border rounded-full"></div><p class="text-text-muted text-sm">Villefontaine</p></div>
+                </ul>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+     ══════════════════════════════════════════ -->
+<footer class="gap-6 bg-surface p-10 border-t border-border">
+    <div class="mx-auto max-w-7xl flex flex-col md:flex-row items-start justify-between mb-6 gap-4">
+        <div class="flex flex-col items-center md:items-start justify-start gap-3 flex-1">
+            <div class="flex items-center gap-3">
+                <img src="./assets/logo.png" alt="Logo Netara Nettoyage" class="w-14 h-14 rounded-full object-cover" width="56" height="56" loading="lazy" decoding="async"/>
+                <div class="flex flex-col">
+                    <h4 class="uppercase text-xl font-semibold text-text">Netara</h4>
+                    <p class="text-xs text-text-muted">Façade · Toiture · Remise en état</p>
+                </div>
+            </div>
+            <p class="text-text-muted text-sm font-normal text-center md:text-left">
+                Nettoyage <strong class="text-text">vapeur basse pression</strong>, écologique et sans produits chimiques. Hydrofuge coloré en option pour une protection longue durée dans le Rhône.
+            </p>
+        </div>
+
+        <div class="flex flex-col md:flex-row items-center md:items-start justify-end gap-6 md:flex-1 w-full">
+            <div class="flex flex-col items-center md:items-start justify-start gap-2">
+                <h4 class="text-xl font-semibold text-text">Navigation</h4>
+                <ul class="flex flex-col items-center md:items-start gap-1">
+                    <a class="text-text-muted text-sm font-normal hover:text-text duration-300 transition-colors" href="#solutions">Nos solutions</a>
+                    <a class="text-text-muted text-sm font-normal hover:text-text duration-300 transition-colors" href="#engagements">Engagements</a>
+                    <a class="text-text-muted text-sm font-normal hover:text-text duration-300 transition-colors" href="#services">Nos services</a>
+                    <a class="text-text-muted text-sm font-normal hover:text-text duration-300 transition-colors" href="#zones">Zones d'intervention</a>
+                    <a class="text-text-muted text-sm font-normal hover:text-text duration-300 transition-colors" href="/confidentiality">Politique de confidentialité</a>
+                </ul>
+            </div>
+            <div class="flex flex-col items-center md:items-start justify-start gap-2">
+                <h4 class="text-xl font-semibold text-text">Contact</h4>
+                <div class="flex items-center gap-2">
+                    <i data-lucide="map-pin" class="text-primary" style="width:18px;height:18px"></i>
+                    <p class="text-text-muted text-sm font-normal">6 rue de Bretagne, 69330 Meyzieu</p>
+                </div>
+                <a href="mailto:contact@netara.fr" class="flex items-center gap-2 hover:text-primary transition-colors duration-300">
+                    <i data-lucide="mail" class="text-primary" style="width:18px;height:18px"></i>
+                    <p class="text-text-muted text-sm font-normal">contact@netara.fr</p>
+                </a>
+                <a href="tel:+33659334143" class="flex items-center gap-2 hover:text-primary transition-colors duration-300">
+                    <i data-lucide="phone" class="text-primary" style="width:18px;height:18px"></i>
+                    <p class="text-text-muted text-sm font-normal">06.59.33.41.43</p>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="mx-auto max-w-7xl border-t border-border pt-6 flex justify-center items-center">
+        <p class="text-text-muted font-light text-sm">&copy; 2026 Netara Nettoyage — Tous droits réservés</p>
+    </div>
+</footer>
+
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script src="/js/main.js"></script>
+<script>lucide.createIcons({ attrs: { 'stroke-width': '1' } });</script>
+</body>
+</html>
