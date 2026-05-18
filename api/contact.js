@@ -114,18 +114,20 @@ router.post('/', async (req, res) => {
         description,
     ].join('\n');
 
-    // nosemgrep: javascript.express.security.injection.raw-html-format.raw-html-format
-    const html = `
-        <h2 style="font-family:Arial,sans-serif;color:#0c0c0c;">Nouvelle demande Netara</h2>
-        <p style="font-family:Arial,sans-serif;color:#0c0c0c;"><strong>Service :</strong> ${safe.service}</p>
-        <p style="font-family:Arial,sans-serif;color:#0c0c0c;"><strong>Civilité :</strong> ${safe.civilite}</p>
-        <p style="font-family:Arial,sans-serif;color:#0c0c0c;"><strong>Nom :</strong> ${safe.firstname}</p>
-        <p style="font-family:Arial,sans-serif;color:#0c0c0c;"><strong>Commune :</strong> ${safe.commune}</p>
-        <p style="font-family:Arial,sans-serif;color:#0c0c0c;"><strong>Téléphone :</strong> <a href="tel:${safe.phone}">${safe.phone}</a></p>
-        <p style="font-family:Arial,sans-serif;color:#0c0c0c;"><strong>Email :</strong> <a href="mailto:${safe.email}">${safe.email}</a></p>
-        <hr/>
-        <p style="font-family:Arial,sans-serif;color:#0c0c0c;white-space:pre-wrap;">${safe.description}</p>
-    `;
+    // Toutes les valeurs safe.* sont passées par escapeHtml() avant interpolation.
+    // Les annotations nosemgrep sont nécessaires car Semgrep ne reconnaît pas
+    // escapeHtml() comme sanitizer et considère les valeurs encore tainted.
+    const S = 'font-family:Arial,sans-serif;color:#0c0c0c;';
+    const html =
+        '<h2 style="' + S + '">Nouvelle demande Netara</h2>\n' +
+        '<p style="' + S + '"><strong>Service :</strong> '   + safe.service   + '</p>\n' + // nosemgrep: javascript.express.security.injection.raw-html-format.raw-html-format
+        '<p style="' + S + '"><strong>Civilité :</strong> '  + safe.civilite  + '</p>\n' + // nosemgrep: javascript.express.security.injection.raw-html-format.raw-html-format
+        '<p style="' + S + '"><strong>Nom :</strong> '       + safe.firstname + '</p>\n' + // nosemgrep: javascript.express.security.injection.raw-html-format.raw-html-format
+        '<p style="' + S + '"><strong>Commune :</strong> '   + safe.commune   + '</p>\n' + // nosemgrep: javascript.express.security.injection.raw-html-format.raw-html-format
+        '<p style="' + S + '"><strong>Téléphone :</strong> <a href="tel:'     + safe.phone  + '">' + safe.phone  + '</a></p>\n' + // nosemgrep: javascript.express.security.injection.raw-html-format.raw-html-format
+        '<p style="' + S + '"><strong>Email :</strong> <a href="mailto:'      + safe.email  + '">' + safe.email  + '</a></p>\n' + // nosemgrep: javascript.express.security.injection.raw-html-format.raw-html-format
+        '<hr/>\n' +
+        '<p style="' + S + 'white-space:pre-wrap;">'         + safe.description + '</p>\n'; // nosemgrep: javascript.express.security.injection.raw-html-format.raw-html-format
 
     try {
         await transporter.sendMail({
