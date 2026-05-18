@@ -1,46 +1,80 @@
-# Astro Starter Kit: Basics
+# Netara — Site vitrine
 
-```sh
-pnpm create astro@latest -- --template basics
+Site vitrine pour **Netara**, entreprise de nettoyage (toiture, façade, BTP) et d'électricité basée à Meyzieu (69).
+
+## Stack
+
+| Côté | Techno |
+|------|--------|
+| Serveur | [Express](https://expressjs.com) 4.x |
+| Style | [Tailwind CSS](https://tailwindcss.com) 4.x |
+| Front | HTML / JS Vanilla |
+| Icônes | [Lucide](https://lucide.dev) (CDN) |
+| Email | [Nodemailer](https://nodemailer.com) (SMTP) |
+
+## Pages
+
+| Route | Description |
+|-------|-------------|
+| `/` | Accueil — hero, solutions, engagements, services, zones |
+| `/electricity` | Service électricité — urgences, prestations, engagements |
+| `/contact` | Formulaire de devis avec toast de confirmation |
+| `/confidentiality` | Politique de confidentialité & mentions légales |
+| `POST /api/contact` | API Express d'envoi d'email |
+
+## Démarrage
+
+```bash
+npm install
+npm run build:css   # Compiler le CSS Tailwind (à faire une fois)
+npm run dev         # http://localhost:3000
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+En développement, lancer le watcher CSS dans un second terminal :
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+```bash
+npm run watch:css
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## Variables d'environnement
 
-## 🧞 Commands
+Copier `.env.example` en `.env` et remplir les valeurs :
 
-All commands are run from the root of the project, from a terminal:
+```env
+SMTP_HOST=
+SMTP_PORT=
+SMTP_USER=
+SMTP_PASS=
+MAIL_FROM=
+MAIL_TO=
+PORT=3000
+```
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+## Scripts
 
-## 👀 Want to learn more?
+```bash
+npm run dev         # Serveur Express
+npm run build:css   # Build CSS Tailwind (prod, minifié)
+npm run watch:css   # Watch CSS Tailwind (dev)
+```
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## Structure
+
+```
+├── server.js              # Point d'entrée Express
+├── api/
+│   └── contact.js         # Route POST /api/contact
+├── src/styles/
+│   └── global.css         # Source CSS Tailwind
+└── public/
+    ├── index.html
+    ├── electricity.html
+    ├── contact.html
+    ├── confidentiality.html
+    ├── js/
+    │   ├── main.js        # Scroll reveal + dark mode
+    │   └── contact.js     # Formulaire + toast
+    ├── css/
+    │   └── style.css      # CSS compilé (généré)
+    └── assets/            # Images
+```

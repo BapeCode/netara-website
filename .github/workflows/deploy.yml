@@ -18,15 +18,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # J'ai passé semgrep en javascript (vu que tu n'as probablement plus de TypeScript)
       - name: Semgrep
         uses: semgrep/semgrep-action@v1
         with:
-          config: p/typescript
+          config: p/javascript
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24 # Uniformisé sur la version 24 partout
           cache: npm
 
       - name: Install
@@ -35,11 +36,12 @@ jobs:
       - name: Audit dépendances
         run: npm audit --audit-level=critical
 
+      # Si tu n'utilises plus ESLint, tu peux supprimer cette étape
       - name: Lint
-        run: npm run lint
+        run: npm run lint --if-present 
 
-  pre-build:
-    name: Pre-build
+  build:
+    name: Build (Tailwind)
     runs-on: ubuntu-22.04
     needs: sast
     steps:
@@ -55,77 +57,60 @@ jobs:
       - name: Install
         run: npm install
 
-      - name: Typecheck
-        run: npm run astro check
+      # Va exécuter ta commande Tailwind pour générer public/css/style.css
+      - name: Build CSS
+        run: npm run build:css
 
-  build:
-    name: Build
-    runs-on: ubuntu-22.04
-    needs: pre-build
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 24
-          cache: npm
-
-      - name: Install
-        run: npm install
-
-      - name: Build
-        run: npm run build
+      # On prépare un dossier propre avec uniquement ce dont Hostinger a besoin
+      - name: Prepare Artifact
+        run: |
+          mkdir production_build
+          cp -r public api server.js package.json package-lock.json production_build/
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: dist
-          path: dist/
+          name: app-build
+          path: production_build/
 
   post-build:
     name: Post-build
     runs-on: ubuntu-22.04
     needs: build
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
-          name: dist
-          path: dist/
+          name: app-build
+          path: app-build/
 
+      # Vérification de ta nouvelle architecture
       - name: Vérification structure build
         run: |
-          test -d dist/server && echo "✅ serveur présent"
-          test -d dist/client && echo "✅ assets présents"
-          test -f dist/server/entry.mjs && echo "✅ entrypoint présent"
+          test -f app-build/server.js && echo "✅ Serveur présent"
+          test -d app-build/api && echo "✅ Dossier API présent"
+          test -f app-build/public/css/style.css && echo "✅ CSS Tailwind compilé présent"
 
-      - name: Taille du bundle
+      - name: Taille de l'application
         run: |
-          echo "📦 Taille du build :"
-          du -sh dist/
+          echo "📦 Taille du projet final :"
+          du -sh app-build/
 
   deploy-preview:
-    name: Deploy Preview
+    name: Deploy Preview (Frontend Only)
     runs-on: ubuntu-22.04
     needs: build
     if: github.ref == 'refs/heads/dev'
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
-          name: dist
-          path: dist/
+          name: app-build
+          path: app-build/
 
-      - name: Deploy to GitHub Pages
+      # On ne déploie QUE le dossier public sur GitHub Pages
+      - name: Deploy Frontend to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          publish_dir: ./app-build/public
