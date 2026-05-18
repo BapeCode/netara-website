@@ -59,7 +59,7 @@ jobs:
 
       # Va exécuter ta commande Tailwind pour générer public/css/style.css
       - name: Build CSS
-        run: npm run build
+        run: npm run build:css
 
       # On prépare un dossier propre avec uniquement ce dont Hostinger a besoin
       - name: Prepare Artifact
