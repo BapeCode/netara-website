@@ -26,7 +26,7 @@ const ACTION_QUERY_PARAMS = {
   actionName: "_action"};
 const ACTION_RPC_ROUTE_PATTERN = "/_actions/[...path]";
 
-const __vite_import_meta_env__$1 = {"ASSETS_PREFIX": undefined, "BASE_URL": "/netara-website", "DEV": false, "MODE": "production", "PROD": true, "SITE": "https://bapecode.github.io", "SSR": true};
+const __vite_import_meta_env__$1 = {"ASSETS_PREFIX": undefined, "BASE_URL": "/", "DEV": false, "MODE": "production", "PROD": true, "SITE": "https://netara.fr", "SSR": true};
 const codeToStatusMap = {
   // Implemented from IANA HTTP Status Code Registry
   // https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml
@@ -632,7 +632,7 @@ class BodySizeLimitError extends Error {
   }
 }
 
-const __vite_import_meta_env__ = {"ASSETS_PREFIX": undefined, "BASE_URL": "/netara-website", "DEV": false, "MODE": "production", "PROD": true, "SITE": "https://bapecode.github.io", "SSR": true};
+const __vite_import_meta_env__ = {"ASSETS_PREFIX": undefined, "BASE_URL": "/", "DEV": false, "MODE": "production", "PROD": true, "SITE": "https://netara.fr", "SSR": true};
 function getActionContext(context) {
   const callerInfo = getCallerInfo(context);
   const actionResultAlreadySet = Boolean(context.locals._actionPayload);
@@ -2618,6 +2618,9 @@ function renderAllHeadContent(result) {
     }
   }
   return markHTMLString(content);
+}
+function renderHead() {
+  return createRenderInstruction({ type: "head" });
 }
 function maybeRenderHead() {
   return createRenderInstruction({ type: "maybe-head" });
@@ -9533,14 +9536,22 @@ class App extends BaseApp {
 
 const renderers = [];
 
-const serializedData = [{"file":"","links":[],"scripts":[],"styles":[],"routeData":{"type":"page","component":"_server-islands.astro","params":["name"],"segments":[[{"content":"_server-islands","dynamic":false,"spread":false}],[{"content":"name","dynamic":true,"spread":false}]],"pattern":"^\\/_server-islands\\/([^/]+?)\\/?$","prerender":false,"isIndex":false,"fallbackRoutes":[],"route":"/_server-islands/[name]","origin":"internal","distURL":[],"_meta":{"trailingSlash":"ignore"}}},{"file":"","links":[],"scripts":[],"styles":[],"routeData":{"route":"/_image","component":"node_modules/astro/dist/assets/endpoint/node.js","params":[],"pathname":"/_image","pattern":"^\\/_image\\/?$","segments":[[{"content":"_image","dynamic":false,"spread":false}]],"type":"endpoint","prerender":false,"fallbackRoutes":[],"distURL":[],"isIndex":false,"origin":"internal","_meta":{"trailingSlash":"ignore"}}},{"file":"","links":[],"scripts":[],"styles":[],"routeData":{"route":"/api/contact","isIndex":false,"type":"endpoint","pattern":"^\\/api\\/contact\\/?$","segments":[[{"content":"api","dynamic":false,"spread":false}],[{"content":"contact","dynamic":false,"spread":false}]],"params":[],"component":"src/pages/api/contact.ts","pathname":"/api/contact","prerender":false,"fallbackRoutes":[],"distURL":[],"origin":"project","_meta":{"trailingSlash":"ignore"}}}];
+const serializedData = [{"file":"","links":[],"scripts":[],"styles":[],"routeData":{"type":"page","component":"_server-islands.astro","params":["name"],"segments":[[{"content":"_server-islands","dynamic":false,"spread":false}],[{"content":"name","dynamic":true,"spread":false}]],"pattern":"^\\/_server-islands\\/([^/]+?)\\/?$","prerender":false,"isIndex":false,"fallbackRoutes":[],"route":"/_server-islands/[name]","origin":"internal","distURL":[],"_meta":{"trailingSlash":"ignore"}}},{"file":"","links":[],"scripts":[],"styles":[],"routeData":{"route":"/_image","component":"node_modules/astro/dist/assets/endpoint/node.js","params":[],"pathname":"/_image","pattern":"^\\/_image\\/?$","segments":[[{"content":"_image","dynamic":false,"spread":false}]],"type":"endpoint","prerender":false,"fallbackRoutes":[],"distURL":[],"isIndex":false,"origin":"internal","_meta":{"trailingSlash":"ignore"}}},{"file":"","links":[],"scripts":[],"styles":[],"routeData":{"route":"/api/contact","isIndex":false,"type":"endpoint","pattern":"^\\/api\\/contact\\/?$","segments":[[{"content":"api","dynamic":false,"spread":false}],[{"content":"contact","dynamic":false,"spread":false}]],"params":[],"component":"src/pages/api/contact.ts","pathname":"/api/contact","prerender":false,"fallbackRoutes":[],"distURL":[],"origin":"project","_meta":{"trailingSlash":"ignore"}}},{"file":"","links":[],"scripts":[],"styles":[],"routeData":{"route":"/confidentiality","isIndex":false,"type":"page","pattern":"^\\/confidentiality\\/?$","segments":[[{"content":"confidentiality","dynamic":false,"spread":false}]],"params":[],"component":"src/pages/confidentiality.astro","pathname":"/confidentiality","prerender":false,"fallbackRoutes":[],"distURL":[],"origin":"project","_meta":{"trailingSlash":"ignore"}}},{"file":"","links":[],"scripts":[],"styles":[],"routeData":{"route":"/contact","isIndex":false,"type":"page","pattern":"^\\/contact\\/?$","segments":[[{"content":"contact","dynamic":false,"spread":false}]],"params":[],"component":"src/pages/contact.astro","pathname":"/contact","prerender":false,"fallbackRoutes":[],"distURL":[],"origin":"project","_meta":{"trailingSlash":"ignore"}}},{"file":"","links":[],"scripts":[],"styles":[],"routeData":{"route":"/electricity","isIndex":false,"type":"page","pattern":"^\\/electricity\\/?$","segments":[[{"content":"electricity","dynamic":false,"spread":false}]],"params":[],"component":"src/pages/electricity.astro","pathname":"/electricity","prerender":false,"fallbackRoutes":[],"distURL":[],"origin":"project","_meta":{"trailingSlash":"ignore"}}},{"file":"","links":[],"scripts":[],"styles":[],"routeData":{"route":"/","isIndex":true,"type":"page","pattern":"^\\/$","segments":[],"params":[],"component":"src/pages/index.astro","pathname":"/","prerender":false,"fallbackRoutes":[],"distURL":[],"origin":"project","_meta":{"trailingSlash":"ignore"}}}];
 				serializedData.map(deserializeRouteInfo);
 
-const _page0 = () => import('./node_C4Uvrdog.mjs').then(n => n.n);
+const _page0 = () => import('./node_hGBooo1S.mjs');
 const _page1 = () => import('./contact_6eVSy_i6.mjs');
+const _page2 = () => import('./confidentiality_DtPvioLp.mjs');
+const _page3 = () => import('./contact_cqlCTrhJ.mjs');
+const _page4 = () => import('./electricity_1_-9MENI.mjs');
+const _page5 = () => import('./index_BwXxnbKO.mjs');
 const pageMap = new Map([
     ["node_modules/astro/dist/assets/endpoint/node.js", _page0],
-    ["src/pages/api/contact.ts", _page1]
+    ["src/pages/api/contact.ts", _page1],
+    ["src/pages/confidentiality.astro", _page2],
+    ["src/pages/contact.astro", _page3],
+    ["src/pages/electricity.astro", _page4],
+    ["src/pages/index.astro", _page5]
 ]);
 
 const _manifest = deserializeManifest(('@@ASTRO_MANIFEST_REPLACE@@'));
@@ -10216,4 +10227,4 @@ if (process.env.ASTRO_NODE_AUTOSTART !== "disabled") {
   startServer();
 }
 
-export { AstroError as A, ExpectedImage as E, FailedToFetchRemoteImageDimensions as F, ImageMissingAlt as I, LocalImageUsedWrongly as L, MissingGetFontFileRequestUrl as M, NoImageMetadata as N, RemoteImageNotAllowed as R, UnsupportedImageConversion as U, ExpectedImageOptions as a, ExpectedNotESMImage as b, FontFamilyNotFound as c, IncompatibleDescriptorOptions as d, InvalidComponentArgs as e, InvalidImageService as f, MissingImageDimension as g, UnsupportedImageFormat as h, addAttribute as i, handler as j, startServer as k, maybeRenderHead as m, options as o, renderTemplate as r, spreadAttributes as s, unescapeHTML as u };
+export { AstroError as A, ExpectedImage as E, FailedToFetchRemoteImageDimensions as F, ImageMissingAlt as I, LocalImageUsedWrongly as L, MissingGetFontFileRequestUrl as M, NoImageMetadata as N, RemoteImageNotAllowed as R, UnsupportedImageConversion as U, ExpectedImageOptions as a, ExpectedNotESMImage as b, FontFamilyNotFound as c, Fragment as d, IncompatibleDescriptorOptions as e, InvalidComponentArgs as f, InvalidImageService as g, MissingImageDimension as h, UnsupportedImageFormat as i, addAttribute as j, createRenderInstruction as k, handler as l, maybeRenderHead as m, renderHead as n, options as o, renderSlot as p, renderTemplate as q, renderComponent as r, spreadAttributes as s, startServer as t, unescapeHTML as u };
