@@ -28,8 +28,8 @@ jobs:
           config: p/typescript
 
       # Équivalent Bandit pour Node → analyse les vulnérabilités connues
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+      - name: Setup npm
+        uses: npm/action-setup@v4
         with:
           version: 10
 
@@ -37,18 +37,18 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 24
-          cache: "pnpm"
+          cache: "npm"
 
       - name: Install
-        run: pnpm install --frozen-lockfile
+        run: npm install --frozen-lockfile
 
       # Équivalent pip-audit → audit des dépendances
       - name: Audit dépendances
-        run: pnpm audit --audit-level=high
+        run: npm audit --audit-level=high
 
       # Équivalent Ruff → ESLint pour JS/TS
       - name: Lint
-        run: pnpm run lint
+        run: npm run lint
 
   # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   # PRE-BUILD — Vérifications avant build
@@ -61,8 +61,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+      - name: Setup npm
+        uses: npm/action-setup@v4
         with:
           version: 10
 
@@ -70,14 +70,14 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 24
-          cache: "pnpm"
+          cache: "npm"
 
       - name: Install
-        run: pnpm install --frozen-lockfile
+        run: npm install --frozen-lockfile
 
       # Vérifie les types TypeScript sans compiler
       - name: Typecheck
-        run: pnpm run astro check
+        run: npm run astro check
 
   # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   # BUILD
@@ -90,8 +90,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+      - name: Setup npm
+        uses: npm/action-setup@v4
         with:
           version: 10
 
@@ -99,13 +99,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 24
-          cache: "pnpm"
+          cache: "npm"
 
       - name: Install
-        run: pnpm install --frozen-lockfile
+        run: npm install --frozen-lockfile
 
       - name: Build
-        run: pnpm run build
+        run: npm run build
 
       # Conserve le build pour le job suivant
       - name: Upload artifact
