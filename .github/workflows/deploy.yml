@@ -11,9 +11,6 @@ env:
 
 jobs:
 
-  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  # SAST — Analyse statique du code
-  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   sast:
     name: SAST
     runs-on: ubuntu-22.04
@@ -21,67 +18,46 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Équivalent Semgrep → fonctionne aussi pour JS/TS
       - name: Semgrep
         uses: semgrep/semgrep-action@v1
         with:
           config: p/typescript
 
-      # Équivalent Bandit pour Node → analyse les vulnérabilités connues
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10
-
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 24
-          cache: "pnpm"
+          node-version: 22
+          cache: npm
 
       - name: Install
-        run: pnpm install --frozen-lockfile
+        run: npm install
 
-      # Équivalent pip-audit → audit des dépendances
       - name: Audit dépendances
-        run: pnpm audit --audit-level=high
+        run: npm audit --audit-level=critical
 
-      # Équivalent Ruff → ESLint pour JS/TS
       - name: Lint
-        run: pnpm run lint
+        run: npm run lint
 
-  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  # PRE-BUILD — Vérifications avant build
-  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   pre-build:
     name: Pre-build
     runs-on: ubuntu-22.04
-    needs: sast  # attend que le SAST soit passé
+    needs: sast
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10
-
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 24
-          cache: "pnpm"
+          cache: npm
 
       - name: Install
-        run: pnpm install --frozen-lockfile
+        run: npm install
 
-      # Vérifie les types TypeScript sans compiler
       - name: Typecheck
-        run: pnpm run astro check
+        run: npm run astro check
 
-  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  # BUILD
-  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   build:
     name: Build
     runs-on: ubuntu-22.04
@@ -90,33 +66,24 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10
-
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 24
-          cache: "pnpm"
+          cache: npm
 
       - name: Install
-        run: pnpm install --frozen-lockfile
+        run: npm install
 
       - name: Build
-        run: pnpm run build
+        run: npm run build
 
-      # Conserve le build pour le job suivant
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: dist
           path: dist/
 
-  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  # POST-BUILD — Vérifications après build
-  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   post-build:
     name: Post-build
     runs-on: ubuntu-22.04
@@ -131,23 +98,17 @@ jobs:
           name: dist
           path: dist/
 
-      # Vérifie que les fichiers critiques sont bien présents dans le build
       - name: Vérification structure build
         run: |
           test -d dist/server && echo "✅ serveur présent"
           test -d dist/client && echo "✅ assets présents"
           test -f dist/server/entry.mjs && echo "✅ entrypoint présent"
 
-      # Analyse la taille du bundle
       - name: Taille du bundle
         run: |
           echo "📦 Taille du build :"
           du -sh dist/
 
-
-  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  # Deploy — Déploiement sur Github Pages
-  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   deploy-preview:
     name: Deploy Preview
     runs-on: ubuntu-22.04
