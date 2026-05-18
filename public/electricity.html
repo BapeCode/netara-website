@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="fr" id="container">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width"/>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+    <title>Netara Électricité</title>
+    <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     HEADER — variante sous-page (avec retour)
+     ══════════════════════════════════════════ -->
+<header class="fixed flex items-center justify-between p-4 w-full bg-surface border-b border-border z-50">
+    <nav class="flex items-center justify-between w-full max-w-7xl mx-auto">
+        <a href="/" class="items-center gap-2 hidden md:flex">
+            <i data-lucide="arrow-left" class="text-text-muted" style="width:18px;height:18px"></i>
+            <p class="text-text-muted font-normal text-sm md:text-md">Retour</p>
+        </a>
+        <a href="/" class="flex items-center justify-center gap-2">
+            <img src="./assets/logo.png" alt="Logo Netara Nettoyage" class="w-12 h-12 rounded-full object-cover" width="48" height="48" loading="eager" decoding="async"/>
+            <div class="flex flex-col items-start justify-start gap-0">
+                <h1 class="uppercase text-xl text-text">Netara</h1>
+                <p class="text-sm font-normal text-text-muted">Nettoyage</p>
+            </div>
+        </a>
+        <div class="flex items-center justify-end gap-2">
+            <div id="toggle-mode" class="text-text-muted hover:text-text transition-all duration-300 cursor-pointer p-2 hover:bg-text/20 rounded-md">
+                <i data-lucide="moon" class="block dark:hidden" style="width:18px;height:18px"></i>
+                <i data-lucide="sun" class="hidden dark:block" style="width:18px;height:18px"></i>
+            </div>
+            <a href="/contact" class="flex items-center justify-end gap-2 px-6 py-2 border-border border rounded-md text-sm bg-card hover:bg-primary hover:text-white hover:border-primary hover:scale-[1.03] transition-all duration-300">
+                Devis gratuit
+            </a>
+        </div>
+    </nav>
+</header>
+
+<!-- ══════════════════════════════════════════
+     HERO
+     ══════════════════════════════════════════ -->
+<section class="flex justify-center items-center w-full h-full bg-surface relative overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none -z-0">
+        <div class="absolute top-1/4 -left-20 w-72 h-72 rounded-full bg-primary-light blur-3xl float-slow"></div>
+        <div class="absolute bottom-1/4 -right-20 w-96 h-96 rounded-full bg-primary-light blur-3xl float-slow" style="animation-delay: -3s;"></div>
+    </div>
+    <div class="max-w-7xl mx-auto min-h-screen w-full flex items-center pt-20 relative z-10">
+        <div class="flex flex-col items-center justify-center gap-4 w-full px-6">
+            <h1 class="hero-anim text-4xl md:text-7xl font-bold text-text text-center" style="--anim-delay: 100ms;">
+                Votre électricien de <span class="text-primary">confiance,</span> disponible vite.
+            </h1>
+            <p class="hero-anim text-sm md:text-lg text-text-muted max-w-2xl text-center" style="--anim-delay: 250ms;">
+                NETARA Électricité intervient rapidement pour tous vos travaux électriques — dépannage urgent, installations neuves, rénovation complète — chez les particuliers comme les professionnels.
+            </p>
+            <div class="hero-anim flex flex-col md:flex-row items-center gap-2" style="--anim-delay: 400ms;">
+                <a href="/contact" class="px-6 py-3 bg-primary text-white rounded-md hover:scale-[1.03] transition-all duration-300 w-full md:w-auto text-center shadow-md hover:shadow-lg">
+                    Demander une intervention
+                </a>
+                <a href="#services-elec" class="border border-transparent px-6 py-3 bg-transparent text-text-muted rounded-md hover:border-primary-border hover:text-text transition-all duration-300 w-full md:w-auto text-center">
+                    Nos services
+                </a>
+            </div>
+            <div class="hero-anim flex items-center gap-4" style="--anim-delay: 550ms;">
+                <div class="flex items-center gap-0.5">
+                    <i data-lucide="clock" class="text-text-muted" style="width:12px;height:12px"></i>
+                    <p class="text-xs text-text-muted">Intervention rapide</p>
+                </div>
+                <div class="flex items-center gap-0.5">
+                    <i data-lucide="shield-check" class="text-text-muted" style="width:12px;height:12px"></i>
+                    <p class="text-xs text-text-muted">Normes respectés</p>
+                </div>
+                <div class="flex items-center gap-0.5">
+                    <i data-lucide="file" class="text-text-muted" style="width:12px;height:12px"></i>
+                    <p class="text-xs text-text-muted">Devis transparant</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     URGENCE
+     ══════════════════════════════════════════ -->
+<section class="flex flex-col items-center justify-center">
+    <div class="max-w-7xl mx-auto px-6 py-20 w-full">
+        <div class="flex flex-col items-center gap-2 mb-16">
+            <p class="text-md md:text-lg text-primary">Urgences</p>
+            <h2 class="text-2xl md:text-4xl text-text font-serif font-bold text-center">Dépannage d'urgence</h2>
+            <p class="text-md font-normal text-text-muted max-w-2xl mx-auto text-center">
+                Panne soudaine ? On intervient vite. Voici les situations que nous traitons en priorité.
+            </p>
+        </div>
+
+        <div class="flex flex-col items-start gap-2 w-full">
+            <h2 class="text-lg md:text-2xl font-semibold text-text">Réponse rapide, <br/> intervention efficace</h2>
+            <p class="text-sm text-text-muted">Contactez-nous, on se déplace. Chaque minute compte quand il s'agit d'électricité.</p>
+
+            <div class="flex items-center gap-2 flex-col md:flex-row mb-8 w-full">
+                <div class="relative rounded-2xl overflow-hidden w-full group" data-reveal="left">
+                    <img src="/assets/chantier_elec.png" alt="Chantier électrique" class="w-full h-72 sm:h-80 object-cover transition-transform duration-700 group-hover:scale-105"/>
+                    <div class="absolute bottom-0 left-0 p-6">
+                        <span class="inline-block bg-yellow-500/80 text-card dark:text-text text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-2">Chantier électrique</span>
+                    </div>
+                </div>
+                <div class="relative rounded-2xl overflow-hidden w-full group" data-reveal="right" style="--reveal-delay: 120ms;">
+                    <img src="/assets/spot_lumix.png" alt="Spot lumineux" class="w-full h-72 sm:h-80 object-cover transition-transform duration-700 group-hover:scale-105"/>
+                    <div class="absolute bottom-0 left-0 p-6">
+                        <span class="inline-block bg-yellow-500/80 text-card dark:text-text text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-2">Spot Lumineux</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-2 w-full">
+                <article class="flex items-center justify-start gap-2 p-6 rounded-md border border-border bg-card">
+                    <div class="h-4 w-4 rounded-full bg-danger"></div>
+                    <p class="text-md md:text-lg text-text-muted">Panne de courant</p>
+                </article>
+                <article class="flex items-center justify-start gap-2 p-6 rounded-md border border-border bg-card">
+                    <div class="h-4 w-4 rounded-full bg-danger"></div>
+                    <p class="text-md md:text-lg text-text-muted">Disjoncteur qui saute</p>
+                </article>
+                <article class="flex items-center justify-start gap-2 p-6 rounded-md border border-border bg-card">
+                    <div class="h-4 w-4 rounded-full bg-danger"></div>
+                    <p class="text-md md:text-lg text-text-muted">Court-circuit</p>
+                </article>
+                <article class="flex items-center justify-start gap-2 p-6 rounded-md border border-border bg-card">
+                    <div class="h-4 w-4 rounded-full bg-danger"></div>
+                    <p class="text-md md:text-lg text-text-muted">Prise défectueuse</p>
+                </article>
+                <article class="flex items-center justify-start gap-2 p-6 rounded-md border border-border bg-card">
+                    <div class="h-4 w-4 rounded-full bg-danger"></div>
+                    <p class="text-md md:text-lg text-text-muted">Tableau électrique en panne</p>
+                </article>
+                <article class="flex items-center justify-start gap-2 p-6 rounded-md border border-border bg-card">
+                    <div class="h-4 w-4 rounded-full bg-danger"></div>
+                    <p class="text-md md:text-lg text-text-muted">Éclairage défaillant</p>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SERVICES ÉLECTRICITÉ
+     ══════════════════════════════════════════ -->
+<section class="flex flex-col items-center justify-center" id="services-elec">
+    <div class="max-w-7xl mx-auto px-6 py-20 w-full">
+        <div class="flex flex-col items-center gap-2 mb-16">
+            <p class="text-md md:text-lg text-primary">Installation & Rénovation</p>
+            <h2 class="text-2xl md:text-4xl text-text font-serif font-bold text-center">Nos services complets</h2>
+            <p class="text-md font-normal text-text-muted max-w-2xl mx-auto text-center">
+                Du simple remplacement à la rénovation complète, notre équipe s'adapte à chaque chantier
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-2 w-full mb-2">
+            <article class="flex flex-col items-start justify-start gap-2 p-6 rounded-md border border-border bg-card">
+                <p class="text-xl md:text-2xl font-semibold text-primary">01</p>
+                <p class="text-lg md:text-xl font-semibold text-text">Éclairage Int / Ext.</p>
+                <div class="flex items-center gap-2"><div class="h-2 w-2 rounded-full bg-primary"></div><p class="text-xs md:text-sm text-text-muted">Installation luminaires</p></div>
+                <div class="flex items-center gap-2"><div class="h-2 w-2 rounded-full bg-primary"></div><p class="text-xs md:text-sm text-text-muted">Spots LED</p></div>
+                <div class="flex items-center gap-2"><div class="h-2 w-2 rounded-full bg-primary"></div><p class="text-xs md:text-sm text-text-muted">Éclairage terasse & Jardin</p></div>
+                <div class="flex items-center gap-2"><div class="h-2 w-2 rounded-full bg-primary"></div><p class="text-xs md:text-sm text-text-muted">Détection automatique</p></div>
+            </article>
+            <article class="flex flex-col items-start justify-start gap-2 p-6 rounded-md border border-border bg-card">
+                <p class="text-xl md:text-2xl font-semibold text-primary">02</p>
+                <p class="text-lg md:text-xl font-semibold text-text">Prises électriques</p>
+                <div class="flex items-center gap-2"><div class="h-2 w-2 rounded-full bg-primary"></div><p class="text-xs md:text-sm text-text-muted">Ajout de prise</p></div>
+                <div class="flex items-center gap-2"><div class="h-2 w-2 rounded-full bg-primary"></div><p class="text-xs md:text-sm text-text-muted">Remplacement prises anciennes</p></div>
+                <div class="flex items-center gap-2"><div class="h-2 w-2 rounded-full bg-primary"></div><p class="text-xs md:text-sm text-text-muted">Mise aux normes</p></div>
+            </article>
+            <article class="flex flex-col items-start justify-start gap-2 p-6 rounded-md border border-border bg-card">
+                <p class="text-xl md:text-2xl font-semibold text-primary">03</p>
+                <p class="text-lg md:text-xl font-semibold text-text">Tableau électriques</p>
+                <div class="flex items-center gap-2"><div class="h-2 w-2 rounded-full bg-primary"></div><p class="text-xs md:text-sm text-text-muted">Remplacement complet</p></div>
+                <div class="flex items-center gap-2"><div class="h-2 w-2 rounded-full bg-primary"></div><p class="text-xs md:text-sm text-text-muted">Mise en sécurité</p></div>
+                <div class="flex items-center gap-2"><div class="h-2 w-2 rounded-full bg-primary"></div><p class="text-xs md:text-sm text-text-muted">Modernisation existante</p></div>
+            </article>
+            <article class="flex flex-col items-start justify-start gap-2 p-6 rounded-md border border-border bg-card">
+                <p class="text-xl md:text-2xl font-semibold text-primary">04</p>
+                <p class="text-lg md:text-xl font-semibold text-text">Rénovation complète</p>
+                <div class="flex items-center gap-2"><div class="h-2 w-2 rounded-full bg-primary"></div><p class="text-xs md:text-sm text-text-muted">Maison & appartement</p></div>
+                <div class="flex items-center gap-2"><div class="h-2 w-2 rounded-full bg-primary"></div><p class="text-xs md:text-sm text-text-muted">Commerce</p></div>
+                <div class="flex items-center gap-2"><div class="h-2 w-2 rounded-full bg-primary"></div><p class="text-xs md:text-sm text-text-muted">Local professionnel</p></div>
+            </article>
+        </div>
+
+        <div class="flex items-center justify-start w-full gap-2 bg-card border-border border rounded-md p-6">
+            <div class="bg-primary-light rounded-md border border-primary-border flex justify-center items-center p-4">
+                <i data-lucide="wallet-cards" class="text-primary" style="width:18px;height:18px"></i>
+            </div>
+            <div class="flex flex-col items-start justify-start">
+                <p class="text-primary font-semibold text-lg md:text-xl">Acompte requis au lancement</p>
+                <p class="text-text-muted text-xs md:text-sm">Pour tout démarrage de travaux, un accompte est demandé. Cette condition garantit la planification sérieuse du chantier et la disponibilité de notre équipe pour votre projet.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     POURQUOI NOUS
+     ══════════════════════════════════════════ -->
+<section class="flex flex-col items-center justify-center">
+    <div class="max-w-7xl mx-auto px-6 py-20 w-full">
+        <div class="flex flex-col items-center gap-2 mb-16">
+            <p class="text-md md:text-lg text-primary">Nos engagements</p>
+            <h2 class="text-2xl md:text-4xl text-text font-serif font-bold text-center">Pourquoi choisir NETARA Électricité</h2>
+            <p class="text-md font-normal text-text-muted max-w-2xl mx-auto text-center">
+                Une équipe qualifiée, un travail soigné, des conseils honnêtes.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-2 w-full mb-2">
+            <article class="flex flex-col items-start justify-start gap-2 p-6 rounded-md border border-border bg-card">
+                <div class="bg-primary-light rounded-md border border-primary-border flex justify-center items-center p-4">
+                    <i data-lucide="shield-check" class="text-primary" style="width:18px;height:18px"></i>
+                </div>
+                <p class="text-md md:text-lg font-semibold text-text">Normes électriques</p>
+                <p class="text-xs md:text-sm font-semibold text-text-muted">Tous nos travaux respectent les normes NF C 15-100 en vigueur.</p>
+            </article>
+            <article class="flex flex-col items-start justify-start gap-2 p-6 rounded-md border border-border bg-card">
+                <div class="bg-primary-light rounded-md border border-primary-border flex justify-center items-center p-4">
+                    <i data-lucide="clock" class="text-primary" style="width:18px;height:18px"></i>
+                </div>
+                <p class="text-md md:text-lg font-semibold text-text">Intervention rapide</p>
+                <p class="text-xs md:text-sm font-semibold text-text-muted">Réactivité maximale pour les urgences, planification souple pour les travaux.</p>
+            </article>
+            <article class="flex flex-col items-start justify-start gap-2 p-6 rounded-md border border-border bg-card">
+                <div class="bg-primary-light rounded-md border border-primary-border flex justify-center items-center p-4">
+                    <i data-lucide="plus-square" class="text-primary" style="width:18px;height:18px"></i>
+                </div>
+                <p class="text-md md:text-lg font-semibold text-text">Devis clair & Transparent</p>
+                <p class="text-xs md:text-sm font-semibold text-text-muted">Pas de mauvaise surprise. Tout est détaillé avant le début du chantier</p>
+            </article>
+            <article class="flex flex-col items-start justify-start gap-2 p-6 rounded-md border border-border bg-card">
+                <div class="bg-primary-light rounded-md border border-primary-border flex justify-center items-center p-4">
+                    <i data-lucide="star" class="text-primary" style="width:18px;height:18px"></i>
+                </div>
+                <p class="text-md md:text-lg font-semibold text-text">Équipe spécialisée</p>
+                <p class="text-xs md:text-sm font-semibold text-text-muted">Des électriciens qualifiés avec conseils personnalisés sur chaque intervention.</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+     ══════════════════════════════════════════ -->
+<footer class="gap-6 bg-surface p-10 border-t border-border">
+    <div class="mx-auto max-w-7xl flex flex-col md:flex-row items-start justify-between mb-6 gap-4">
+        <div class="flex flex-col items-center md:items-start justify-start gap-3 flex-1">
+            <div class="flex items-center gap-3">
+                <img src="./assets/logo.png" alt="Logo Netara Nettoyage" class="w-14 h-14 rounded-full object-cover" width="56" height="56" loading="lazy" decoding="async"/>
+                <div class="flex flex-col">
+                    <h4 class="uppercase text-xl font-semibold text-text">Netara</h4>
+                    <p class="text-xs text-text-muted">Façade · Toiture · Remise en état</p>
+                </div>
+            </div>
+            <p class="text-text-muted text-sm font-normal text-center md:text-left">
+                Nettoyage <strong class="text-text">vapeur basse pression</strong>, écologique et sans produits chimiques. Hydrofuge coloré en option pour une protection longue durée dans le Rhône.
+            </p>
+        </div>
+        <div class="flex flex-col md:flex-row items-center md:items-start justify-end gap-6 md:flex-1 w-full">
+            <div class="flex flex-col items-center md:items-start justify-start gap-2">
+                <h4 class="text-xl font-semibold text-text">Navigation</h4>
+                <ul class="flex flex-col items-center md:items-start gap-1">
+                    <a class="text-text-muted text-sm font-normal hover:text-text duration-300 transition-colors" href="/#solutions">Nos solutions</a>
+                    <a class="text-text-muted text-sm font-normal hover:text-text duration-300 transition-colors" href="/#engagements">Engagements</a>
+                    <a class="text-text-muted text-sm font-normal hover:text-text duration-300 transition-colors" href="/#services">Nos services</a>
+                    <a class="text-text-muted text-sm font-normal hover:text-text duration-300 transition-colors" href="/#zones">Zones d'intervention</a>
+                    <a class="text-text-muted text-sm font-normal hover:text-text duration-300 transition-colors" href="/confidentiality">Politique de confidentialité</a>
+                </ul>
+            </div>
+            <div class="flex flex-col items-center md:items-start justify-start gap-2">
+                <h4 class="text-xl font-semibold text-text">Contact</h4>
+                <div class="flex items-center gap-2">
+                    <i data-lucide="map-pin" class="text-primary" style="width:18px;height:18px"></i>
+                    <p class="text-text-muted text-sm font-normal">6 rue de Bretagne, 69330 Meyzieu</p>
+                </div>
+                <a href="mailto:contact@netara.fr" class="flex items-center gap-2 hover:text-primary transition-colors duration-300">
+                    <i data-lucide="mail" class="text-primary" style="width:18px;height:18px"></i>
+                    <p class="text-text-muted text-sm font-normal">contact@netara.fr</p>
+                </a>
+                <a href="tel:+33659334143" class="flex items-center gap-2 hover:text-primary transition-colors duration-300">
+                    <i data-lucide="phone" class="text-primary" style="width:18px;height:18px"></i>
+                    <p class="text-text-muted text-sm font-normal">06.59.33.41.43</p>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="mx-auto max-w-7xl border-t border-border pt-6 flex justify-center items-center">
+        <p class="text-text-muted font-light text-sm">&copy; 2026 Netara Nettoyage — Tous droits réservés</p>
+    </div>
+</footer>
+
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script src="/js/main.js"></script>
+<script>lucide.createIcons({ attrs: { 'stroke-width': '1' } });</script>
+</body>
+</html>
