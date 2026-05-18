@@ -1,6 +1,6 @@
-import { c as createComponent } from './astro-component_BOE8xAgt.mjs';
+import { c as createComponent } from './astro-component_K9hO3ivE.mjs';
 import 'piccolore';
-import { k as createRenderInstruction, j as addAttribute, n as renderHead, p as renderSlot, q as renderTemplate, m as maybeRenderHead, s as spreadAttributes, r as renderComponent, d as Fragment } from './server_DEaN1dVx.mjs';
+import { k as createRenderInstruction, j as addAttribute, n as renderHead, p as renderSlot, q as renderTemplate, m as maybeRenderHead, s as spreadAttributes, r as renderComponent, d as Fragment } from './server_DSd120XH.mjs';
 import 'clsx';
 
 async function renderScript(result, id) {
@@ -131,13 +131,12 @@ const $$Headers = createComponent(($$result, $$props, $$slots) => {
       href: "#zones"
     },
     {
-      label: "Netara Éléctricité",
+      label: "Netara \xC9l\xE9ctricit\xE9",
       href: "/electricity"
     }
   ];
   const pathname = Astro2.url.pathname;
-  const base = "/".endsWith("/") ? "/" : `${"/"}/`;
-  const logoUrl = `${base}logo.png`;
+  const logoUrl = `/logo.png`;
   return renderTemplate`${maybeRenderHead()}<header class="fixed flex items-center justify-between p-4 w-full bg-surface border-b border-border z-50"> <nav class="flex items-center justify-between w-full max-w-7xl mx-auto"> ${pathname !== "/" ? renderTemplate`${renderComponent($$result, "Fragment", Fragment, {}, { "default": ($$result2) => renderTemplate` <a href="/" class="items-center gap-2 hidden md:flex"> ${renderComponent($$result2, "ArrowLeft", ArrowLeft, { "class": "text-text-muted", "size": 18, "stroke-width": 1 })} <p class="text-text-muted font-normal text-sm md:text-md">Retour</p> </a> <a href="/" class="flex items-center justify-center gap-2"> <img${addAttribute(logoUrl, "src")} alt="Logo Netara Nettoyage" class="w-12 h-12 rounded-full object-cover" width="48" height="48" loading="eager" decoding="async"> <div class="flex flex-col items-start justify-start gap-0"> <h1 class="uppercase text-xl text-text">
 Netara
 </h1> <p class="text-sm font-normal text-text-muted">Nettoyage</p> </div> </a> ` })}` : renderTemplate`<a href="/" class="flex items-center justify-center gap-2"> <img${addAttribute(logoUrl, "src")} alt="Logo Netara Nettoyage" class="w-12 h-12 rounded-full object-cover" width="48" height="48" loading="eager" decoding="async"> <div class="flex flex-col items-start justify-start gap-0"> <h1 class="uppercase text-xl text-text">
@@ -152,8 +151,7 @@ Devis gratuit
 }, "/home/runner/work/netara-website/netara-website/src/components/Headers.astro", void 0);
 
 const $$Footer = createComponent(($$result, $$props, $$slots) => {
-  const base = "/".endsWith("/") ? "/" : `${"/"}/`;
-  const logoUrl = `${base}logo.png`;
+  const logoUrl = `/logo.png`;
   const items = [
     {
       label: "Nos solutions",
@@ -172,7 +170,7 @@ const $$Footer = createComponent(($$result, $$props, $$slots) => {
       href: "#zones"
     },
     {
-      label: "Politique de confidentialité",
+      label: "Politique de confidentialit\xE9",
       href: "/confidentiality"
     }
   ];
