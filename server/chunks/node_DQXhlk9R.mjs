@@ -1,4 +1,4 @@
-import { A as AstroError, I as InvalidComponentArgs, N as NoImageMetadata, F as FailedToFetchRemoteImageDimensions, i as isRemoteAllowed, R as RemoteImageNotAllowed, j as joinPaths, E as ExpectedImage, a as isRemotePath, L as LocalImageUsedWrongly, M as MissingImageDimension, U as UnsupportedImageFormat, b as IncompatibleDescriptorOptions, c as UnsupportedImageConversion, d as InvalidImageService, e as ExpectedImageOptions, f as ExpectedNotESMImage, g as ImageMissingAlt, m as maybeRenderHead, h as addAttribute, s as spreadAttributes, r as renderTemplate, k as FontFamilyNotFound, u as unescapeHTML, l as removeQueryString, n as isParentDirectory } from './server_D4QAkc43.mjs';
+import { A as AstroError, e as InvalidComponentArgs, N as NoImageMetadata, l as isRemoteAllowed, F as FailedToFetchRemoteImageDimensions, R as RemoteImageNotAllowed, n as joinPaths, E as ExpectedImage, m as isRemotePath, L as LocalImageUsedWrongly, g as MissingImageDimension, h as UnsupportedImageFormat, d as IncompatibleDescriptorOptions, U as UnsupportedImageConversion, f as InvalidImageService, a as ExpectedImageOptions, b as ExpectedNotESMImage, I as ImageMissingAlt, o as maybeRenderHead, i as addAttribute, s as spreadAttributes, q as renderTemplate, c as FontFamilyNotFound, u as unescapeHTML, M as MissingGetFontFileRequestUrl, r as removeQueryString, k as isParentDirectory } from './server_DlqSIowC.mjs';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -1168,6 +1168,51 @@ async function imageMetadata(data, src) {
   };
 }
 
+async function fetchWithRedirects(options) {
+  const {
+    url,
+    headers,
+    imageConfig,
+    fetchFn = globalThis.fetch,
+    redirectLimit = 10,
+    onMaxRedirectsExceeded = (_u) => new Error("Maximum redirect depth exceeded"),
+    onMissingLocationHeader = (_s, _u) => new Error(`Redirect response ${_s} missing Location header`),
+    onDisallowedRedirect = (_current, _target) => new Error(
+      `The image at ${_current} redirected to ${_target}, which is not an allowed remote location.`
+    )
+  } = options;
+  if (redirectLimit <= 0) {
+    throw onMaxRedirectsExceeded(typeof url === "string" ? url : url.toString());
+  }
+  const urlString = typeof url === "string" ? url : url.toString();
+  const req = new Request(url, { headers });
+  const res = await fetchFn(req, { redirect: "manual" });
+  if ([301, 302, 303, 307, 308].includes(res.status)) {
+    const location = res.headers.get("Location");
+    if (!location) {
+      throw onMissingLocationHeader(res.status, urlString);
+    }
+    const redirectUrl = new URL(location, urlString).toString();
+    if (!isRemoteAllowed(redirectUrl, {
+      domains: imageConfig.domains ?? [],
+      remotePatterns: imageConfig.remotePatterns ?? []
+    })) {
+      throw onDisallowedRedirect(urlString, redirectUrl);
+    }
+    return fetchWithRedirects({
+      url: redirectUrl,
+      headers,
+      imageConfig,
+      fetchFn,
+      redirectLimit: redirectLimit - 1,
+      onMaxRedirectsExceeded,
+      onMissingLocationHeader,
+      onDisallowedRedirect
+    });
+  }
+  return res;
+}
+
 async function inferRemoteSize(url, imageConfig) {
   if (!URL.canParse(url)) {
     throw new AstroError({
@@ -1194,11 +1239,33 @@ async function inferRemoteSize(url, imageConfig) {
       message: RemoteImageNotAllowed.message(url)
     });
   }
-  const response = await fetch(url, { redirect: "manual" });
-  if (response.status >= 300 && response.status < 400) {
+  let response;
+  try {
+    response = await fetchWithRedirects({
+      url,
+      onMaxRedirectsExceeded: (u) => new AstroError({
+        ...FailedToFetchRemoteImageDimensions,
+        message: FailedToFetchRemoteImageDimensions.message(u)
+      }),
+      onMissingLocationHeader: (_status, u) => new AstroError({
+        ...FailedToFetchRemoteImageDimensions,
+        message: FailedToFetchRemoteImageDimensions.message(u)
+      }),
+      imageConfig: imageConfig ?? {
+        remotePatterns: [],
+        domains: []
+      }
+    });
+  } catch (_err) {
     throw new AstroError({
       ...FailedToFetchRemoteImageDimensions,
       message: FailedToFetchRemoteImageDimensions.message(url)
+    });
+  }
+  if (allowlistConfig && !isRemoteAllowed(response.url, allowlistConfig)) {
+    throw new AstroError({
+      ...RemoteImageNotAllowed,
+      message: RemoteImageNotAllowed.message(url)
     });
   }
   if (!response.body || !response.ok) {
@@ -1484,7 +1551,7 @@ async function getConfiguredImageService() {
   if (!globalThis?.astroAsset?.imageService) {
     const { default: service } = await import(
       // @ts-expect-error
-      './noop_BmbrxmN0.mjs'
+      './noop_DcwxYoWk.mjs'
     ).catch((e) => {
       const error = new AstroError(InvalidImageService);
       error.cause = e;
@@ -1585,8 +1652,23 @@ async function getImage$1(options, imageConfig) {
     if (resolvedOptions.fit && cssFitValues.includes(resolvedOptions.fit)) {
       resolvedOptions["data-astro-image-fit"] = resolvedOptions.fit;
     }
+    const currentPosition = resolvedOptions.position || "center";
+    resolvedOptions["data-astro-image-pos"] = currentPosition.replace(/\s+/g, "-");
     if (resolvedOptions.position) {
-      resolvedOptions["data-astro-image-pos"] = resolvedOptions.position.replace(/\s+/g, "-");
+      if (typeof resolvedOptions.style === "object" && resolvedOptions.style !== null) {
+        if (!("objectPosition" in resolvedOptions.style)) {
+          resolvedOptions.style = {
+            ...resolvedOptions.style,
+            objectPosition: resolvedOptions.position
+          };
+        }
+      } else {
+        const existingStyle = typeof resolvedOptions.style === "string" ? resolvedOptions.style : "";
+        if (!existingStyle.includes("object-position")) {
+          const positionStyle = `object-position: ${resolvedOptions.position}`;
+          resolvedOptions.style = existingStyle ? existingStyle.replace(/;?\s*$/, "; ") + positionStyle : positionStyle;
+        }
+      }
     }
   }
   const validatedOptions = service.validateOptions ? await service.validateOptions(resolvedOptions, imageConfig) : resolvedOptions;
@@ -1683,7 +1765,7 @@ const $$Image = createComponent(async ($$result, $$props, $$slots) => {
   }
   const { class: className, ...attributes } = { ...additionalAttributes, ...image.attributes };
   return renderTemplate`${maybeRenderHead()}<img${addAttribute(image.src, "src")}${spreadAttributes(attributes)}${addAttribute(className, "class")}>`;
-}, "/home/runner/work/netara-website/netara-website/node_modules/.pnpm/astro@6.1.9_@types+node@25.6.2_@vercel+blob@2.3.0_@vercel+functions@3.4.4_jiti@2.6.1_li_9949a57f5b3486158447604d7428dcfb/node_modules/astro/components/Image.astro", void 0);
+}, "/home/runner/work/netara-website/netara-website/node_modules/.pnpm/astro@6.3.3_@types+node@25.8.0_@vercel+blob@2.3.0_@vercel+functions@3.4.4_jiti@2.7.0_li_6bb434db1ecea051d059f42524fd0ee2/node_modules/astro/components/Image.astro", void 0);
 
 const mimes = {
   "3g2": "video/3gpp2",
@@ -2207,7 +2289,7 @@ const $$Picture = createComponent(async ($$result, $$props, $$slots) => {
     const srcsetAttribute = props.densities || !props.densities && !props.widths && !useResponsive ? `${image.src}${image.srcSet.values.length > 0 ? ", " + image.srcSet.attribute : ""}` : image.srcSet.attribute;
     return renderTemplate`<source${addAttribute(srcsetAttribute, "srcset")}${addAttribute(lookup(image.options.format ?? image.src) ?? `image/${image.options.format}`, "type")}${spreadAttributes(sourceAdditionalAttributes)}>`;
   })}  <img${addAttribute(fallbackImage.src, "src")}${spreadAttributes(attributes)}${addAttribute(className, "class")}> </picture>`;
-}, "/home/runner/work/netara-website/netara-website/node_modules/.pnpm/astro@6.1.9_@types+node@25.6.2_@vercel+blob@2.3.0_@vercel+functions@3.4.4_jiti@2.6.1_li_9949a57f5b3486158447604d7428dcfb/node_modules/astro/components/Picture.astro", void 0);
+}, "/home/runner/work/netara-website/netara-website/node_modules/.pnpm/astro@6.3.3_@types+node@25.8.0_@vercel+blob@2.3.0_@vercel+functions@3.4.4_jiti@2.7.0_li_6bb434db1ecea051d059f42524fd0ee2/node_modules/astro/components/Picture.astro", void 0);
 
 const componentDataByCssVariable = new Map([]);
 
@@ -2259,10 +2341,35 @@ const $$Font = createComponent(($$result, $$props, $$slots) => {
   }
   const filteredPreloadData = filterPreloads(data.preloads, preload);
   return renderTemplate`<style>${unescapeHTML(data.css)}</style>${filteredPreloadData?.map(({ url, type }) => renderTemplate`<link rel="preload"${addAttribute(url, "href")} as="font"${addAttribute(`font/${type}`, "type")} crossorigin>`)}`;
-}, "/home/runner/work/netara-website/netara-website/node_modules/.pnpm/astro@6.1.9_@types+node@25.6.2_@vercel+blob@2.3.0_@vercel+functions@3.4.4_jiti@2.6.1_li_9949a57f5b3486158447604d7428dcfb/node_modules/astro/components/Font.astro", void 0);
+}, "/home/runner/work/netara-website/netara-website/node_modules/.pnpm/astro@6.3.3_@types+node@25.8.0_@vercel+blob@2.3.0_@vercel+functions@3.4.4_jiti@2.7.0_li_6bb434db1ecea051d059f42524fd0ee2/node_modules/astro/components/Font.astro", void 0);
+
+class SsrRuntimeFontFileUrlResolver {
+  #urls;
+  constructor({
+    urls
+  }) {
+    this.#urls = urls;
+  }
+  resolve(url, requestUrl) {
+    if (!this.#urls.has(url)) {
+      return null;
+    }
+    if (!url.startsWith("/")) {
+      return url;
+    }
+    if (!requestUrl) {
+      throw new AstroError(MissingGetFontFileRequestUrl);
+    }
+    return `${requestUrl.origin}${url}`;
+  }
+}
+
+new SsrRuntimeFontFileUrlResolver({
+									urls: new Set([]),
+								});
 
 const assetQueryParams = undefined;
-					const imageConfig = {"endpoint":{"entrypoint":"astro/assets/endpoint/node","route":"/_image"},"service":{"entrypoint":"astro/assets/services/noop","config":{}},"domains":[],"remotePatterns":[],"responsiveStyles":false};
+					const imageConfig = {"endpoint":{"entrypoint":"astro/assets/endpoint/node","route":"/_image"},"service":{"entrypoint":"astro/assets/services/noop","config":{}},"dangerouslyProcessSVG":false,"domains":[],"remotePatterns":[],"responsiveStyles":false};
 					Object.defineProperty(imageConfig, 'assetQueryParams', {
 						value: assetQueryParams,
 						enumerable: false,
@@ -2321,10 +2428,14 @@ function inferSourceFormat(src) {
   }
 }
 
+const isLocal = (url) => {
+  const hostname = new URL(url).hostname;
+  return hostname === "localhost" || hostname === "127.0.0.1" || hostname === "[::1]";
+};
 async function loadRemoteImage(src) {
   try {
-    const res = await fetch(src, { redirect: "manual" });
-    if (res.status >= 300 && res.status < 400) {
+    const res = await fetchWithRedirects({ url: src, imageConfig });
+    if (!isRemoteAllowed(res.url, imageConfig) && !isLocal(res.url)) {
       return void 0;
     }
     if (!res.ok) {
