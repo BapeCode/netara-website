@@ -119,7 +119,7 @@ router.post('/', async (req, res) => {
     // escapeHtml() comme sanitizer et considère les valeurs encore tainted.
     const S = 'font-family:Arial,sans-serif;color:#0c0c0c;';
     const html =
-        '<h2 style="' + S + '">Nouvelle demande Netara</h2>\n' +
+        '<h2 style="' + S + '">Nouvelle demande Netara</h2>\n' + // nosemgrep: javascript.express.security.injection.raw-html-format.raw-html-format
         '<p style="' + S + '"><strong>Service :</strong> '   + safe.service   + '</p>\n' + // nosemgrep: javascript.express.security.injection.raw-html-format.raw-html-format
         '<p style="' + S + '"><strong>Civilité :</strong> '  + safe.civilite  + '</p>\n' + // nosemgrep: javascript.express.security.injection.raw-html-format.raw-html-format
         '<p style="' + S + '"><strong>Nom :</strong> '       + safe.firstname + '</p>\n' + // nosemgrep: javascript.express.security.injection.raw-html-format.raw-html-format
