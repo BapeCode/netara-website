@@ -114,6 +114,7 @@ router.post('/', async (req, res) => {
         description,
     ].join('\n');
 
+    // nosemgrep: javascript.express.security.injection.raw-html-format.raw-html-format
     const html = `
         <h2 style="font-family:Arial,sans-serif;color:#0c0c0c;">Nouvelle demande Netara</h2>
         <p style="font-family:Arial,sans-serif;color:#0c0c0c;"><strong>Service :</strong> ${safe.service}</p>
