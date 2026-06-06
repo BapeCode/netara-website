@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width"/>
-    <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico"/>
     <title>Netara - Contact</title>
     <link rel="stylesheet" href="/css/style.css"/>
 </head>
@@ -42,101 +42,69 @@
     <div class="flex flex-col md:flex-row gap-2">
 
         <!-- Formulaire -->
-        <article class="flex flex-col items-start justify-start gap-2 bg-card border border-border rounded-md p-6 flex-1" data-reveal="left">
-            <h2 class="text-text font-semibold text-lg">Votre demande</h2>
-            <span class="text-text-muted font-normal text-sm">Touts les champs marqués * sont obligatoires</span>
+        <article class="flex flex-col items-start justify-start gap-2 bg-card border border-border rounded-2xl p-8 flex-1" data-reveal="left">
+            <h2 class="text-text font-bold text-2xl md:text-3xl font-serif mb-1">Demande de devis gratuit</h2>
+            <p class="text-text-muted text-sm mb-4">Remplissez ce formulaire et recevez votre devis sous 24h. Sans engagement.</p>
 
             <form id="contact-form" class="flex flex-col gap-4 w-full" method="POST" action="/api/contact">
 
-                <!-- Civilité -->
-                <div class="flex flex-col items-start gap-2">
-                    <div class="flex items-center gap-2">
-                        <p class="text-text-muted text-sm uppercase">Civilité</p>
-                        <p class="text-danger text-sm">*</p>
+                <!-- Nom + Téléphone -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+                    <div class="flex flex-col gap-1">
+                        <label for="firstname" class="text-text text-sm font-medium">Nom complet <span class="text-danger">*</span></label>
+                        <input name="firstname" placeholder="Jean Dupont" id="firstname" type="text" required class="w-full appearance-none rounded-md px-3 py-2 bg-surface border border-border focus:border-primary-border outline-none text-text text-sm"/>
                     </div>
-                    <div class="flex items-center gap-2">
-                        <div data-civ="M." class="flex items-center justify-center bg-surface border-border border rounded-md p-2 cursor-pointer">
-                            <p class="text-text-muted text-sm uppercase">M.</p>
-                        </div>
-                        <div data-civ="Mme" class="flex items-center justify-center bg-surface border-border border rounded-md p-2 cursor-pointer">
-                            <p class="text-text-muted text-sm uppercase">Mme</p>
-                        </div>
-                        <div data-civ="Autre" class="flex items-center justify-center bg-surface border-border border rounded-md p-2 cursor-pointer">
-                            <p class="text-text-muted text-sm uppercase">Autre</p>
-                        </div>
+                    <div class="flex flex-col gap-1">
+                        <label for="phone" class="text-text text-sm font-medium">Téléphone <span class="text-danger">*</span></label>
+                        <input name="phone" placeholder="06 12 34 56 78" id="phone" type="text" required class="w-full appearance-none rounded-md px-3 py-2 bg-surface border border-border focus:border-primary-border outline-none text-text text-sm"/>
                     </div>
                 </div>
 
-                <!-- Nom + Commune -->
-                <div class="flex flex-col md:flex-row items-center gap-2 w-full">
-                    <div class="flex flex-col items-start gap-2 w-full">
-                        <div class="flex items-center gap-2">
-                            <p class="text-text-muted text-sm uppercase">Nom</p>
-                            <p class="text-danger text-sm">*</p>
-                        </div>
-                        <input name="firstname" placeholder="John Doe" id="firstname" type="text" class="w-full appearance-none rounded-md px-2 py-1 bg-surface border border-border focus:border-primary-border outline-none ring-0"/>
+                <!-- Email + Ville -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+                    <div class="flex flex-col gap-1">
+                        <label for="email" class="text-text text-sm font-medium">Email</label>
+                        <input name="email" placeholder="jean@email.com" id="email" type="email" class="w-full appearance-none rounded-md px-3 py-2 bg-surface border border-border focus:border-primary-border outline-none text-text text-sm"/>
                     </div>
-                    <div class="flex flex-col items-start gap-2 w-full">
-                        <div class="flex items-center gap-2">
-                            <p class="text-text-muted text-sm uppercase">Commune</p>
-                            <p class="text-danger text-sm">*</p>
-                        </div>
-                        <input name="commune" placeholder="Meyzieu" id="commune" type="text" class="w-full appearance-none rounded-md px-2 py-1 bg-surface border border-border focus:border-primary-border outline-none ring-0"/>
+                    <div class="flex flex-col gap-1">
+                        <label for="commune" class="text-text text-sm font-medium">Ville <span class="text-danger">*</span></label>
+                        <input name="commune" placeholder="Lyon, Vénissieux..." id="commune" type="text" required class="w-full appearance-none rounded-md px-3 py-2 bg-surface border border-border focus:border-primary-border outline-none text-text text-sm"/>
                     </div>
                 </div>
 
-                <!-- Téléphone + Email -->
-                <div class="flex flex-col md:flex-row items-center gap-2 w-full">
-                    <div class="flex flex-col items-start gap-2 w-full">
-                        <div class="flex items-center gap-2">
-                            <p class="text-text-muted text-sm uppercase">Téléphone</p>
-                            <p class="text-danger text-sm">*</p>
-                        </div>
-                        <input name="phone" placeholder="06 00 00 00 00" id="phone" type="text" class="w-full appearance-none rounded-md px-2 py-1 bg-surface border border-border focus:border-primary-border outline-none ring-0"/>
-                    </div>
-                    <div class="flex flex-col items-start gap-2 w-full">
-                        <div class="flex items-center gap-2">
-                            <p class="text-text-muted text-sm uppercase">E-Mail</p>
-                            <p class="text-danger text-sm">*</p>
-                        </div>
-                        <input name="email" placeholder="john.doe@gmail.com" id="email" type="email" class="w-full appearance-none rounded-md px-2 py-1 bg-surface border border-border focus:border-primary-border outline-none ring-0"/>
-                    </div>
-                </div>
-
-                <!-- Service -->
-                <div class="flex flex-col items-start gap-2 w-full">
-                    <div class="flex items-center gap-2">
-                        <p class="text-text-muted text-sm uppercase">Services concerné</p>
-                        <p class="text-danger text-sm">*</p>
-                    </div>
-                    <select name="contact_services" id="contact_services" class="w-full appearance-none rounded-md px-2 py-1 bg-surface border border-border focus:border-primary-border outline-none ring-0">
-                        <option>Sélectionner...</option>
+                <!-- Type de toiture -->
+                <div class="flex flex-col gap-1 w-full">
+                    <label for="contact_services" class="text-text text-sm font-medium">Type de toiture</label>
+                    <select name="contact_services" id="contact_services" class="w-full appearance-none rounded-md px-3 py-2 bg-surface border border-border focus:border-primary-border outline-none text-text text-sm">
+                        <option value="">Sélectionnez...</option>
+                        <option value="toiture-tuile">Tuiles terre cuite</option>
+                        <option value="toiture-beton">Tuiles béton</option>
+                        <option value="toiture-ardoise">Ardoise</option>
+                        <option value="toiture-zinc">Zinc / Bac acier</option>
                         <option value="panneaux">Panneaux photovoltaïques</option>
-                        <option value="electricity">Électricité</option>
-                        <option value="nettoyage">Nettoyage BTP & Pro</option>
+                        <option value="facade">Façade / Terrasse</option>
+                        <option value="electricity">Pôle Électricité</option>
                         <option value="intervention">Intervention extrême</option>
                         <option value="autre">Autre</option>
                     </select>
                 </div>
 
-                <!-- Champ caché civilité + Description -->
-                <input type="hidden" name="civilite" id="civilite-input" value="M."/>
-                <!-- Honeypot anti-spam -->
-                <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off"/>
-
-                <div class="flex flex-col items-start gap-2 w-full">
-                    <div class="flex items-center gap-2">
-                        <p class="text-text-muted text-sm uppercase">Votre projet</p>
-                        <p class="text-danger text-sm">*</p>
-                    </div>
-                    <input name="description" id="description" placeholder="Décrivez votre besoin en détail..." type="text" class="w-full max-h-32 min-h-10 appearance-none rounded-md px-2 py-1 bg-surface border border-border focus:border-primary-border outline-none ring-0"/>
+                <!-- Message -->
+                <div class="flex flex-col gap-1 w-full">
+                    <label for="description" class="text-text text-sm font-medium">Message (optionnel)</label>
+                    <textarea name="description" id="description" rows="4"
+                        placeholder="Décrivez votre besoin ou précisez la surface approximative..."
+                        class="w-full appearance-none rounded-md px-3 py-2 bg-surface border border-border focus:border-primary-border outline-none text-text text-sm resize-none"></textarea>
                 </div>
 
-                <button id="contact-submit" type="submit" class="flex items-center justify-center bg-surface border-border border rounded-md w-full py-2 hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed">
-                    <span id="contact-submit-label">Envoyer ma demande</span>
+                <input type="hidden" name="civilite" value=""/>
+                <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off"/>
+
+                <button id="contact-submit" type="submit" class="w-full py-3 bg-primary text-white font-bold rounded-md hover:scale-[1.02] transition-all duration-300 text-base disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer">
+                    <span id="contact-submit-label">Envoyer ma demande de devis</span>
                 </button>
             </form>
-            <p class="text-xs font-light text-text-muted">En soumettant, vous acceptez notre <a href="/confidentiality" class="text-primary">politique de confidentialité</a></p>
+            <p class="text-xs font-light text-text-muted text-center w-full mt-1">En soumettant ce formulaire, vous acceptez d'être recontacté par Netara Nettoyage.</p>
         </article>
 
         <!-- Infos contact -->
@@ -171,7 +139,7 @@
                 </div>
                 <div class="flex justify-between items-center w-full">
                     <p class="text-sm text-text-muted">Week-End</p>
-                    <p class="text-sm text-text">Sur devis</p>
+                    <p class="text-sm text-text">Urgence dépannage éléctrique uniquement</p>
                 </div>
             </article>
         </div>
@@ -223,7 +191,7 @@
                     <a class="text-text-muted text-sm font-normal hover:text-text duration-300 transition-colors" href="#engagements">Engagements</a>
                     <a class="text-text-muted text-sm font-normal hover:text-text duration-300 transition-colors" href="#services">Nos services</a>
                     <a class="text-text-muted text-sm font-normal hover:text-text duration-300 transition-colors" href="#zones">Zones d'intervention</a>
-                    <a class="text-text-muted text-sm font-normal hover:text-text duration-300 transition-colors" href="/electricity">Netara Electricity</a>
+                    <a class="text-text-muted text-sm font-normal hover:text-text duration-300 transition-colors" href="/electricity">NETARA Pôle électrique</a>
                     <a class="text-text-muted text-sm font-normal hover:text-text duration-300 transition-colors" href="/confidentiality">Politique de confidentialité</a>
                 </ul>
             </div>
