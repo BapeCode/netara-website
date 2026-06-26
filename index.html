@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width"/>
-    <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico"/>
     <title>Netara - Nettoyage</title>
     <link rel="stylesheet" href="/css/style.css"/>
 </head>
@@ -45,7 +45,7 @@
             </div>
             <div class="flex flex-row items-center gap-1">
                 <a href="/electricity" class="nav-link bg-yellow-500/60 px-2 py-1 rounded-full">
-                    <li class="text-text-muted text-sm font-normal hover:text-text duration-300 transition-colors cursor-pointer">Netara Éléctricité</li>
+                    <li class="text-text-muted text-sm font-normal hover:text-text duration-300 transition-colors cursor-pointer">NETARA Pôle électrique</li>
                 </a>
                 <p>⚡</p>
             </div>
@@ -56,11 +56,11 @@
                 <i data-lucide="moon" class="block dark:hidden" style="width:18px;height:18px"></i>
                 <i data-lucide="sun" class="hidden dark:block" style="width:18px;height:18px"></i>
             </div>
-            <a href="/contact" class="hidden lg:flex items-center justify-end gap-2 px-6 py-2 border-border border rounded-md text-sm bg-card hover:bg-primary hover:text-white hover:border-primary hover:scale-[1.03] transition-all duration-300">
+            <button data-open-devis type="button" class="hidden lg:flex items-center justify-end gap-2 px-6 py-2 border-border border rounded-md text-sm bg-card hover:bg-primary hover:text-white hover:border-primary hover:scale-[1.03] transition-all duration-300 cursor-pointer">
                 Devis gratuit
-            </a>
-            <a href="/electricity" class="flex lg:hidden items-center justify-end gap-2 px-6 py-2 border-border border rounded-md text-sm bg-card hover:bg-primary hover:text-white hover:border-primary hover:scale-[1.03] transition-all duration-300">
-                Netara Éléctricité
+            </button>
+            <a href="/electricity" class="flex lg:hidden items-center justify-end gap-2 rounded-md text-xs  hover:text-primary transition-all duration-300">
+                NETARA Pôle électrique
             </a>
         </div>
     </nav>
@@ -70,7 +70,9 @@
      HERO
      ══════════════════════════════════════════ -->
 <section class="flex justify-center items-center w-full h-full bg-surface relative overflow-hidden">
-    <div class="absolute inset-0 pointer-events-none -z-0">
+    <div class="absolute inset-0 pointer-events-none z-0" style="background-image: url('/assets/house.png'); background-size: cover; background-position: center 30%; opacity: 0.50;"></div>
+    <div class="absolute inset-0 pointer-events-none z-0" style="background: linear-gradient(to bottom, transparent 0%, var(--surface) 90%);"></div>
+    <div class="absolute inset-0 pointer-events-none z-0">
         <div class="absolute top-1/4 -left-20 w-72 h-72 rounded-full bg-primary-light blur-3xl float-slow"></div>
         <div class="absolute bottom-1/4 -right-20 w-96 h-96 rounded-full bg-primary-light blur-3xl float-slow" style="animation-delay: -3s;"></div>
     </div>
@@ -83,9 +85,9 @@
                 Nettoyage vapeur basse pression, écologique et sans produits chimiques. Hydrofuge coloré en option pour une protection longue durée dans le Rhône.
             </p>
             <div class="hero-anim flex flex-col md:flex-row items-center gap-2" style="--anim-delay: 400ms;">
-                <a href="/contact" class="px-6 py-3 bg-primary text-white rounded-md hover:bg-primary-dark hover:scale-[1.03] transition-all duration-300 w-full md:w-auto text-center shadow-md hover:shadow-lg">
+                <button data-open-devis type="button" class="px-6 py-3 bg-primary text-white rounded-md hover:bg-primary-dark hover:scale-[1.03] transition-all duration-300 w-full md:w-auto text-center shadow-md hover:shadow-lg cursor-pointer">
                     Demander un devis
-                </a>
+                </button>
                 <a href="#services" class="border border-transparent px-6 py-3 bg-transparent text-text-muted rounded-md hover:border-primary-border hover:text-text transition-all duration-300 w-full md:w-auto text-center">
                     Nos services
                 </a>
@@ -168,41 +170,51 @@
         <div class="mx-auto max-w-7xl py-10 px-6">
             <div class="flex flex-col items-center gap-2 mb-16" data-reveal="up">
                 <p class="text-md md:text-lg text-primary">Notre protocole</p>
-                <h2 class="text-2xl md:text-4xl text-text font-serif font-bold text-center">3 étapes pour une toiture protégée</h2>
+                <h2 class="text-2xl md:text-4xl text-text font-serif font-bold text-center">4 étapes pour une toiture protégée</h2>
                 <p class="text-md font-normal text-text-muted dark:text-text-muted max-w-2xl mx-auto text-center">
-                    Un processus rigoureux, pensé pour durer et préserver vos équipements
+                    Un processus rigoureux pensé pour préserver la durée de vos surfaces
                 </p>
             </div>
 
             <div class="flex flex-col items-center gap-2">
                 <article class="flex flex-col md:flex-row items-center gap-2 mb-8 pb-4 border-b border-border w-full hover:border-primary-border transition-colors duration-300" data-reveal="left" style="--reveal-delay: 0ms;">
-                    <div class="rounded-md border border-primary-border flex items-center justify-center h-10 w-10 bg-primary-light transition-transform duration-300 hover:scale-110 hover:rotate-3">
+                    <div class="rounded-md border border-primary-border flex items-center justify-center h-10 w-10 bg-primary-light transition-transform duration-300 hover:scale-110 hover:rotate-3 shrink-0">
                         <p class="text-primary text-lg font-bold">01</p>
                     </div>
                     <div class="flex flex-col items-start">
                         <p class="uppercase text-xs font-semibold text-primary">étape 01</p>
-                        <p class="text-md font-normal text-text">Diagnostic & nettoyage vapeur basse pression</p>
-                        <p class="text-sm font-normal text-text-muted">Élimination des mousses, lichens et algues à la vapeur basse pression. Procédé doux qui préserve vos tuiles, sans abîmer le support.</p>
+                        <p class="text-md font-normal text-text">Diagnostic et prise de RDV</p>
+                        <p class="text-sm font-normal text-text-muted">Évaluation de l'état de votre toiture et planification de l'intervention selon vos disponibilités.</p>
                     </div>
                 </article>
                 <article class="flex flex-col md:flex-row items-center gap-2 mb-8 pb-4 border-b border-border w-full hover:border-primary-border transition-colors duration-300" data-reveal="left" style="--reveal-delay: 120ms;">
-                    <div class="rounded-md border border-primary-border flex items-center justify-center h-10 w-10 bg-primary-light transition-transform duration-300 hover:scale-110 hover:rotate-3">
+                    <div class="rounded-md border border-primary-border flex items-center justify-center h-10 w-10 bg-primary-light transition-transform duration-300 hover:scale-110 hover:rotate-3 shrink-0">
                         <p class="text-primary text-lg font-bold">02</p>
                     </div>
                     <div class="flex flex-col items-start">
                         <p class="uppercase text-xs font-semibold text-primary">étape 02</p>
-                        <p class="text-md font-normal text-text">Méthode 100% écologique</p>
-                        <p class="text-sm font-normal text-text-muted">Aucun produit chimique, faible consommation d'eau. Respectueux de votre toiture, de vos plantes et de l'environnement.</p>
+                        <p class="text-md font-normal text-text">Intervention et mise en place de la protection de vos surfaces</p>
+                        <p class="text-sm font-normal text-text-muted">Préparation du chantier et sécurisation des abords. Mise en place des protections pour préserver vos espaces.</p>
                     </div>
                 </article>
                 <article class="flex flex-col md:flex-row items-center gap-2 mb-8 pb-4 border-b border-border w-full hover:border-primary-border transition-colors duration-300" data-reveal="left" style="--reveal-delay: 240ms;">
-                    <div class="rounded-md border border-primary-border flex items-center justify-center h-10 w-10 bg-primary-light transition-transform duration-300 hover:scale-110 hover:rotate-3">
+                    <div class="rounded-md border border-primary-border flex items-center justify-center h-10 w-10 bg-primary-light transition-transform duration-300 hover:scale-110 hover:rotate-3 shrink-0">
                         <p class="text-primary text-lg font-bold">03</p>
                     </div>
                     <div class="flex flex-col items-start">
                         <p class="uppercase text-xs font-semibold text-primary">étape 03</p>
-                        <p class="text-md font-normal text-text">Hydrofuge coloré (en option, fortement recommandé)</p>
-                        <p class="text-sm font-normal text-text-muted">Application d'un hydrofuge coloré pour imperméabiliser et raviver vos tuiles. Effet perlant durable, prolonge la vie de votre toiture de 10 à 15 ans.</p>
+                        <p class="text-md font-normal text-text">Nettoyage vapeur basse pression — <span class="text-primary font-semibold">100% écologique</span></p>
+                        <p class="text-sm font-normal text-text-muted">Élimination des mousses, lichens et algues à la vapeur basse pression. Aucun produit chimique, faible consommation d'eau.</p>
+                    </div>
+                </article>
+                <article class="flex flex-col md:flex-row items-center gap-2 mb-8 pb-4 border-b border-border w-full hover:border-primary-border transition-colors duration-300" data-reveal="left" style="--reveal-delay: 360ms;">
+                    <div class="rounded-md border border-primary-border flex items-center justify-center h-10 w-10 bg-primary-light transition-transform duration-300 hover:scale-110 hover:rotate-3 shrink-0">
+                        <p class="text-primary text-lg font-bold">04</p>
+                    </div>
+                    <div class="flex flex-col items-start">
+                        <p class="uppercase text-xs font-semibold text-primary">étape 04</p>
+                        <p class="text-md font-normal text-text">Protection hydrofuge (options)</p>
+                        <p class="text-sm font-normal text-text-muted">Application d'un hydrofuge incolore ou coloré pour protéger la toiture contre l'humidité, limiter le retour des mousses et prolonger sa durée de vie.</p>
                     </div>
                 </article>
             </div>
@@ -226,31 +238,31 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
             <article class="card-lift flex flex-col items-start justify-start gap-2 w-full p-6 bg-card border border-border rounded-md" data-reveal="up" style="--reveal-delay: 0ms;">
                 <div class="flex items-center justify-center bg-primary-light border border-primary-border rounded-md p-2 transition-transform duration-500 hover:rotate-6 hover:scale-110">
-                    <i data-lucide="mountain" class="text-primary" style="width:18px;height:18px"></i>
+                    <i data-lucide="leaf" class="text-primary" style="width:18px;height:18px"></i>
                 </div>
-                <h3 class="text-text text-lg md:text-xl font-semibold">Adaptabilité</h3>
-                <p class="text-text-muted text-sm md:text-md">Équipements spécifiques pour toitures à forte pente et accès difficiles. Aucun chantier ne nous résiste.</p>
+                <h3 class="text-text text-lg md:text-xl font-semibold">Nettoyage vapeur écologique</h3>
+                <p class="text-text-muted text-sm md:text-md">Méthode 100% écologique, sans produits chimiques. Respectueux de votre environnement, de vos plantes et de vos toitures.</p>
             </article>
             <article class="card-lift flex flex-col items-start justify-start gap-2 w-full p-6 bg-card border border-border rounded-md" data-reveal="up" style="--reveal-delay: 100ms;">
                 <div class="flex items-center justify-center bg-primary-light border border-primary-border rounded-md p-2 transition-transform duration-500 hover:rotate-6 hover:scale-110">
-                    <i data-lucide="layers" class="text-primary" style="width:18px;height:18px"></i>
+                    <i data-lucide="trending-up" class="text-primary" style="width:18px;height:18px"></i>
                 </div>
-                <h3 class="text-text text-lg md:text-xl font-semibold">Tous Supports</h3>
-                <p class="text-text-muted text-sm md:text-md">Traitement sur tuile terre cuite, béton, ardoise. Des produits adaptés à chaque matériau pour un résultat optimal.</p>
+                <h3 class="text-text text-lg md:text-xl font-semibold">Une vraie plus-value</h3>
+                <p class="text-text-muted text-sm md:text-md">Une toiture propre, c'est une vraie plus-value immobilière. Valorisez votre bien et préservez votre patrimoine dans la durée.</p>
             </article>
             <article class="card-lift flex flex-col items-start justify-start gap-2 w-full p-6 bg-card border border-border rounded-md" data-reveal="up" style="--reveal-delay: 200ms;">
                 <div class="flex items-center justify-center bg-primary-light border border-primary-border rounded-md p-2 transition-transform duration-500 hover:rotate-6 hover:scale-110">
-                    <i data-lucide="award" class="text-primary" style="width:18px;height:18px"></i>
+                    <i data-lucide="calendar-check" class="text-primary" style="width:18px;height:18px"></i>
                 </div>
-                <h3 class="text-text text-lg md:text-xl font-semibold">Expertise Certifiée</h3>
-                <p class="text-text-muted text-sm md:text-md">Techniciens certifiés et chargés d'affaires dédiés pour des conseils personnalisés et un suivi rigoureux.</p>
+                <h3 class="text-text text-lg md:text-xl font-semibold">Disponibilités adaptées</h3>
+                <p class="text-text-muted text-sm md:text-md">Nos équipes s'adaptent à vos disponibilités ! Planification souple pour intervenir au moment qui vous convient le mieux.</p>
             </article>
             <article class="card-lift flex flex-col items-start justify-start gap-2 w-full p-6 bg-card border border-border rounded-md" data-reveal="up" style="--reveal-delay: 300ms;">
                 <div class="flex items-center justify-center bg-primary-light border border-primary-border rounded-md p-2 transition-transform duration-500 hover:rotate-6 hover:scale-110">
                     <i data-lucide="shield-check" class="text-primary" style="width:18px;height:18px"></i>
                 </div>
-                <h3 class="text-text text-lg md:text-xl font-semibold">Sécurité Totale</h3>
-                <p class="text-text-muted text-sm md:text-md">Respect strict des normes de sécurité. Protection des abords du chantier : gouttières, façades et jardins préservés.</p>
+                <h3 class="text-text text-lg md:text-xl font-semibold">Expertise Certifiée</h3>
+                <p class="text-text-muted text-sm md:text-md">Techniciens certifiés, équipements spécifiques pour toitures à forte pente et accès difficiles. Aucun chantier ne nous résiste.</p>
             </article>
         </div>
     </div>
@@ -265,7 +277,7 @@
             <p class="text-md md:text-lg text-primary">Nos services</p>
             <h2 class="text-2xl md:text-4xl text-text font-serif font-bold text-center">Les services que nous proposons</h2>
             <p class="text-md font-normal text-text-muted max-w-2xl mx-auto text-center">
-                Quatre domaines d'expertise, une seule équipe de confiance.
+                L'activité principale reste le nettoyage de toiture, mais nous performons aussi dans d'autres domaines.
             </p>
         </div>
 
@@ -277,18 +289,33 @@
             </article>
             <article class="card-lift flex flex-col items-start justify-start gap-2 bg-card border border-border p-6 rounded-md" data-reveal="right" style="--reveal-delay: 0ms;">
                 <h3 class="text-primary text-xl md:text-2xl font-bold">02</h3>
-                <h4 class="text-text text-lg md:text-xl font-semibold">Électricité</h4>
-                <p class="text-text-muted text-sm">Dépannage urgent, installations neuves, éclairage intérieur/extérieur, remplacement de tableaux électriques. Acompte requis.</p>
+                <h4 class="text-text text-lg md:text-xl font-semibold">Façades et terrasses</h4>
+                <p class="text-text-muted text-sm">Nettoyage vapeur haute et basse pression adapté à tous types de surfaces. Résultats visibles et durables.</p>
             </article>
             <article class="card-lift flex flex-col items-start justify-start gap-2 bg-card border border-border p-6 rounded-md" data-reveal="left" style="--reveal-delay: 120ms;">
                 <h3 class="text-primary text-xl md:text-2xl font-bold">03</h3>
-                <h4 class="text-text text-lg md:text-xl font-semibold">Nettoyage BTP & Pro</h4>
-                <p class="text-text-muted text-sm">Remise en état avant/après déménagement, vitrines commerciales, gouttières, nettoyage de tombes. Samedi/dimanche sur devis.</p>
+                <h4 class="text-text text-lg md:text-xl font-semibold">Nettoyage de graffitis</h4>
+                <p class="text-text-muted text-sm">Dépose de tags et graffitis sur tous supports : murs, façades, mobilier urbain. Traitement anti-tag disponible.</p>
             </article>
             <article class="card-lift flex flex-col items-start justify-start gap-2 bg-card border border-border p-6 rounded-md" data-reveal="right" style="--reveal-delay: 120ms;">
                 <h3 class="text-primary text-xl md:text-2xl font-bold">04</h3>
+                <h4 class="text-text text-lg md:text-xl font-semibold">Accès difficile & débouchage</h4>
+                <p class="text-text-muted text-sm">Vos accès sont bouchés ? Débouchage et nettoyage de gouttières, descentes d'eaux pluviales et zones inaccessibles.</p>
+            </article>
+            <article class="card-lift flex flex-col items-start justify-start gap-2 bg-card border border-border p-6 rounded-md" data-reveal="left" style="--reveal-delay: 240ms;">
+                <h3 class="text-primary text-xl md:text-2xl font-bold">05</h3>
+                <h4 class="text-text text-lg md:text-xl font-semibold">Tombes & monuments historiques</h4>
+                <p class="text-text-muted text-sm">Nettoyage de tombes, cimetières et monuments historiques. Restitution du patrimoine dans le respect des matériaux.</p>
+            </article>
+            <article class="card-lift flex flex-col items-start justify-start gap-2 bg-card border border-border p-6 rounded-md" data-reveal="right" style="--reveal-delay: 240ms;">
+                <h3 class="text-primary text-xl md:text-2xl font-bold">06</h3>
                 <h4 class="text-text text-lg md:text-xl font-semibold">Interventions extrêmes</h4>
-                <p class="text-text-muted text-sm">Nettoyage après décès, syndrome de Diogène, logements insalubres. Nous sommes à votre secours.</p>
+                <p class="text-text-muted text-sm">Syndrome de Diogène, nettoyage après décès, logements insalubres. Discrétion et professionnalisme garantis.</p>
+            </article>
+            <article class="card-lift flex flex-col items-start justify-start gap-2 bg-card border border-border p-6 rounded-md md:col-span-2" data-reveal="up" style="--reveal-delay: 360ms;">
+                <h3 class="text-primary text-xl md:text-2xl font-bold">07</h3>
+                <h4 class="text-text text-lg md:text-xl font-semibold">Pôle Électricité ⚡</h4>
+                <p class="text-text-muted text-sm">Interventions, dépannages et installations sur tout le réseau électrique. <a href="/electricity" class="text-primary hover:underline">Découvrir NETARA Pôle électrique →</a></p>
             </article>
         </div>
     </div>
@@ -301,9 +328,9 @@
     <div class="mx-auto max-w-7xl py-20 px-6 w-full">
         <div class="flex flex-col items-center gap-2 mb-16" data-reveal="up">
             <p class="text-md md:text-lg text-primary">Nos zones d'intervention</p>
-            <h2 class="text-2xl md:text-4xl text-text font-serif font-bold text-center">Nous intervenons dans le Rhône (69) et l'Isère (38)</h2>
+            <h2 class="text-2xl md:text-4xl text-text font-serif font-bold text-center">Plus de 200 km autour de Lyon</h2>
             <p class="text-md font-normal text-text-muted max-w-2xl mx-auto text-center">
-                Basés à Vénissieux, nous couvrons l'ensemble du bassin lyonnais et du Nord Isère.
+                Nous intervenons à plus de 200 km autour de Lyon, ainsi qu'en Savoie et Haute-Savoie.
             </p>
         </div>
 
@@ -403,7 +430,7 @@
                     <a class="text-text-muted text-sm font-normal hover:text-text duration-300 transition-colors" href="#engagements">Engagements</a>
                     <a class="text-text-muted text-sm font-normal hover:text-text duration-300 transition-colors" href="#services">Nos services</a>
                     <a class="text-text-muted text-sm font-normal hover:text-text duration-300 transition-colors" href="#zones">Zones d'intervention</a>
-                    <a class="text-text-muted text-sm font-normal hover:text-text duration-300 transition-colors" href="/electricity">Netara pôle éléctricité</a>
+                    <a class="text-text-muted text-sm font-normal hover:text-text duration-300 transition-colors" href="/electricity">NETARA Pôle électrique</a>
                     <a class="text-text-muted text-sm font-normal hover:text-text duration-300 transition-colors" href="/confidentiality">Politique de confidentialité</a>
                 </ul>
             </div>
@@ -429,8 +456,130 @@
     </div>
 </footer>
 
+<!-- ══════════════════════════════════════════
+     MODAL DEVIS
+     ══════════════════════════════════════════ -->
+<div id="devis-modal" class="fixed inset-0 z-[200] flex items-center justify-center p-4 hidden">
+    <div id="devis-backdrop" class="absolute inset-0 bg-black/60" style="backdrop-filter: blur(4px);"></div>
+    <div class="relative bg-card border border-border rounded-2xl shadow-2xl w-full max-w-xl p-8 z-10 max-h-[90vh] overflow-y-auto">
+        <button id="close-devis-modal" type="button" class="absolute top-4 right-4 text-text-muted hover:text-text transition-colors cursor-pointer">
+            <i data-lucide="x" style="width:20px;height:20px"></i>
+        </button>
+
+        <h2 class="text-text font-bold text-2xl md:text-3xl font-serif mb-1">Demande de devis gratuit</h2>
+        <p class="text-text-muted text-sm mb-6">Remplissez ce formulaire et recevez votre devis sous 24h. Sans engagement.</p>
+
+        <form id="devis-form" class="flex flex-col gap-4" method="POST" action="/api/contact">
+            <div class="grid grid-cols-2 gap-4">
+                <div class="flex flex-col gap-1">
+                    <label class="text-text text-sm font-medium">Nom complet <span class="text-danger">*</span></label>
+                    <input name="firstname" id="devis-firstname" type="text" placeholder="Jean Dupont" required
+                        class="appearance-none rounded-md px-3 py-2 bg-surface border border-border focus:border-primary-border outline-none text-text text-sm"/>
+                </div>
+                <div class="flex flex-col gap-1">
+                    <label class="text-text text-sm font-medium">Téléphone <span class="text-danger">*</span></label>
+                    <input name="phone" id="devis-phone" type="text" placeholder="06 12 34 56 78" required
+                        class="appearance-none rounded-md px-3 py-2 bg-surface border border-border focus:border-primary-border outline-none text-text text-sm"/>
+                </div>
+                <div class="flex flex-col gap-1">
+                    <label class="text-text text-sm font-medium">Email</label>
+                    <input name="email" id="devis-email" type="email" placeholder="jean@email.com"
+                        class="appearance-none rounded-md px-3 py-2 bg-surface border border-border focus:border-primary-border outline-none text-text text-sm"/>
+                </div>
+                <div class="flex flex-col gap-1">
+                    <label class="text-text text-sm font-medium">Ville <span class="text-danger">*</span></label>
+                    <input name="commune" id="devis-commune" type="text" placeholder="Lyon, Vénissieux..." required
+                        class="appearance-none rounded-md px-3 py-2 bg-surface border border-border focus:border-primary-border outline-none text-text text-sm"/>
+                </div>
+            </div>
+
+            <div class="flex flex-col gap-1">
+                <label class="text-text text-sm font-medium">Type de toiture</label>
+                <select name="contact_services" id="devis-services"
+                    class="appearance-none rounded-md px-3 py-2 bg-surface border border-border focus:border-primary-border outline-none text-text text-sm">
+                    <option value="">Sélectionnez...</option>
+                    <option value="toiture-tuile">Tuiles terre cuite</option>
+                    <option value="toiture-beton">Tuiles béton</option>
+                    <option value="toiture-ardoise">Ardoise</option>
+                    <option value="toiture-zinc">Zinc / Bac acier</option>
+                    <option value="panneaux">Panneaux photovoltaïques</option>
+                    <option value="facade">Façade / Terrasse</option>
+                    <option value="autre">Autre</option>
+                </select>
+            </div>
+
+            <div class="flex flex-col gap-1">
+                <label class="text-text text-sm font-medium">Message (optionnel)</label>
+                <textarea name="description" id="devis-description" rows="4"
+                    placeholder="Décrivez votre besoin ou précisez la surface approximative..."
+                    class="appearance-none rounded-md px-3 py-2 bg-surface border border-border focus:border-primary-border outline-none text-text text-sm resize-none"></textarea>
+            </div>
+
+            <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off"/>
+            <input type="hidden" name="civilite" value=""/>
+
+            <button id="devis-submit" type="submit"
+                class="w-full py-3 bg-primary text-white font-bold rounded-md hover:scale-[1.02] transition-all duration-300 text-base disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer">
+                <span id="devis-submit-label">Envoyer ma demande de devis</span>
+            </button>
+        </form>
+
+        <p class="text-xs text-text-muted text-center mt-3">
+            En soumettant ce formulaire, vous acceptez d'être recontacté par Netara Nettoyage.
+        </p>
+    </div>
+</div>
+
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 <script src="/js/main.js"></script>
 <script>lucide.createIcons({ attrs: { 'stroke-width': '1' } });</script>
+<script>
+(function () {
+    var modal = document.getElementById('devis-modal');
+    var backdrop = document.getElementById('devis-backdrop');
+    var closeBtn = document.getElementById('close-devis-modal');
+    var form = document.getElementById('devis-form');
+    var submitBtn = document.getElementById('devis-submit');
+    var submitLabel = document.getElementById('devis-submit-label');
+
+    function openModal() {
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+        lucide.createIcons({ attrs: { 'stroke-width': '1' } });
+    }
+    function closeModal() {
+        modal.classList.add('hidden');
+        document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('[data-open-devis]').forEach(function (el) {
+        el.addEventListener('click', openModal);
+    });
+    closeBtn.addEventListener('click', closeModal);
+    backdrop.addEventListener('click', closeModal);
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
+
+    form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        submitBtn.disabled = true;
+        submitLabel.textContent = 'Envoi en cours…';
+        try {
+            var body = new URLSearchParams(new FormData(form));
+            var res = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body.toString() });
+            if (res.ok) {
+                submitLabel.textContent = 'Demande envoyée !';
+                form.reset();
+                setTimeout(function () { closeModal(); submitLabel.textContent = 'Envoyer ma demande de devis'; submitBtn.disabled = false; }, 2000);
+            } else {
+                submitLabel.textContent = 'Erreur — réessayez';
+                submitBtn.disabled = false;
+            }
+        } catch (_) {
+            submitLabel.textContent = 'Erreur — réessayez';
+            submitBtn.disabled = false;
+        }
+    });
+}());
+</script>
 </body>
 </html>
