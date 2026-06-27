@@ -26,7 +26,11 @@ const initScrollReveal = () => {
 const initDarkMode = () => {
     const toggleMode = document.getElementById('toggle-mode');
     toggleMode?.addEventListener('click', () => {
-        document.getElementById('container')?.classList.toggle('dark');
+        if (document.getElementById('container')?.classList.contains('dark')) {
+            document.getElementById('container')?.classList.remove('dark');
+        } else {
+            document.getElementById('container')?.classList.toggle('dark');
+        }
     });
 };
 
