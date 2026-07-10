@@ -79,12 +79,12 @@
     <div class="max-w-7xl mx-auto min-h-screen w-full flex items-center pt-20 relative z-10">
         <div class="flex flex-col items-center justify-center gap-4 w-full px-6">
             <h1 class="hero-anim text-4xl md:text-7xl font-bold text-text text-center" style="--anim-delay: 100ms;">
-                Votre Toiture comme Neuve : <span class="text-primary">Nettoyage, Démoussage</span> et Protection
+                Netara Les Expers du Nettoyage : <span class="text-primary">Nettoyage, Démoussage &</span> Hydrofuge
             </h1>
             <p class="hero-anim text-sm md:text-lg text-text-muted max-w-2xl text-center" style="--anim-delay: 250ms;">
-                Nettoyage vapeur basse pression, écologique et sans produits chimiques. Hydrofuge coloré en option pour une protection longue durée dans le Rhône.
+                Confiez vos surfaces à Netara Nettoyage. Du professionnel au particulier, de l'intérieur à l'extérieur, nous métamorphosons votre environnement !
             </p>
-                       <p>
+                       <p class="flex flex-col items-center gap-2">
             <a href="tel:+33659334143" class="flex items-center gap-2 text-lg md:text-xl font-semibold tracking-wide transition-all duration-300 hover:scale-105"
    style="--anim-delay: 300ms; color: #60a5fa; text-shadow: 0 0 12px rgba(96,165,250,0.8), 0 0 28px rgba(96,165,250,0.5); animation: phone-glow 2s ease-in-out infinite;">
     <i data-lucide="phone" style="width:18px;height:18px;filter:drop-shadow(0 0 6px rgba(96,165,250,0.9)); animation: phone-ring 1.5s ease-in-out infinite;"></i>
@@ -110,6 +110,11 @@
         50%       { text-shadow: 0 0 18px rgba(96,165,250,1), 0 0 40px rgba(96,165,250,0.7), 0 0 60px rgba(96,165,250,0.3); }
     }
 </style>
+<a href="mailto:contact@netara.fr" class="flex items-center gap-2 text-lg md:text-xl font-semibold tracking-wide transition-all duration-300 hover:scale-105"
+   style="--anim-delay: 320ms; color: #60a5fa; text-shadow: 0 0 12px rgba(96,165,250,0.8), 0 0 28px rgba(96,165,250,0.5); animation: phone-glow 2s ease-in-out infinite;">
+    <i data-lucide="mail" style="width:18px;height:18px;filter:drop-shadow(0 0 6px rgba(96,165,250,0.9));"></i>
+    contact@netara.fr
+</a>
 </p>
             <div class="hero-anim flex flex-col md:flex-row items-center gap-2" style="--anim-delay: 400ms;">
                 <button data-open-devis type="button" class="px-6 py-3 bg-primary text-white rounded-md hover:bg-primary-dark hover:scale-[1.03] transition-all duration-300 w-full md:w-auto text-center shadow-md hover:shadow-lg cursor-pointer">
@@ -326,7 +331,7 @@
             </article>
             <article class="card-lift flex flex-col items-start justify-start gap-2 bg-card border border-border p-6 rounded-md" data-reveal="right" style="--reveal-delay: 120ms;">
                 <h3 class="text-primary text-xl md:text-2xl font-bold">04</h3>
-                <h4 class="text-text text-lg md:text-xl font-semibold">Protection toitures et façades</h4>
+                <h4 class="text-text text-lg md:text-xl font-semibold">Intervention nettoyage gouttière</h4>
                 <p class="text-text-muted text-sm">Intervention pour éviter les débordements, les infiltrations et protéger durablement vos toitures et vos façades.</p>
             </article>
             <article class="card-lift flex flex-col items-start justify-start gap-2 bg-card border border-border p-6 rounded-md" data-reveal="left" style="--reveal-delay: 240ms;">
@@ -498,11 +503,20 @@
 
         <form id="devis-form" class="flex flex-col gap-4" method="POST" action="/api/contact">
             <div class="grid grid-cols-2 gap-4">
-                <div class="flex flex-col gap-1">
-                    <label class="text-text text-sm font-medium">Nom complet <span class="text-danger">*</span></label>
-                    <input name="firstname" id="devis-firstname" type="text" placeholder="Jean Dupont" required
-                        class="appearance-none rounded-md px-3 py-2 bg-surface border border-border focus:border-primary-border outline-none text-text text-sm"/>
-                </div>
+    <div class="flex flex-col gap-1">
+        <label class="text-text text-sm font-medium">Civilité <span class="text-danger">*</span></label>
+        <select name="civilite" id="devis-civilite" required
+            class="appearance-none rounded-md px-3 py-2 bg-surface border border-border focus:border-primary-border outline-none text-text text-sm">
+            <option value="">Sélectionnez...</option>
+            <option value="Monsieur">Monsieur</option>
+            <option value="Madame">Madame</option>
+        </select>
+    </div>
+    <div class="flex flex-col gap-1">
+        <label class="text-text text-sm font-medium">Nom complet <span class="text-danger">*</span></label>
+        <input name="firstname" id="devis-firstname" type="text" placeholder="Jean Dupont" required
+            class="appearance-none rounded-md px-3 py-2 bg-surface border border-border focus:border-primary-border outline-none text-text text-sm"/>
+    </div>
                 <div class="flex flex-col gap-1">
                     <label class="text-text text-sm font-medium">Téléphone <span class="text-danger">*</span></label>
                     <input name="phone" id="devis-phone" type="text" placeholder="06 12 34 56 78" required
@@ -543,7 +557,6 @@
             </div>
 
             <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off"/>
-            <input type="hidden" name="civilite" value=""/>
 
             <button id="devis-submit" type="submit"
                 class="w-full py-3 bg-primary text-white font-bold rounded-md hover:scale-[1.02] transition-all duration-300 text-base disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer">
