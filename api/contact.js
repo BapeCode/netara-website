@@ -119,17 +119,46 @@ router.post('/', async (req, res) => {
     // Toutes les valeurs safe.* sont passées par escapeHtml() avant interpolation.
     // Les annotations nosemgrep sont nécessaires car Semgrep ne reconnaît pas
     // escapeHtml() comme sanitizer et considère les valeurs encore tainted.
-    const S = 'font-family:Arial,sans-serif;color:#0c0c0c;';
+    const GOLD = '#c9a84c';
+    const INK = '#0c0c0c';
+    const MUTED = '#6b6b6b';
+    const BORDER = '#eceae5';
+    const BG = '#f8f7f4';
+
+    const row = (label, valueHtml) =>
+        '<tr>' +
+        '<td style="padding:10px 0;border-bottom:1px solid ' + BORDER + ';width:130px;font-size:13px;color:' + MUTED + ';font-family:Arial,sans-serif;vertical-align:top;">' + label + '</td>' + // nosemgrep: javascript.express.security.injection.raw-html-format.raw-html-format
+        '<td style="padding:10px 0;border-bottom:1px solid ' + BORDER + ';font-size:14px;color:' + INK + ';font-family:Arial,sans-serif;font-weight:600;">' + valueHtml + '</td>' + // nosemgrep: javascript.express.security.injection.raw-html-format.raw-html-format
+        '</tr>';
+
+    const rows = [
+        row('Service', safe.service),
+        civilite ? row('Civilité', safe.civilite) : null,
+        row('Nom', safe.firstname),
+        row('Commune', safe.commune),
+        row('Téléphone', '<a href="tel:' + safe.phone + '" style="color:' + INK + ';text-decoration:none;">' + safe.phone + '</a>'),
+        email ? row('Email', '<a href="mailto:' + safe.email + '" style="color:' + INK + ';text-decoration:none;">' + safe.email + '</a>') : null,
+    ].filter((r) => r !== null).join('\n'); // nosemgrep: javascript.express.security.injection.raw-html-format.raw-html-format
+
     const html =
-        '<h2 style="' + S + '">Nouvelle demande Netara</h2>\n' + // nosemgrep: javascript.express.security.injection.raw-html-format.raw-html-format
-        '<p style="' + S + '"><strong>Service :</strong> '   + safe.service   + '</p>\n' + // nosemgrep: javascript.express.security.injection.raw-html-format.raw-html-format
-        (civilite ? '<p style="' + S + '"><strong>Civilité :</strong> '  + safe.civilite  + '</p>\n' : '') + // nosemgrep: javascript.express.security.injection.raw-html-format.raw-html-format
-        '<p style="' + S + '"><strong>Nom :</strong> '       + safe.firstname + '</p>\n' + // nosemgrep: javascript.express.security.injection.raw-html-format.raw-html-format
-        '<p style="' + S + '"><strong>Commune :</strong> '   + safe.commune   + '</p>\n' + // nosemgrep: javascript.express.security.injection.raw-html-format.raw-html-format
-        '<p style="' + S + '"><strong>Téléphone :</strong> <a href="tel:'     + safe.phone  + '">' + safe.phone  + '</a></p>\n' + // nosemgrep: javascript.express.security.injection.raw-html-format.raw-html-format
-        (email ? '<p style="' + S + '"><strong>Email :</strong> <a href="mailto:'      + safe.email  + '">' + safe.email  + '</a></p>\n' : '') + // nosemgrep: javascript.express.security.injection.raw-html-format.raw-html-format
-        '<hr/>\n' +
-        '<p style="' + S + 'white-space:pre-wrap;">'         + (safe.description || '(non renseignée)') + '</p>\n'; // nosemgrep: javascript.express.security.injection.raw-html-format.raw-html-format
+        '<div style="background:' + BG + ';padding:32px 16px;font-family:Arial,sans-serif;">' +
+        '<table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="max-width:560px;margin:0 auto;">' +
+        '<tr><td style="background:' + INK + ';border-radius:12px 12px 0 0;padding:24px 32px;">' +
+        '<span style="color:' + GOLD + ';font-size:12px;letter-spacing:2px;text-transform:uppercase;font-family:Arial,sans-serif;">Netara Nettoyage</span><br/>' +
+        '<span style="color:#fff;font-size:20px;font-weight:700;font-family:Arial,sans-serif;">Nouvelle demande de devis</span>' +
+        '</td></tr>' +
+        '<tr><td style="background:#ffffff;border:1px solid ' + BORDER + ';border-top:none;border-radius:0 0 12px 12px;padding:32px;">' + // nosemgrep: javascript.express.security.injection.raw-html-format.raw-html-format
+        '<table role="presentation" cellpadding="0" cellspacing="0" width="100%">' + rows + '</table>' + // nosemgrep: javascript.express.security.injection.raw-html-format.raw-html-format
+        '<div style="margin-top:24px;">' +
+        '<div style="font-size:13px;color:' + MUTED + ';font-family:Arial,sans-serif;margin-bottom:6px;">Description</div>' +
+        '<div style="background:' + BG + ';border-radius:8px;padding:14px 16px;font-size:14px;color:' + INK + ';font-family:Arial,sans-serif;white-space:pre-wrap;line-height:1.5;">' + (safe.description || '<span style="color:' + MUTED + ';">Aucune description fournie.</span>') + '</div>' + // nosemgrep: javascript.express.security.injection.raw-html-format.raw-html-format
+        '</div>' +
+        '</td></tr>' +
+        '<tr><td style="padding:16px 8px;text-align:center;">' +
+        '<span style="font-size:12px;color:' + MUTED + ';font-family:Arial,sans-serif;">Reçu via le formulaire de contact sur netara.fr</span>' +
+        '</td></tr>' +
+        '</table>' +
+        '</div>';
 
     try {
         await transporter.sendMail({
