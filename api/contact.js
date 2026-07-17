@@ -46,7 +46,9 @@ router.post('/', async (req, res) => {
 
     if (honeypot) return res.json({ ok: true });
 
-    if (!firstname || !commune || !phone || !email || !serviceKey || !description || !civilite) {
+    // Seuls Nom, Téléphone et Ville sont obligatoires côté formulaire (cf. contact.html).
+    // Civilité, Email, Service et Description sont optionnels.
+    if (!firstname || !commune || !phone) {
         return res.status(400).json({ error: 'Champs obligatoires manquants.' });
     }
     if (
@@ -58,11 +60,11 @@ router.post('/', async (req, res) => {
     ) {
         return res.status(400).json({ error: 'Un des champs dépasse la longueur autorisée.' });
     }
-    if (!EMAIL_REGEX.test(email)) {
+    if (email && !EMAIL_REGEX.test(email)) {
         return res.status(400).json({ error: 'Adresse email invalide.' });
     }
 
-    const serviceLabel = SERVICE_LABELS[serviceKey] ?? serviceKey;
+    const serviceLabel = serviceKey ? (SERVICE_LABELS[serviceKey] ?? serviceKey) : 'Non précisé';
 
     const host    = process.env.SMTP_HOST;
     const portRaw = process.env.SMTP_PORT;
@@ -104,15 +106,15 @@ router.post('/', async (req, res) => {
         'Nouvelle demande depuis le site Netara',
         '',
         `Service : ${serviceLabel}`,
-        `Civilité : ${civilite}`,
+        civilite ? `Civilité : ${civilite}` : null,
         `Nom : ${firstname}`,
         `Commune : ${commune}`,
         `Téléphone : ${phone}`,
-        `Email : ${email}`,
+        email ? `Email : ${email}` : null,
         '',
         'Description :',
-        description,
-    ].join('\n');
+        description || '(non renseignée)',
+    ].filter((line) => line !== null).join('\n');
 
     // Toutes les valeurs safe.* sont passées par escapeHtml() avant interpolation.
     // Les annotations nosemgrep sont nécessaires car Semgrep ne reconnaît pas
@@ -121,20 +123,20 @@ router.post('/', async (req, res) => {
     const html =
         '<h2 style="' + S + '">Nouvelle demande Netara</h2>\n' + // nosemgrep: javascript.express.security.injection.raw-html-format.raw-html-format
         '<p style="' + S + '"><strong>Service :</strong> '   + safe.service   + '</p>\n' + // nosemgrep: javascript.express.security.injection.raw-html-format.raw-html-format
-        '<p style="' + S + '"><strong>Civilité :</strong> '  + safe.civilite  + '</p>\n' + // nosemgrep: javascript.express.security.injection.raw-html-format.raw-html-format
+        (civilite ? '<p style="' + S + '"><strong>Civilité :</strong> '  + safe.civilite  + '</p>\n' : '') + // nosemgrep: javascript.express.security.injection.raw-html-format.raw-html-format
         '<p style="' + S + '"><strong>Nom :</strong> '       + safe.firstname + '</p>\n' + // nosemgrep: javascript.express.security.injection.raw-html-format.raw-html-format
         '<p style="' + S + '"><strong>Commune :</strong> '   + safe.commune   + '</p>\n' + // nosemgrep: javascript.express.security.injection.raw-html-format.raw-html-format
         '<p style="' + S + '"><strong>Téléphone :</strong> <a href="tel:'     + safe.phone  + '">' + safe.phone  + '</a></p>\n' + // nosemgrep: javascript.express.security.injection.raw-html-format.raw-html-format
-        '<p style="' + S + '"><strong>Email :</strong> <a href="mailto:'      + safe.email  + '">' + safe.email  + '</a></p>\n' + // nosemgrep: javascript.express.security.injection.raw-html-format.raw-html-format
+        (email ? '<p style="' + S + '"><strong>Email :</strong> <a href="mailto:'      + safe.email  + '">' + safe.email  + '</a></p>\n' : '') + // nosemgrep: javascript.express.security.injection.raw-html-format.raw-html-format
         '<hr/>\n' +
-        '<p style="' + S + 'white-space:pre-wrap;">'         + safe.description + '</p>\n'; // nosemgrep: javascript.express.security.injection.raw-html-format.raw-html-format
+        '<p style="' + S + 'white-space:pre-wrap;">'         + (safe.description || '(non renseignée)') + '</p>\n'; // nosemgrep: javascript.express.security.injection.raw-html-format.raw-html-format
 
     try {
         await transporter.sendMail({
             from: `"Site Netara" <${from}>`,
             to,
-            replyTo: email,
-            subject: `[Netara] ${serviceLabel} – ${civilite} ${firstname}`,
+            ...(email ? { replyTo: email } : {}),
+            subject: `[Netara] ${serviceLabel} – ${civilite ? civilite + ' ' : ''}${firstname}`,
             text,
             html,
         });
