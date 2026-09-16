@@ -1,3 +1,23 @@
+{
+    const servicesSelect = document.getElementById('contact_services');
+    const isElectrique = new URLSearchParams(window.location.search).get('pole') === 'electrique';
+
+    if (servicesSelect) {
+        if (isElectrique) {
+            servicesSelect.querySelectorAll(':scope > option[value]:not([value=""]):not([value="autre"])')
+                .forEach((opt) => opt.remove());
+        } else {
+            servicesSelect.querySelector('optgroup')?.remove();
+        }
+        servicesSelect.value = '';
+    }
+
+    if (isElectrique) {
+        const formTitle = document.querySelector('#contact-form')?.closest('article')?.querySelector('h2');
+        if (formTitle) formTitle.textContent = 'Demande de devis — Pôle Électrique';
+    }
+}
+
 document.querySelectorAll('[data-civ]').forEach((btn) => {
     btn.addEventListener('click', () => {
         document.querySelectorAll('[data-civ]').forEach((b) => {

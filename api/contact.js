@@ -5,12 +5,19 @@ const router = express.Router();
 
 const SERVICE_LABELS = {
     panneaux: 'Panneaux photovoltaïques',
-    electricity: 'Électricité',
-    nettoyage: 'Nettoyage BTP & Pro',
-    intervention: 'Intervention extrême',
-    toiture: 'Nettoyage de toiture',
-    facade: 'Nettoyage de façade',
-    hydrofuge: 'Hydrofuge coloré',
+    facade: 'Façades et terrasses',
+    graffitis: 'Nettoyage de graffitis',
+    gouttiere: 'Intervention nettoyage gouttière',
+    funeraire: 'Entretien de monument funéraire',
+    extreme: 'Interventions extrêmes',
+    'elec-prise': 'Pôle Électrique – Prise électrique',
+    'elec-eclairage': 'Pôle Électrique – Installation lumineuse',
+    'elec-depannage': 'Pôle Électrique – Dépannage électrique',
+    'elec-urgence': 'Pôle Électrique – Dépannage URGENCE -24H !',
+    'elec-disjoncteur': 'Pôle Électrique – Disjoncteur',
+    'elec-tableau': 'Pôle Électrique – Tableau électrique',
+    'elec-renovation': 'Pôle Électrique – Rénovation électrique',
+    debarras: 'Débarras',
     autre: 'Autre demande',
 };
 
